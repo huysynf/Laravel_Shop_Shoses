@@ -15,7 +15,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Người dùng</div>
-                            <div class="h5 mb-0 font-weight-bold text-primary counter" data-count="{{$userCount}}">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-primary counter" data-count="1000">0</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user fa-2x text-primary"></i>
@@ -31,8 +31,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Sinh viên</div>
-                            <div class="h5 mb-0 font-weight-bold text-success counter" data-count="{{$studentCount}}">0</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"></div>
+                            <div class="h5 mb-0 font-weight-bold text-success counter" data-count="000">0</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-users fa-2x text-success"></i>
@@ -48,10 +48,10 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Lớp học</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"></div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-info counter" data-count="{{$classroomCount}}">0</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-info counter" data-count="100">0</div>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +69,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Môn học</div>
-                            <div class="h5 mb-0 font-weight-bold text-warning counter" data-count="{{$subjectCount}}">0</div>
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"></div>
+                            <div class="h5 mb-0 font-weight-bold text-warning counter" data-count="100">0</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-book fa-2x text-warning"></i>
@@ -84,8 +84,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Khoa</div>
-                            <div class="h5 mb-0 font-weight-bold text-danger counter" data-count="{{$facultyCount}}">0</div>
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"></div>
+                            <div class="h5 mb-0 font-weight-bold text-danger counter" data-count="100">0</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-building fa-2x text-danger"></i>
