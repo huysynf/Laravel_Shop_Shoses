@@ -30,7 +30,7 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-@include('backends.includes.sidebar')
+@include('admins.includes.sidebar')
 <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -40,14 +40,12 @@
         <div id="content">
 
             <!-- Topbar -->
-        @include('backends.includes.header')
+        @include('admins.includes.header')
         <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 @yield('content')
-                @include('backends.users.show')
-                @include('backends.users.user_change_password')
             </div>
             <!-- /.container-fluid -->
 
@@ -55,7 +53,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-    @include('backends.includes.footer')
+    @include('admins.includes.footer')
     <!-- End of Footer -->
 
     </div>

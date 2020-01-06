@@ -34,40 +34,7 @@
                 <span>Người dùng</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" title="Quản lí nhóm quyền">
-                <i class="fas fa-fw fa-user-alt text-danger"></i>
-                <span>Quyền và nhóm quyễn</span>
-            </a>
-        </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="" title="Quản lí sinh viên">
-                <i class="text-warning fas fa-user-friends"></i>
-                <span>Sinh viên</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="" title="Quản lí Lớp">
-                <i class="text-success fas fa-users"></i>
-                <span>Lớp học</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="" title="Quản lí môn học">
-                <i class="text-success fas fa-users"></i>
-                <span>Môn học</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="" title="Quản lí khoa">
-                <i class="text-primary fas fa-igloo"></i>
-                <span>Khoa</span>
-            </a>
-        </li>
 
 
 <!-- Divider -->
