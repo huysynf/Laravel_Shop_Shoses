@@ -79,17 +79,25 @@ $(".image-input").change(function () {
 
 
 //category
-
+    function isNull(variable) {
+        return variable==null;
+    }
  function  convertCategoryToRowTable(category) {
+        let categoryParent="Không có";
+         if(!isNull(category.category)){
+             categoryParent=category.category.name;
+         }
         return ` <tr>
                     <td><strong></strong></td>
                     <td>${category.name}</td>
-                    <td>Không có</td>
+                    <td>${categoryParent}</td>
                     <td>
                         <a href="#"
                            class="btn btn-circle btn-outline-warning"
                            title="Cập nhật thông tin"
                            edit-id="${category.id}"
+                           data-toggle="modal"
+                           data-target="#editCategoryModal"
                         >
                             <i class="fa fa-pencil-alt"></i>
                         </a>
@@ -105,9 +113,9 @@ $(".image-input").change(function () {
 
 function convertErrorsToParagraph(errors){
      let errorText="";
-     errors.forEach(error=>{
-         errorText+=`<p>{{error[0]}}</p>`;
-     });
+    Object.values(errors).forEach(error=>{
+        errorText+=`<p>${error[0]}</p>`;
+    });
 
     return errorText;
 }

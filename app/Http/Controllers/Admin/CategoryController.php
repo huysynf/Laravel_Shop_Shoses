@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Categories\CreateRequest;
+use App\Http\Requests\Categories\UpdateRequest;
 use App\Repositories\admin\CategoryRepository;
 use Illuminate\Http\Request;
 
@@ -19,9 +21,8 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        $searchName = $request->input('name');
-        //  $data =$this->categoryRepository->search($searchName);
-        $categories = $this->categoryRepository->paginate(10);
+        $searchName = $request->input('searchKey');
+        $categories = $this->categoryRepository->search($searchName);
 
         return view('admins.categories.index', compact('categories'));
     }
@@ -31,7 +32,7 @@ class CategoryController extends Controller
         return $this->categoryRepository->formatRequest($request);
     }
 
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
         $data = $this->formatRequest($request);
         $category = $this->categoryRepository->store($data);
@@ -55,18 +56,24 @@ class CategoryController extends Controller
 
     public function show($id)
     {
+        $category=$this->categoryRepository->getById($id);
 
+        return response()->json([
+            'status' => 200,
+            'data' =>$category,
+        ]);
     }
 
-    public function edit($id)
+    public function update(UpdateRequest $request, $id)
     {
-        //
-    }
+        $data = $this->formatRequest($request);
+        $category = $this->categoryRepository->update($data,$id);
 
-
-    public function update(Request $request, $id)
-    {
-        //
+        return response()->json([
+            'status' => 200,
+            'message' => 'Thêm thành công danh mục: ' . $category->name,
+            'data' => $category
+        ]);
     }
 
     public function destroy($id)

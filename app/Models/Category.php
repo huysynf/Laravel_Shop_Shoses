@@ -7,21 +7,22 @@ use Illuminate\Support\Str;
 
 class Category extends Model
 {
+    protected $table = 'categories';
 
     protected $fillable = [
         'name',
         'slug',
-        'parent_id',
+        'category_id',
     ];
 
-    public function parents()
+    public function category()
     {
-        return $this->hasMany(Category::class,'parent_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function childOf()
+    public function childrenCategories()
     {
-        return $this->belongsTo(Category::class,'parent_id');
+        return $this->hasMany(Category::class)->with('categories');
     }
 
     public function setSlugAttribute($value)
@@ -29,13 +30,19 @@ class Category extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
-    public function scopeWithName($query,$name){
-        return $query->where('name','LIKE','%'.$name.'%');
+    public function scopeWithName($query, $name)
+    {
+        return $query->where('name', 'LIKE', '%' . $name . '%');
     }
 
     public function searchBy($name)
     {
-       // return $this->withName($name)->with()
+        return $this->withName($name)->with('category')->latest('id')->paginate(10);
+    }
+
+    public function findOrFail($id)
+    {
+        return $this->with('category')->findOrFail($id);
     }
 
 }
