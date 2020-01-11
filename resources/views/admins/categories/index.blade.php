@@ -5,7 +5,7 @@
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">Danh mục</h1>
-        <button title="Thêm mới danh mục" class="btn btn-outline-primary btn-circle ml-2" data-toggle="modal" data-target="#newCategoryModal">
+        <button title="Thêm mới danh mục" class="btn btn-outline-primary btn-circle ml-2 add-category" data-toggle="modal" data-target="#newCategoryModal">
             <i class="fa fa-plus"></i>
         </button>
     </div>
@@ -22,25 +22,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th>0</th>
-                    <th>Nam</th>
-                    <th>Không có</th>
-                    <th>
-                        <a href="#"
-                           class="btn btn-circle btn-outline-warning"
-                           title="Cập nhật thông tin"
-                        >
-                            <i class="fa fa-pencil-alt"></i>
-                        </a>
-                        <button title="Xóa "
-                                class="btn btn-circle btn-outline-danger"
-                        >
-                            <i class="fas fa-times"></i>
-                        </button>
+                    @foreach( $categories as $category)
+                        <tr>
+                            <td><strong></strong></td>
+                            <td>{{$category->name}}</td>
+                            <td>Không có</td>
+                            <td>
+                                <a href="#"
+                                   class="btn btn-circle btn-outline-warning"
+                                   title="Cập nhật thông tin"
+                                   edit-id="{{$category->id}}"
+                                >
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
+                                <button title="Xóa "
+                                        class="btn btn-circle btn-outline-danger"
+                                        delete-id="{{$category->id}}"
+                                >
+                                    <i class="fas fa-times"></i>
+                                </button>
 
-                    </th>
-                </tr>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
 

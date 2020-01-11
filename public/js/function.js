@@ -76,3 +76,44 @@ function readURL(input) {
 $(".image-input").change(function () {
     readURL(this);
 });
+
+
+//category
+
+ function  convertCategoryToRowTable(category) {
+        return ` <tr>
+                    <td><strong></strong></td>
+                    <td>${category.name}</td>
+                    <td>Không có</td>
+                    <td>
+                        <a href="#"
+                           class="btn btn-circle btn-outline-warning"
+                           title="Cập nhật thông tin"
+                           edit-id="${category.id}"
+                        >
+                            <i class="fa fa-pencil-alt"></i>
+                        </a>
+                        <button title="Xóa "
+                                class="btn btn-circle btn-outline-danger"
+                                delete-id="${category.id}"
+                        >
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </td>
+                </tr>`;
+}
+
+function convertErrorsToParagraph(errors){
+     let errorText="";
+     errors.forEach(error=>{
+         errorText+=`<p>{{error[0]}}</p>`;
+     });
+
+    return errorText;
+}
+
+function resetErrorBox() {
+        $('.error-box').html('');
+}
+
+

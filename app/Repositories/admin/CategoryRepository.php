@@ -25,5 +25,11 @@ class CategoryRepository extends BaseRepository
         return $category;
     }
 
+    public function search($searchName)
+    {
+       $data['category']=$this->model->search($searchName);
+       dd($data);
+    }
+
 
 }

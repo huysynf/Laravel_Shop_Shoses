@@ -17,28 +17,45 @@ class CategoryController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('admins.categories.index');
+        $searchName = $request->input('name');
+        //  $data =$this->categoryRepository->search($searchName);
+        $categories = $this->categoryRepository->paginate(10);
+
+        return view('admins.categories.index', compact('categories'));
     }
 
-    public function formatRequest(Request $request){
-       return $this->categoryRepository->formatRequest($request);
+    public function formatRequest(Request $request)
+    {
+        return $this->categoryRepository->formatRequest($request);
     }
 
     public function store(Request $request)
     {
-        $data=$this->formatRequest($request);
-        $category=$this->categoryRepository->store($data);
+        $data = $this->formatRequest($request);
+        $category = $this->categoryRepository->store($data);
+
         return response()->json([
-           'status'=>200,
-           'message'=>'Thêm thành công danh mục: '.$category->name,
+            'status' => 200,
+            'message' => 'Thêm thành công danh mục: ' . $category->name,
+            'data' => $category
+        ]);
+    }
+
+    public function getAll()
+    {
+        $categories = $this->categoryRepository->get();
+
+        return response()->json([
+            'status' => 200,
+            'data' => $categories
         ]);
     }
 
     public function show($id)
     {
-        //
+
     }
 
     public function edit($id)
@@ -59,40 +76,37 @@ class CategoryController extends Controller
 }
 
 
-function conwayGame($a,$b)
+function conwayGame($a, $b)
 {
-    $arr=[];
-    $text=$a." ".$b."\n";
-    for($i=0;$i<$a;$i++){
+    $arr = [];
+    $text = $a . " " . $b . "\n";
+    for ($i = 0; $i < $a; $i++) {
 
-        for($j=0;$j<$b;$j++){
+        for ($j = 0; $j < $b; $j++) {
 
 
-            if ($i>0 && $i<3 && $j>2 && $j <5)
-            {
+            if ($i > 0 && $i < 3 && $j > 2 && $j < 5) {
 
-                $arr[$i][$j]="*";
+                $arr[$i][$j] = "*";
 
-            }
-            else
-            {
-                $arr[$i][$j]=".";
+            } else {
+                $arr[$i][$j] = ".";
             }
 
         }
     }
-    for($i=0;$i<$a;$i++){
+    for ($i = 0; $i < $a; $i++) {
 
-        for($j=0;$j<$b;$j++){
+        for ($j = 0; $j < $b; $j++) {
 
-            $text.=$arr[$i][$i]." ";
+            $text .= $arr[$i][$i] . " ";
 
         }
 
-        $text.="\n";
+        $text .= "\n";
 
     }
 
 
-return $text;
+    return $text;
 }

@@ -22,6 +22,9 @@
                         <label for="">Danh mục cha</label>
                         <select name="parent_id" class="category-select-parent form-control">
                             <option value="0">--- Chọn danh mục ----</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}" {{$category->id==old('parent_id')?'selected':''}}>{{$category->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <hr>
