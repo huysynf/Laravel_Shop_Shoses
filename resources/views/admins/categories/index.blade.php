@@ -3,8 +3,11 @@
 @section('title',' dashboard')
 
 @section('content')
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">Danh mục</h1>
+        <button title="Thêm mới danh mục" class="btn btn-outline-primary btn-circle ml-2" data-toggle="modal" data-target="#newCategoryModal">
+            <i class="fa fa-plus"></i>
+        </button>
     </div>
 
     <div class="row">
@@ -43,4 +46,5 @@
 
         </div>
     </div>
+    @include('admins.categories.form')
 @endsection

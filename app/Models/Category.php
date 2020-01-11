@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
+
     protected $fillable = [
         'name',
         'slug',
@@ -21,4 +23,10 @@ class Category extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = Str::slug($value);
+    }
+
 }

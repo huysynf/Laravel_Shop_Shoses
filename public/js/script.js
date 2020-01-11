@@ -14,7 +14,7 @@ $(function () {
 
         callAjax(categoryPath,data,postMethodForm)
             .then(data=>{
-                console.log(data);
+
             })
             .catch(data=>{
                 console.log(data);
