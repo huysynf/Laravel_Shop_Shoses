@@ -137,6 +137,8 @@ $(function () {
 
     });
 
+        //product
+    $('.product-select-category').select2();
 
 });
 

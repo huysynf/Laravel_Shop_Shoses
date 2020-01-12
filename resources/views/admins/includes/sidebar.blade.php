@@ -35,7 +35,12 @@
             </a>
         </li>
 
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('products.index')}}" title="Quản lí sản phẩm">
+            <i class="fas fa-fw fa-shopping-bag text-danger"></i>
+            <span>Sản phẩm</span>
+        </a>
+    </li>
 <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->

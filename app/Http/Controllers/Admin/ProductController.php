@@ -3,81 +3,70 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Products\CreateRequest;
+use App\Http\Requests\Products\UpdateRequest;
+use App\Repositories\admin\ProductRepository;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    protected $productRepository;
+
+    public function __construct(ProductRepository $productRepository)
     {
-        //
+
+        $this->productRepository = $productRepository;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index(Request $request)
+    {
+        $searchCondition = $this->productRepository->formatRequest($request);
+        $data = $this->productRepository->search($searchCondition);
+
+        return view('admins.products.index')->with([
+            'categories' => $data['categories'],
+            'products' => $data['products'],
+        ]);
+    }
+
+
     public function create()
     {
-        //
+        $data = $this->productRepository->create();
+
+        return view('admins.products.create')->with(['categories' => $data['categories']]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(CreateRequest $request)
     {
-        //
+        $data = $this->productRepository->formatRequest($request);
+        $product = $this->productRepository->store($data);
+
+        return redirect()->route('products.create')->with('message',
+            'Thêm mới sản phẩm ' . $product->name . ' thành công');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(UpdateRequest $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
