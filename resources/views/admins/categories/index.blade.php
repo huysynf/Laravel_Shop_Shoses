@@ -8,6 +8,9 @@
         <button title="Thêm mới danh mục" class="btn btn-outline-primary btn-circle ml-2 add-category" data-toggle="modal" data-target="#newCategoryModal">
             <i class="fa fa-plus"></i>
         </button>
+        <a title="thùng rác" href="{{route('categories.trash')}}" class="btn btn-outline-danger btn-circle ml-2 " >
+            <i class="fa fa-trash"></i>
+        </a>
     </div>
     <div class="row d-flex mb-1">
         <div class="search-box">
@@ -54,8 +57,9 @@
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
                                 <button title="Xóa "
-                                        class="btn btn-circle btn-outline-danger"
+                                        class="btn btn-circle btn-outline-danger delete-category"
                                         delete-id="{{$category->id}}"
+
                                 >
                                     <i class="fas fa-times"></i>
                                 </button>

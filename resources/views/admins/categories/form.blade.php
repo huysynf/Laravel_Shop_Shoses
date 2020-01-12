@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="new-category-form" method="post" action="{{route('categories.store')}}">
+                <form class="new-category-form" method="post">
                    @csrf
                     <div class="error-box text-danger">
 
@@ -22,6 +22,7 @@
                         <label for="">Danh mục cha</label>
                         <select name="category_id" class="category-select-parent form-control">
                             <option value="">--- Chọn danh mục ----</option>
+                            <option value="">Không có</option>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}" {{$category->id==old('category_id')?'selected':''}}>{{$category->name}}</option>
                             @endforeach
@@ -70,6 +71,7 @@
                         <label for="">Thay đổi danh mục cha</label>
                         <select name="category_id" class="category-select-parent form-control category-parent" style="max-width: 200px">
                             <option value="">--- Chọn danh mục ----</option>
+                            <option value="">Không có</option>
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}" {{$category->id==old('category_id')?'selected':''}}>{{$category->name}}</option>
                             @endforeach

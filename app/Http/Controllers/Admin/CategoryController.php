@@ -71,49 +71,65 @@ class CategoryController extends Controller
 
         return response()->json([
             'status' => 200,
-            'message' => 'Thêm thành công danh mục: ' . $category->name,
+            'message' => 'Cập nhật thành công danh mục: ' . $category->name,
             'data' => $category
         ]);
     }
 
     public function destroy($id)
     {
-        //
+        $category=$this->categoryRepository->destroy($id);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Xóa  thành công danh mục: ' . $category->name,
+            'data' => $category
+        ]);
+    }
+
+    public function trash(Request $request)
+    {
+        $searchName=$request->input('searchKey');
+        $categories = $this->categoryRepository->trash($searchName);
+
+        return view('admins.categories.trash', compact('categories'));
+    }
+
+    public function trashDeleteAll()
+    {
+        $categories = $this->categoryRepository->trashDeleteAll();
+
+        return view('admins.categories.trash', compact('categories'));
+    }
+
+    public function trashRestoreAll()
+    {
+        $categories = $this->categoryRepository->trashDeleteAll();
+
+        return view('admins.categories.trash', compact('categories'));
+    }
+
+    public function trashDelete($id)
+    {
+        $categories = $this->categoryRepository->trashDelete($id);
+
+        return response()->json([
+        'status'=>200,
+        'message'=>'Thành công',
+    ]);
+    }
+
+    public function trashRestore($id)
+    {
+        $this->categoryRepository->trashRestore($id);
+
+        return response()->json([
+           'status'=>200,
+           'message'=>'Thành công',
+        ]);
+
     }
 }
 
 
-function conwayGame($a, $b)
-{
-    $arr = [];
-    $text = $a . " " . $b . "\n";
-    for ($i = 0; $i < $a; $i++) {
 
-        for ($j = 0; $j < $b; $j++) {
-
-
-            if ($i > 0 && $i < 3 && $j > 2 && $j < 5) {
-
-                $arr[$i][$j] = "*";
-
-            } else {
-                $arr[$i][$j] = ".";
-            }
-
-        }
-    }
-    for ($i = 0; $i < $a; $i++) {
-
-        for ($j = 0; $j < $b; $j++) {
-
-            $text .= $arr[$i][$i] . " ";
-
-        }
-
-        $text .= "\n";
-
-    }
-
-
-    return $text;
-}

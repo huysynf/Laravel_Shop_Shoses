@@ -25,14 +25,14 @@ class CategoryRepository extends BaseRepository
     public function store(array $data)
     {
         $category = $this->model->create($data);
-        $data=$this->model->with('category')->findOrFail($category->id);
+        $data=$this->getById($category->id);
 
         return $data;
     }
     public function update(array $data,$id)
     {
         $this->model->findOrFail($id)->update($data);
-        $category=$this->model->findOrFail($id);
+        $category=$this->getById($id);
 
         return $category;
     }
@@ -49,5 +49,40 @@ class CategoryRepository extends BaseRepository
         return $this->model->findOrFail($id);
     }
 
+    public function destroy($id)
+    {
+        $category= $this->getById($id);
+        $category->delete();
+
+        return $category;
+    }
+
+    public function trash($searchName)
+    {
+        $categories=$this->model->getAllCategoryWhenSoftDelete($searchName);
+
+        return $categories;
+    }
+
+    public function trashDeleteAll():void
+    {
+        $this->model->trashDeleteAll();
+    }
+
+    public function trashRestoreAll():void
+    {
+        $this->model->trashRestoreAll();
+    }
+
+    public function trashDelete($id)
+    {
+        $this->model->trashDeleteBy($id);
+    }
+
+    public function trashRestore($id)
+    {
+        $this->model->trashRestoreBy($id);
+
+    }
 
 }

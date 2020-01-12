@@ -27,6 +27,29 @@ function callAjax(url, data = null, type = 'get') {
         contentType: false,
     });
 }
+
+alertConfirm = (message) => {
+    return new Promise(((resolve, reject) => {
+        Swal.fire({
+            title: message,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ok ',
+            cancelButtonText: 'Hủy bỏ'
+        }).then((result) => {
+            if (result.value) {
+                resolve('ok');
+
+            }
+            else{
+                reject('not ok');
+            }
+        });
+    }))
+};
+
 destroyResourceByAjax = (url) => {
     return new Promise(((resolve, reject) => {
         Swal.fire({
@@ -102,7 +125,7 @@ $(".image-input").change(function () {
                             <i class="fa fa-pencil-alt"></i>
                         </a>
                         <button title="Xóa "
-                                class="btn btn-circle btn-outline-danger"
+                                class="btn btn-circle btn-outline-danger delete-category"
                                 delete-id="${category.id}"
                         >
                             <i class="fas fa-times"></i>
