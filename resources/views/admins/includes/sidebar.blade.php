@@ -29,12 +29,11 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" title="Quản lí người dùng">
-                <i class="fas fa-fw fa-user-alt text-danger"></i>
-                <span>Người dùng</span>
+            <a class="nav-link collapsed" href="{{route('categories.index')}}" title="Quản lí danh mục">
+                <i class="fas fa-fw fa-list text-danger"></i>
+                <span>Danh mục</span>
             </a>
         </li>
-
 
 
 <!-- Divider -->
