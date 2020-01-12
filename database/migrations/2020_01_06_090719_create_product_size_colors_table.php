@@ -15,6 +15,10 @@ class CreateProductSizeColorsTable extends Migration
     {
         Schema::create('product_size_colors', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('product_size_id');
+            $table->string('color');
+            $table->integer('quantity');
+            $table->foreign('product_size_id')->references('id')->on('product_sizes')->onDelete('cascade');
             $table->timestamps();
         });
     }
