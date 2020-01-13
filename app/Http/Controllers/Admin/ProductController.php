@@ -25,7 +25,6 @@ class ProductController extends Controller
         $data = $this->productRepository->search($searchCondition);
 
         return view('admins.products.index')->with([
-            'categories' => $data['categories'],
             'products' => $data['products'],
         ]);
     }
@@ -33,11 +32,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        $data = $this->productRepository->create();
-
-        return view('admins.products.create')->with(['categories' => $data['categories']]);
+        return view('admins.products.create');
     }
-
 
     public function store(CreateRequest $request)
     {

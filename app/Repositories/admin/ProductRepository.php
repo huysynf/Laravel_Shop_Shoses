@@ -4,7 +4,6 @@
 namespace App\Repositories\admin;
 
 
-use App\Models\Category;
 use App\Models\Product;
 use App\Repositories\BaseRepository;
 use Illuminate\Http\Request;
@@ -12,13 +11,11 @@ use Illuminate\Http\Request;
 class ProductRepository extends BaseRepository
 {
 
-    protected $category;
     protected $imagePath;
 
     public function __construct(Product $product)
     {
         $this->model = $product;
-        $this->category = new Category();
         $this->imagePath='images/products/';
     }
 
@@ -32,7 +29,6 @@ class ProductRepository extends BaseRepository
 
     public function search(array $searchCondition)
     {
-        $data['categories']=$this->category->all(['id','name']);
         $data['products']=$this->model->searchBy($searchCondition);
 
         return $data;

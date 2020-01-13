@@ -139,6 +139,7 @@ $(function () {
 
         //product
     $('.product-select-category').select2();
+    $('.product-select-brand').select2();
 
         //brands
         let brand=$('#brand');

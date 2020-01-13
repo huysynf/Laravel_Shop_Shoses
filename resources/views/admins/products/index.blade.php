@@ -56,6 +56,7 @@
                     <th>Ảnh</th>
                     <th>Tên sản phẩm</th>
                     <th>Danh mục</th>
+                    <th>Thương hiệu</th>
                     <th>Khuyến mại</th>
                     <th>Tùy chọn</th>
                 </tr>
@@ -74,6 +75,7 @@
                                 <p>{{$category->name}}</p>
                             @endforeach
                         </td>
+                        <td>{{$product->brand->name}}</td>
                         <td>{{$product->sale}}%</td>
                         <td>
                             <a class="btn btn-circle btn-outline-warning" title="Cập nhật thông tin"

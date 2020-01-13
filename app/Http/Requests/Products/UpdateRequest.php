@@ -29,6 +29,7 @@ class UpdateRequest extends FormRequest
             'image'=>'required|image|mimes:jpeg,bmp,png',
             'sale'=>'required|numeric|min:0|max:100',
             'categories'=>'required',
+            'brand_id'=>'required',
             'status'=>'required',
             'description'=>'required',
         ];

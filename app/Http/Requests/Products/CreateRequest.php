@@ -27,6 +27,7 @@ class CreateRequest extends FormRequest
                 'name'=>['required','unique:products,name'],
                 'product_key'=>'required|unique:products,product_key',
                 'image'=>'required|image|mimes:jpeg,bmp,png',
+                'brand_id'=>'required',
                 'sale'=>'required|numeric|min:0|max:100',
                 'categories'=>'required',
                 'status'=>'required',

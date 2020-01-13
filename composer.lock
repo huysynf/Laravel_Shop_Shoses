@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d0e942e07a51ee89c7ee8c12e1ff940a",
-
+    "content-hash": "6e401d152bc985cb65e28c873609e5c4",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -509,7 +508,6 @@
             "time": "2019-12-20T13:11:11+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "graham-campbell/guzzle-factory",
             "version": "v3.0.2",
             "source": {
@@ -682,8 +680,6 @@
             "time": "2016-12-20T10:07:11+00:00"
         },
         {
-=======
->>>>>>> f82216001b72c5ed67297c80c0d110126dc328c2
             "name": "guzzlehttp/psr7",
             "version": "1.6.1",
             "source": {
@@ -6034,7 +6030,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
+        "php": "^7.4"
     },
     "platform-dev": []
 }

@@ -20,6 +20,7 @@ class Product extends Model
         'description',
         'status',
         'slug',
+        'brand_id'
     ];
 
     public function setSlugAttribute($value)
@@ -35,6 +36,11 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 
     public function scopeWithName($query, $name)
@@ -56,6 +62,7 @@ class Product extends Model
         return $this->when($categoryName,fn($query,$q) => $query->whereHas('categories',fn ($q)=> $q->where('name', $categoryName)))
                 ->withName($name)
                 ->withSale($sale)
+                ->with('brand')
                 ->latest('id')
                 ->paginate(10);
     }

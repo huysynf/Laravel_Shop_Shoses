@@ -17,12 +17,14 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('product_key');
             $table->string('name')->unique();
+            $table->unsignedBigInteger('brand_id');
             $table->integer('sale')->default(0);
             $table->string('image');
             $table->text('description');
             $table->smallInteger('status')->default(0);
             $table->string('slug')->unique();
             $table->timestamps();
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
     }
 

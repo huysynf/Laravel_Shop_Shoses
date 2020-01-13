@@ -70,6 +70,21 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
+                        <label for="">Chọn thương hiệu</label>
+                        <select name="brand_id" class="form-control product-select-brand" multiple>
+                            @foreach($brands as $brand)
+                                <option
+                                    value="{{$brand->id}}" {{old('brand_id')==$brand->id ? 'selected' : ''}}>{{$brand->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('brand_id')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Sale</label>
                         <input type="text" class="form-control " name="sale" value="{{old('sale')??0}}"
                                required>
@@ -77,10 +92,8 @@
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-12 col-lg-6 col-sm-12">
-                        <label for="">Trạng thái</label>
+                    <div class="form-group col-md-6 col-lg-6 col-sm-12">
+                        <label for="">Trạng thái</label><br>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="status"
                                    value="1" {{(old('status')==0)?"checked="."checked":""}}>
@@ -97,7 +110,8 @@
                     </div>
                     <div class="form-group col-md-12 col-lg-12 col-sm-12">
                         <label for="">Mô tả</label>
-                        <textarea id="description" type="text" class="form-control" name="description" required>{{old('description')}}</textarea>
+                        <textarea id="description" type="text" class="form-control" name="description"
+                                  required>{{old('description')}}</textarea>
                         @error('description')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -110,11 +124,11 @@
 
 @endsection
 @section('js')
-    <script >
-        CKEDITOR.replace( 'description', {
+    <script>
+        CKEDITOR.replace('description', {
             filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
 
-        } );
+        });
     </script>
 
 @endsection
