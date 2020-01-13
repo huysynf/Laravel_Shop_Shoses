@@ -35,6 +35,13 @@
             </a>
         </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{route('brands.index')}}" title="Quản lí thương hiệu">
+            <i class="fas fa-fw fa-trademark text-danger"></i>
+            <span>Thương hiệu</span>
+        </a>
+    </li>
+
 
 <!-- Divider -->
     <hr class="sidebar-divider">
