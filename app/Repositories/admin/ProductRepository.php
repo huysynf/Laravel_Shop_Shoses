@@ -19,7 +19,7 @@ class ProductRepository extends BaseRepository
     {
         $this->model = $product;
         $this->category = new Category();
-        $this->imagePath='images/products';
+        $this->imagePath='images/products/';
     }
 
     public function formatRequest(Request $request):array

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="d-flex  mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Sản phẩm</h1>
+        <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
         <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2"   href="{{route('products.create')}}">
             <i class="fa fa-plus"></i>
         </a>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="text-dark">
-            <p class="p-2">Tổng cộng:</p>
+            <p class="p-2">Tổng cộng:{{$products->total()}}</p>
         </div>
     </div>
     <div class="row" id="category">
@@ -76,11 +76,26 @@
                         </td>
                         <td>{{$product->sale}}%</td>
                         <td>
-                            <button class="btn btn-circle btn-outline-warning"><i class="fa fa-pencil-alt"></i></button>
-                            <button class="btn btn-circle btn-outline-warning"><i class="fa fa-info"></i></button>
-                            <button class="btn btn-circle btn-outline-warning"><i class="fa fa-image"></i></button>
-                            <button class="btn btn-circle btn-outline-warning"><i class="fa fa-s"></i></button>
-                            <button class="btn btn-circle btn-outline-warning"><i class="fa fa-trash"></i></button>
+                            <a class="btn btn-circle btn-outline-warning" title="Cập nhật thông tin"
+                               href="{{route('products.edit',$product->id)}}"><i class="fa fa-pencil-alt"></i></a>
+                            <button class="btn btn-circle btn-outline-info show-product" show="{{$product->id}}"
+                                    data-toggle="modal" data-target="#showProductInfo"
+                                    title="Thông tin chi tiết"><i class="fa fa-info"></i></button>
+                            <button class="btn btn-circle btn-outline-primary add-product-image"
+                                    add-image="{{$product->id}}"
+                                    data-toggle="modal" data-target="#addProductImage"
+                                    title="Thêm hình ảnh cho sản phẩm"><i
+                                    class="fa fa-image"></i></button>
+                            <button class="btn btn-circle btn-outline-primary  add-product-size"
+                                    data-toggle="modal" data-target="#addProductSize"
+                                    add-size="{{$product->id}}" title="Thêm kích cỡ cho sản phẩm"><i
+                                    class="fas fa-sort-numeric-up-alt"></i></button>
+                            <button class="btn btn-circle btn-outline-primary  add-product-size"
+                                    data-toggle="modal" data-target="#addProductColor"
+                                    add-color="{{$product->id}}" title="Thêm kích màu cho kích cỡ sản phẩm"><i
+                                    class="fa fa-palette"></i></button>
+                            <button class="btn btn-circle btn-outline-danger " delete="{{$product->id}}"
+                                    title="Xóa sản phầm"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                 @endforeach
@@ -93,4 +108,5 @@
             {{$products}}
         </div>
     </div>
+    @include('admins.products.modal')
 @endsection
