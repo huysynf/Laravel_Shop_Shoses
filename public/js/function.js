@@ -177,3 +177,15 @@ $('#file-image').fileinput({
     showUpload: false,
     allowedFileExtensions: ['jpg', 'png', 'gif']
 });
+function converImageToImageItem(images) {
+    let text="";
+    images.forEach(image=>{
+        text+=` <div class="position-relative p-2 " style="cursor: pointer;width:100px ;height:100px ;border: 1px solid">
+                    <img src="/images/products/${image.image}" alt="" width="100px" height="100px"
+                         style="max-height: 100%;max-width: 100%" >
+                    <span class="delete-image-product position-absolute" delete="${image.id}" style="top: 0;right: 0" title="Xóa ảnh"><i class="fa fa-times text-danger "></i></span>
+                </div>
+        `;
+    });
+    return text;
+    }

@@ -10,14 +10,11 @@
             </div>
             <div class="modal-body">
                 <div class="image-box d-flex">
-                    <div class="position-relative p-2 " style="cursor: pointer;width:100px ;height:100px ;border: 1px solid">
-                        <img src="/images/brands/default.jpg" alt="" width="100px" height="100px"
-                             style="max-height: 100%;max-width: 100%" >
-                        <span class="delete-image-product position-absolute" style="top: 0;right: 0"><i class="fa fa-times text-danger "></i></span>
-                    </div>
+
                 </div>
                <hr>
                 <form action="" class="new-image-form">
+                    @csrf
                     <input type="hidden" name="product_id" class="product_id">
                     <div>
                         <label for="image"

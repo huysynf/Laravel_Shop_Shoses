@@ -18,7 +18,7 @@ class ProductImage extends Model
 
     public function scopeWithProduct_id($query,$product_id)
     {
-        $query->when($product_id,fn($q)=>where('product_id',$product_id));
+        $query->when($product_id,fn($q)=>$q->where('product_id',$product_id));
     }
 
     public function getImageBy($productId)

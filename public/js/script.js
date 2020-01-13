@@ -225,19 +225,41 @@ $(function () {
     $('.new-image-product').click(function () {
             let url='/manage/product-image';
             let data=new FormData($('.new-image-form')[0]);
-        console.log('oko');
 
-
+             callAjax(url,data,postMethodForm)
+            .then(data=>{
+                alertSuccess(data.message);
+                $('#addProductImage').modal('hide');
+            })
+             .catch(data=>{
+                alertError(data.message);
+             });
     });
 
-    product.on('click','.add-product-image',function () {
+    product.on('click','.add-image-product',function () {
+        $('.new-image-form').trigger('reset');
         let id=$(this).attr('add-image');
         $('.product_id').val(id);
         let url='/manage/product-image/'+id;
         callAjax(url)
             .then(data=>{
+                let images=data.data;
+                let text=converImageToImageItem(images);
+                $('.image-box').html(text);
+            })
+    });
 
-            });
+    $('#addProductImage').on('click','.delete-image-product',function () {
+        let id=$(this).attr('delete');
+
+        let url='/manage/product-image/'+id;
+        destroyResourceByAjax(url)
+            .then(data=>{
+                $(this).parent('div').remove();
+                alertSuccess(data.message);
+            })
     })
+
+
 });
 

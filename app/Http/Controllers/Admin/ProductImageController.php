@@ -19,11 +19,32 @@ class ProductImageController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $data = $this->productImageRepository->formatRequest($request);
+        $images = $this->productImageRepository->store($data);
+
+        return response()->json([
+            'status' => 200,
+            'message'=>'Thêm hình ảnh thành công',
+            'data' => $images,
+        ]);
     }
 
     public function getImage($id)
     {
+        $images = $this->productImageRepository->getImage($id);
 
+        return response()->json([
+            'status' => 200,
+            'data' => $images,
+        ]);
+    }
+
+
+    public function destroy($id)
+    {
+        return response()->json([
+            'status' => 200,
+            'message' => $this->productImageRepository->destroy($id),
+        ]);
     }
 }
