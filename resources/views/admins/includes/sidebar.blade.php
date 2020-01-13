@@ -41,6 +41,12 @@
             <span>Sản phẩm</span>
         </a>
     </li>
+        <a class="nav-link collapsed" href="{{route('brands.index')}}" title="Quản lí thương hiệu">
+            <i class="fas fa-fw fa-trademark text-danger"></i>
+            <span>Thương hiệu</span>
+        </a>
+    </li>
+
 <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->

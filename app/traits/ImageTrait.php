@@ -8,7 +8,7 @@ trait ImageTrait
 {
     public function veryfyImage($image)
     {
-        if ($image->isValid()) {
+        if (isset($image) && $image->isValid()) {
             return true;
         }
         return false;

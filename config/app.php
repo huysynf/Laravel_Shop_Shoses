@@ -177,6 +177,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+
     ],
 
     /*

@@ -148,3 +148,25 @@ function resetErrorBox() {
 }
 
 
+//brand
+function convertBrandToRowTable(brand) {
+    return `
+    <tr>
+        <td><strong></strong></td>
+        <td><img src="/images/brands/${brand.image}"
+                 style="max-width: 50px;max-height: 50px;" width="100%" height="100%"
+                 alt="${brand.name}">
+        </td>
+        <td>${brand.name}</td>
+        <td>
+            <button class="btn btn-circle btn-outline-primary  edit-brand"
+                    data-toggle="modal" data-target="#editBrandModal"
+                    edit="${brand.id}" title="Cập nhật thông tin"><i
+                    class="fa fa-pen"></i></button>
+            <button class="btn btn-circle btn-outline-danger delete-brand" delete="${brand.id}"
+                    title="Xóa sản phầm"><i class="fa fa-times"></i></button>
+        </td>
+     </tr>
+    `;
+}
+
