@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Chọn thương hiệu</label>
-                        <select name="brand_id" class="form-control product-select-brand" multiple>
+                        <select name="brand_id" class="form-control product-select-brand" >
                             @foreach($brands as $brand)
                                 <option
                                     value="{{$brand->id}}" {{old('brand_id')==$brand->id ? 'selected' : ''}}>{{$brand->name}}</option>

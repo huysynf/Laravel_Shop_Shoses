@@ -170,3 +170,10 @@ function convertBrandToRowTable(brand) {
     `;
 }
 
+//upload file
+$('#file-image').fileinput({
+    theme: 'fa',
+    language: 'vi',
+    showUpload: false,
+    allowedFileExtensions: ['jpg', 'png', 'gif']
+});

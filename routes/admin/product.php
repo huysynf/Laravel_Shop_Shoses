@@ -1,6 +1,5 @@
 <?php
-Route::group(['prefix'=>'products'],function (){
-
-});
 
 Route::resource('products','ProductController');
+
+Route::get('product-image/{id}','ProductImageController@getImage');

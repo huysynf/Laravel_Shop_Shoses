@@ -217,5 +217,27 @@ $(function () {
                 alertError(data.message);
             });
     });
+
+    //product image
+
+    let product=$('#product');
+
+    $('.new-image-product').click(function () {
+            let url='/manage/product-image';
+            let data=new FormData($('.new-image-form')[0]);
+        console.log('oko');
+
+
+    });
+
+    product.on('click','.add-product-image',function () {
+        let id=$(this).attr('add-image');
+        $('.product_id').val(id);
+        let url='/manage/product-image/'+id;
+        callAjax(url)
+            .then(data=>{
+
+            });
+    })
 });
 

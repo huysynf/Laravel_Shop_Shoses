@@ -47,7 +47,7 @@
             <p class="p-2">Tổng cộng:{{$products->total()}}</p>
         </div>
     </div>
-    <div class="row" id="category">
+    <div class="row" id="product">
         <div class="col-12">
             <table class="table table-bordered table-hover">
                 <thead>
@@ -83,7 +83,7 @@
                             <button class="btn btn-circle btn-outline-info show-product" show="{{$product->id}}"
                                     data-toggle="modal" data-target="#showProductInfo"
                                     title="Thông tin chi tiết"><i class="fa fa-info"></i></button>
-                            <button class="btn btn-circle btn-outline-primary add-product-image"
+                            <button class="btn btn-circle btn-outline-primary add-image-product"
                                     add-image="{{$product->id}}"
                                     data-toggle="modal" data-target="#addProductImage"
                                     title="Thêm hình ảnh cho sản phẩm"><i
