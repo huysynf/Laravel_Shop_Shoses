@@ -137,6 +137,32 @@ $(function () {
 
     });
 
+        //brands
+        let brand=$('#brand');
+        let brandPath='/manage/brands';
+        let brandId=0;
 
+    $('.add-brand').click(function () {
+        $('.new-brand-form').trigger('reset');
+        resetErrorBox();
+    });
+
+    $('.new-brand').click(function () {
+        resetErrorBox();
+        let data=new FormData($('.new-brand-form')[0]);
+        callAjax(brandPath,data,postMethodForm)
+            .then(data=>{
+                $('#newBrandModal').modal('hide');
+                alertSuccess(data.message);
+              //  let row=convertCategoryToRowTable(data.data);
+                //tableBody.prepend(row);
+                countIndexTableOfPage();
+            })
+            .catch(data=>{
+                let errors = convertErrorsToParagraph(data.responseJSON.errors);
+                errorBox.html(errors);
+                $('.brand-name').focus();
+            });
+    });
 });
 
