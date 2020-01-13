@@ -141,6 +141,7 @@ $(function () {
         let brand=$('#brand');
         let brandPath='/manage/brands';
         let brandId=0;
+        let brandModalTitle=$('#BrandModalTitle');
 
     $('.add-brand').click(function () {
         $('.new-brand-form').trigger('reset');
@@ -152,16 +153,63 @@ $(function () {
         let data=new FormData($('.new-brand-form')[0]);
         callAjax(brandPath,data,postMethodForm)
             .then(data=>{
-                $('#newBrandModal').modal('hide');
+                $('#BrandModal').modal('hide');
                 alertSuccess(data.message);
-              //  let row=convertCategoryToRowTable(data.data);
-                //tableBody.prepend(row);
+                // let row=convertBrandToRowTable(data.data);
+                // tableBody.prepend(row);
+                location.reload();
                 countIndexTableOfPage();
             })
             .catch(data=>{
                 let errors = convertErrorsToParagraph(data.responseJSON.errors);
                 errorBox.html(errors);
                 $('.brand-name').focus();
+            });
+    });
+
+    brand.on('click','.edit-brand',function () {
+        resetErrorBox();
+        brandId=$(this).attr('edit');
+        let url=brandPath+'/'+brandId;
+        callAjax(url)
+            .then(data=>{
+                let brand=data.data;
+                $('.brand-name').val(brand.name);
+                $('.brand-image').attr('src','/images/brands/'+brand.image);
+            })
+    });
+
+    $('.update-brand').click(function () {
+        resetErrorBox();
+        let data=new FormData($('.edit-brand-form')[0]);
+        let url=brandPath+'/update/'+brandId;
+        callAjax(url,data,postMethodForm)
+            .then(data=>{
+               $('#editBrandModal').modal('hide');
+                alertSuccess(data.message);
+                 let row=convertBrandToRowTable(data.data);
+                $(".edit-brand[edit=" + brandId + "]").parents('tr').replaceWith(row);
+                countIndexTableOfPage();
+            })
+            .catch(data=>{
+                let errors = convertErrorsToParagraph(data.responseJSON.errors);
+                errorBox.html(errors);
+                $('.brand-name').focus();
+            });
+    });
+
+    brand.on('click', '.delete-brand', function () {
+        let id = $(this).attr('delete');
+        let url = brandPath + "/" + id;
+        destroyResourceByAjax(url)
+            .then(data => {
+                alertSuccess(data.message);
+                // $(this).parents('tr').remove();
+                // countIndexTableOfPage();
+                location.reload();
+            })
+            .catch(data => {
+                alertError(data.message);
             });
     });
 });

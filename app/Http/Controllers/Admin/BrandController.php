@@ -19,37 +19,53 @@ class BrandController extends Controller
 
     public function index(Request $request)
     {
-        $name=$request->input('name');
-        $data=$this->brandRepository->searchBy($name);
+        $name = $request->input('name');
+        $data = $this->brandRepository->searchBy($name);
 
-        return view('admins.brands.index')->with(['brands'=>$data['brands']]);
+        return view('admins.brands.index')->with(['brands' => $data['brands']]);
     }
 
     public function store(CreateRequest $request)
     {
-        $data=$this->brandRepository->formatRequest($request);
-        $brand=$this->brandRepository->store($data);
+        $data = $this->brandRepository->formatRequest($request);
+        $brand = $this->brandRepository->store($data);
 
         return response()->json([
-           'status'=>200,
-           'message'=>'Thêm thành công thương hiệu mới:'.$brand->name,
-           'data'=>$brand,
+            'status' => 200,
+            'message' => 'Thêm thành công thương hiệu mới:' . $brand->name,
+            'data' => $brand,
         ]);
     }
 
     public function show($id)
     {
+        $brand = $this->brandRepository->getById($id);
 
+        return response()->json([
+            'status' => 200,
+            'data' => $brand,
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        //
-    }
+        $data = $this->brandRepository->formatRequest($request);
+        $brand = $this->brandRepository->update($data, $id);
 
+        return response()->json([
+            'status' => 200,
+            'message' => 'Cập nhật thành công thương hiệu mới:' . $brand->name,
+            'data' => $brand,
+        ]);
+    }
 
     public function destroy($id)
     {
-        //
+        $brand = $this->brandRepository->destroy($id);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Cập nhật thành công thương hiệu mới:' . $brand->name,
+        ]);
     }
 }

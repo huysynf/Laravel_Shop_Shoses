@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name'=>'required|unique:brands,name,'.$this->id,
-            'image'=>'required|image|mimes:jpeg,bmp,png',
+
         ];
     }
 }
