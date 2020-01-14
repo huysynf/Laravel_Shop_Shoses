@@ -24,7 +24,7 @@ class ProductImageController extends Controller
 
         return response()->json([
             'status' => 200,
-            'message'=>'Thêm hình ảnh thành công',
+            'message' => 'Thêm hình ảnh thành công',
             'data' => $images,
         ]);
     }
@@ -38,7 +38,6 @@ class ProductImageController extends Controller
             'data' => $images,
         ]);
     }
-
 
     public function destroy($id)
     {

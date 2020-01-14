@@ -79,7 +79,7 @@
 
 {{--add sỉze modal--}}
 <div class="modal fade" id="addProductSize" tabindex="-1" role="dialog" aria-labelledby="addProductSizeTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addProductSizeTitle">Thêm kích cỡ cho sản phẩm</h5>
@@ -88,11 +88,33 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
+                <div class="error-box text-danger">
+
+                </div>
+                <form class="new-product-size-form">
+                    @csrf
+                    <input type="hidden" name="product_id" class="product_id">
+                    <div class="form-group ">
+                        <lable>Kích cỡ</lable>
+                        <input type="text" name="size">
+                        <lable>Giá cả</lable>
+                        <input type="text" name="price">
+                        <button type="button" class="btn btn-outline-primary btn-circle new-product-size"><i class="fa fa-plus"></i></button>
+                    </div>
+                </form>
+                <div>
+                    <div class="show-size-box">
+                        <table class="table table-bordered ">
+                            <tr>
+                                <th>Kich cỡ</th>
+                                <th>Giá</th>
+                            </tr>
+                            <tbody class="tbody-product-sze">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <button type="button" class="btn btn-outline-danger btn-circle" data-dismiss="modal"><i class="fa fa-times"></i></button>
-                <button type="button" class="btn btn-outline-primary btn-circle"><i class="fa fa-plus"></i></button>
             </div>
         </div>
     </div>

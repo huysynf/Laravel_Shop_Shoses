@@ -23,6 +23,7 @@
         <div class="col-12 col-lg-8 col-md-10">
             <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                <button type="submit" class="btn btn-outline-primary mb-1"><i class="fa fa-plus"></i>Thêm mới</button>
                 <div class="row">
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Tên sản phẩm</label>
@@ -124,7 +125,7 @@
                         @enderror
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary "><i class="fa fa-plus"></i>Thêm mới</button>
+
             </form>
         </div>
     </div>

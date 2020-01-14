@@ -24,6 +24,7 @@
             <form action="{{route('products.update',$product->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('put')
+                <button type="submit" class="btn btn-outline-primary mb-1"><i class="fa fa-pen"></i>Cập nhật</button>
                 <div class="row">
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Tên sản phẩm</label>
@@ -123,7 +124,6 @@
                         @enderror
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-primary "><i class="fa fa-pen"></i>Cập nhật</button>
             </form>
         </div>
     </div>

@@ -102,6 +102,7 @@
 <script src="{{asset('fileinput/js/fileinput.js')}}"></script>
 <script src="{{asset('fileinput/js/selectize.js')}}"></script>
 <script src="{{asset('fileinput/js/vi.js')}}"></script>
+<script src="{{asset('js/simple.money.format.js')}}"></script>
 <script src="{{asset('js/function.js')}}"></script>
 <script src="{{asset('js/script.js')}}"></script>
 </body>
