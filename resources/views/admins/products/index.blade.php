@@ -33,6 +33,16 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="d-flex flex-column ml-1">
+                    <lable class="text-primary" for="role">Tên hãng</lable>
+                    <select name="brand" class="h-50 product-select-brand " style="width: 300px">
+                        <option value="">Tất cả</option>
+                        @foreach($brands as $brand)
+                            <option
+                                value="{{$brand->name}}" {{(request()->input('brand')==$brand->name)?'selected':''}} >{{$brand->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="align-self-end ml-1">
                     <button class="btn btn-primary  aqua-gradient btn-rounded btn-sm my-0" type="submit"
                             title="Tìm kiếm">
@@ -47,6 +57,14 @@
             <p class="p-2">Tổng cộng:{{$products->total()}}</p>
         </div>
     </div>
+    @if(session('message'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong> {{session('message')}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="row" id="product">
         <div class="col-12">
             <table class="table table-bordered table-hover">

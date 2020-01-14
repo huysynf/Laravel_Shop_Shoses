@@ -26,7 +26,8 @@
                 <div class="row">
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Tên sản phẩm</label>
-                        <input type="text" class="form-control" name="name" value="{{old('name')}}" required>
+                        <input type="text" class="form-control" name="name" value="{{old('name')}}"
+                               @error('name')autofocus @enderror>
                         @error('name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -34,6 +35,7 @@
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Mã sản phẩm </label>
                         <input type="text" class="form-control " name="product_key" value="{{old('product_key')}}"
+                               @error('product_key')autofocus @enderror
                         >
                         @error('product_key')
                         <span class="text-danger">{{ $message }}</span>
@@ -59,7 +61,8 @@
                 <div class="row">
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Chọn danh mục</label>
-                        <select name="categories[]" id="" class="form-control product-select-category" multiple>
+                        <select name="categories[]" id="" class="form-control product-select-category" multiple
+                                @error('categories')autofocus @enderror >
                             @foreach($categories as $category)
                                 <option
                                     value="{{$category->id}}" {{in_array($category->id,old('categories',[]))? 'selected' : '' }}>{{$category->name}}</option>
@@ -71,7 +74,9 @@
                     </div>
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Chọn thương hiệu</label>
-                        <select name="brand_id" class="form-control product-select-brand" >
+                        <select name="brand_id" class="form-control product-select-brand"
+                                @error('brand_id')autofocus @enderror>
+                            <option value="">--Chọn thương hiệu-</option>
                             @foreach($brands as $brand)
                                 <option
                                     value="{{$brand->id}}" {{old('brand_id')==$brand->id ? 'selected' : ''}}>{{$brand->name}}</option>
@@ -87,6 +92,7 @@
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Sale</label>
                         <input type="text" class="form-control " name="sale" value="{{old('sale')??0}}"
+                               @error('sale')autofocus @enderror
                                required>
                         @error('sale')
                         <span class="text-danger">{{ $message }}</span>
@@ -111,6 +117,7 @@
                     <div class="form-group col-md-12 col-lg-12 col-sm-12">
                         <label for="">Mô tả</label>
                         <textarea id="description" type="text" class="form-control" name="description"
+                                  @error('description')autofocus @enderror
                                   required>{{old('description')}}</textarea>
                         @error('description')
                         <span class="text-danger">{{ $message }}</span>

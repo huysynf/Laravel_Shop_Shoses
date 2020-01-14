@@ -29,7 +29,6 @@ class ProductController extends Controller
         ]);
     }
 
-
     public function create()
     {
         return view('admins.products.create');
@@ -44,27 +43,27 @@ class ProductController extends Controller
             'Thêm mới sản phẩm ' . $product->name . ' thành công');
     }
 
-
     public function show($id)
     {
         //
     }
 
-
     public function edit($id)
     {
         $product=$this->productRepository->getById($id);
         $categoryIds=$this->productRepository->getCategoryIdsBy($id);
-        dd($categoryIds);
-        return view('admins.products.edit',compact('product'));
-    }
 
+        return view('admins.products.edit',compact('product','categoryIds'));
+    }
 
     public function update(UpdateRequest $request, $id)
     {
-        //
-    }
+        $data = $this->productRepository->formatRequest($request);
+        $product = $this->productRepository->update($data, $id);
 
+        return redirect()->route('products.index')->with('message',
+            'Cập nhật sản phẩm ' . $product->name . ' thành công');
+    }
 
     public function destroy($id)
     {

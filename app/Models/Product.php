@@ -35,8 +35,8 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class )
-            ->withPivot(['category_id','product_id']);
+        return $this->belongsToMany(Category::class)->withPivot(['category_id', 'product_id']);
+
     }
 
     public function brand()
@@ -56,16 +56,20 @@ class Product extends Model
 
     public function searchBy(array $searchCondition)
     {
-        $categoryName=$searchCondition['category']??null;
-        $sale=$searchCondition['sale']??null;
-        $name=$searchCondition['name']??null;
+        $categoryName = $searchCondition['category'] ?? null;
+        $sale = $searchCondition['sale'] ?? null;
+        $name = $searchCondition['name'] ?? null;
+        $brandName = $searchCondition['brand'] ?? null;
 
-        return $this->when($categoryName,fn($query,$q) => $query->whereHas('categories',fn ($q)=> $q->where('name', $categoryName)))
-                ->withName($name)
-                ->withSale($sale)
-                ->with('brand')
-                ->latest('id')
-                ->paginate(10);
+        return $this->when($categoryName,
+            fn($query, $q) => $query->whereHas('categories', fn($q) => $q->where('name', $categoryName)))
+            ->when($brandName,
+                fn($query, $q) => $query->whereHas('brand', fn($q) => $q->where('name', $brandName)))
+            ->withName($name)
+            ->withSale($sale)
+            ->with('brand')
+            ->latest('id')
+            ->paginate(10);
     }
 
     public function getBy($id)

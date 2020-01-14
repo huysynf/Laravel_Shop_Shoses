@@ -62,4 +62,14 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->getCategoryIdsBy($id);
     }
+
+    public function update(array $data,$id)
+    {
+        $product=$this->getById($id);
+        $image = $data['image'] ?? null;
+        $data['image'] =$this->model->updateImage($image, $this->imagePath, $product->image);
+        $product->update($data);
+
+        return $product;
+    }
 }
