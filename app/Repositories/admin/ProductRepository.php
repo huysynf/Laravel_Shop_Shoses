@@ -50,4 +50,16 @@ class ProductRepository extends BaseRepository
 
         return $product;
     }
+
+    public function getById($id)
+    {
+        $product=$this->model->getBy($id);
+
+        return $product;
+    }
+
+    public function getCategoryIdsBy($id)
+    {
+        return $this->model->getCategoryIdsBy($id);
+    }
 }

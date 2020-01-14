@@ -53,7 +53,10 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        //
+        $product=$this->productRepository->getById($id);
+        $categoryIds=$this->productRepository->getCategoryIdsBy($id);
+        dd($categoryIds);
+        return view('admins.products.edit',compact('product'));
     }
 
 

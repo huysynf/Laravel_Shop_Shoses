@@ -35,7 +35,8 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class )
+            ->withPivot(['category_id','product_id']);
     }
 
     public function brand()
@@ -67,5 +68,13 @@ class Product extends Model
                 ->paginate(10);
     }
 
+    public function getBy($id)
+    {
+        return $this->with('categories')->with('brand')->findOrFail($id);
+    }
 
+    public function getCategoryIdsBy($id)
+    {
+        return $this->findOrFail($id)->categories()->pluck('category_id')->toArray();
+    }
 }
