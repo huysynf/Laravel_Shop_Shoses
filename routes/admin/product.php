@@ -11,3 +11,8 @@ Route::delete('product-image/{id}','ProductImageController@destroy');
 Route::get('product-size/{id}','ProductSizeController@getSize');
 Route::post('product-size','ProductSizeController@store');
 Route::delete('product-size/{id}','ProductSizeController@destroy');
+
+
+//color
+Route::get('product-color/{id}','ProductColorController@create')->name('products.color.create');
+Route::post('product-color','ProductColorController@store')->name('products.color.store');

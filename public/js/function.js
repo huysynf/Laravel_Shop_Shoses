@@ -216,4 +216,22 @@ function convertSizeToRowTable(size) {
 
 
 }
+function convertColorToRowTable(color) {
+
+    return `<tr>
+                <td class="m-0 p-0">
+                    <div class="box-color" style="background:${color.color}">
+
+                    </div>
+                </td>
+                 <td class="m-0 p-0"> ${color.quantity}</td>
+                 <td class="m-0 p-0">
+                    <button class="btn btn-circle btn-outline-warning" color="${color.id}" title="Cập nhật "><i class="fa fa-pen"></i></button>
+                    <button class="btn btn-circle btn-outline-danger" delete="${color.id}" title="Xóa"><i class="fa fa-times"></i></button>
+                </td>
+            </tr>
+        `;
+
+
+}
 

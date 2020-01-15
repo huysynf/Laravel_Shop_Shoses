@@ -21,12 +21,17 @@ class ProductSize extends Model
 
     public function getSizesBy($productId)
     {
-        return $this->withProduct_id($productId)->get();
+        return $this->withProduct_id($productId)->with('colors')->get();
     }
 
     public function scopeWithProduct_id($query,$product_id)
     {
         $query->when($product_id,fn($q)=>$q->where('product_id',$product_id));
+    }
+
+    public function colors()
+    {
+        return $this->hasMany(ProductSizeColor::class,'product_size_id');
     }
 
 }

@@ -305,6 +305,33 @@ $(function () {
                 alertError(data.message);
             });
     });
+
+    let sizeActive=0;
+    $('.add-product-color').click(function () {
+            resetErrorBox();
+            let id=$(this).attr('size');
+            sizeActive=$(this).attr('name');
+            $('#addProductColorTitle').html('Thêm màu cho cỡ: '+sizeActive);
+            $('.product-size-id').val(id);
+
+    });
+    $('.new-product-color').click(function () {
+        let url='/manage/product-color';
+        let data=new FormData($('.new-product-color-form')[0]);
+        resetErrorBox();
+                callAjax(url,data,postMethodForm)
+                    .then(data=>{
+                        let color =data.data;
+                        alertSuccess(data.message);
+                        let row=convertColorToRowTable(color);
+                      $("tbody[size="+sizeActive+"]").prepend(row);
+                        $('.new-product-color-form').trigger('reset');
+                    })
+                    .catch(data=>{
+                        let errors = convertErrorsToParagraph(data.responseJSON.errors);
+                        errorBox.html(errors);
+                    });
+    })
 });
 
 
