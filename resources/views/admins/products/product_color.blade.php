@@ -19,7 +19,7 @@
         </div>
     @endif
     @if(count($sizes)>0)
-
+        <div id="product-color-wrap">
         @foreach($sizes as $size)
             <div class="col-6 col-lg-6 col-md-6 " style="border: 1px solid #3300aa">
                 <div class="d-flex">
@@ -46,8 +46,11 @@
                             </td>
                             <td class="m-0 p-0"> {{$color->quantity==0?'Hết hàng':$color->quantity}}</td>
                             <td class="m-0 p-0">
-                                <button class="btn btn-circle btn-outline-warning" color="{{$color->id}}" title="Cập nhật "><i class="fa fa-pen"></i></button>
-                                <button class="btn btn-circle btn-outline-danger" delete="{{$color->id}}" title="Xóa"><i class="fa fa-times"></i></button>
+                                <button class="btn btn-circle btn-outline-warning edit-product-color"
+                                        data-toggle="modal" data-target="#editProductColor"
+                                        name="{{$size->size}}" color="{{$color->id}}"
+                                        title="Cập nhật "><i class="fa fa-pen"></i></button>
+                                <button class="btn btn-circle btn-outline-danger destroy-product-color" delete="{{$color->id}}" title="Xóa"><i class="fa fa-times"></i></button>
                             </td>
                         </tr>
                     @endforeach
@@ -55,43 +58,6 @@
                 </table>
             </div>
         @endforeach
-
-        <div class="modal fade" id="addProductColor" tabindex="-1" role="dialog" aria-labelledby="addProductColorTitle"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addProductColorTitle" class="title-add-product-size"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="error-box text-danger"></div>
-
-                        <form action="{{route('products.color.store')}}" method="post" class="new-product-color-form">
-                            @csrf
-                            <input type="hidden" name="product_size_id" class="product-size-id">
-
-                            <div class=" form-group">
-                                <label for="">Chọn màu</label>
-                                <input type="color" name="color">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Số lượng </label>
-                                <input type="text" class="color-quantity" name="quantity" value="{{old('quantity')}}"
-                                >
-                            </div>
-                        </form>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-outline-danger btn-circle" data-dismiss="modal"><i
-                                    class="fa fa-times"></i></button>
-                            <button type="button" class="btn btn-outline-primary btn-circle new-product-color"><i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     @else
@@ -101,6 +67,82 @@
                                                              class="text-danger">Đây </a></p>
         </div>
     @endif
+    <div class="modal fade" id="addProductColor" tabindex="-1" role="dialog" aria-labelledby="addProductColorTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductColorTitle" class="title-add-product-size"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="error-box text-danger"></div>
+
+                    <form action="{{route('products.color.store')}}" method="post" class="new-product-color-form">
+                        @csrf
+                        <input type="hidden" name="product_size_id" class="product-size-id">
+
+                        <div class=" form-group">
+                            <label for="">Chọn màu</label>
+                            <input type="color" name="color">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Số lượng </label>
+                            <input type="text" class="color-quantity" name="quantity" value="{{old('quantity')}}"
+                            >
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-outline-danger btn-circle" data-dismiss="modal"><i
+                                class="fa fa-times"></i></button>
+                        <button type="button" class="btn btn-outline-primary btn-circle new-product-color"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="editProductColor" tabindex="-1" role="dialog" aria-labelledby="editProductColorTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductColorTitle" class="title-add-product-size"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="error-box text-danger"></div>
+                    <form action="{{route('products.color.store')}}" method="post" class="update-product-color-form">
+                        @csrf
+                        <div class=" form-group">
+                            <label for="">Chọn màu</label>
+                            <input type="color" name="color" class="product-color">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Số lượng </label>
+                            <input type="text" class="color-quantity" name="quantity"
+                            >
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-outline-danger btn-circle" data-dismiss="modal"><i
+                                class="fa fa-times"></i></button>
+                        <button type="button" class="btn btn-outline-primary btn-circle update-product-color"><i class="fa fa-pen"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
 
 @endsection
 

@@ -37,4 +37,14 @@ class ProductColorRepository extends BaseRepository
 
         return  $data;
     }
+
+    public function update(array $data,$id)
+    {
+        $color=$this->model->findOrFail($id);
+        $color->update($data);
+
+        return $color;
+    }
+
+
 }

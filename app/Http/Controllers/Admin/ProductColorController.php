@@ -35,4 +35,36 @@ class ProductColorController extends Controller
                'data'=>$color,
             ]);
     }
+
+    public function show($id)
+    {
+        $color=$this->productColorRepository->getById($id);
+
+        return response()->json([
+            'status'=>200,
+            'data'=>$color,
+        ]);
+    }
+
+    public function update(CreateColorRequest $request,$id)
+    {
+            $data=$this->productColorRepository->formatRequest($request);
+            $color=$this->productColorRepository->update($data,$id);
+
+        return response()->json([
+            'status'=>200,
+            'message'=>'Cập nhật thành công ',
+            'data'=>$color,
+        ]);
+    }
+
+    public function destroy($id)
+    {
+        $this->productColorRepository->deleteById($id);
+
+        return response()->json([
+            'status'=>200,
+            'message'=>'Xóa thành thành công ',
+        ]);
+    }
 }

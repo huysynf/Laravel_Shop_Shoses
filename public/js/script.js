@@ -307,6 +307,8 @@ $(function () {
     });
 
     let sizeActive=0;
+    let colorId=0;
+    let color= $('#product-color-wrap');
     $('.add-product-color').click(function () {
             resetErrorBox();
             let id=$(this).attr('size');
@@ -331,7 +333,53 @@ $(function () {
                         let errors = convertErrorsToParagraph(data.responseJSON.errors);
                         errorBox.html(errors);
                     });
-    })
+    });
+
+   color.on('click','.edit-product-color',function () {
+        resetErrorBox();
+         colorId=$(this).attr('color');
+        $('#editProductColorTitle').html('Cập nhật thông tin');
+        let url='/manage/product-color/'+colorId+'/show';
+        callAjax(url)
+            .then(data=>{
+                let color=data.data;
+                $('.product-color').val(color.color);
+                $('.color-quantity').val(color.quantity);
+            });
+
+    });
+    $('.update-product-color').click(function () {
+        let url='/manage/product-color/update/'+colorId;
+        let data=new FormData($('.update-product-color-form')[0]);
+        resetErrorBox();
+        callAjax(url,data,postMethodForm)
+            .then(data=>{
+                let color =data.data;
+                alertSuccess(data.message);
+                let row=convertColorToRowTable(color);
+                $(".edit-product-color[color="+colorId+"]").parents('tr').replaceWith(row);
+                $('.new-product-color-form').trigger('reset');
+            })
+            .catch(data=>{
+                let errors = convertErrorsToParagraph(data.responseJSON.errors);
+                errorBox.html(errors);
+            });
+    });
+
+    color.on('click', '.destroy-product-color', function () {
+        let id = $(this).attr('delete');
+        let url = '/manage/product-color/' + id;
+        destroyResourceByAjax(url)
+            .then(data => {
+                alertSuccess(data.message);
+                $(this).parents('tr').remove();
+                countIndexTableOfPage();
+            })
+            .catch(data => {
+                alertError(data.message);
+            });
+    });
+
 });
 
 
