@@ -47,6 +47,13 @@
         </a>
     </li>
 
+    </li>
+    <a class="nav-link collapsed" href="{{route('coupons.index')}}" title="Quản lí mã giảm giá">
+        <i class="fas fa-fw fa-sticky-note text-danger"></i>
+        <span>Mã giảm giá</span>
+    </a>
+    </li>
+
 <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->
