@@ -226,12 +226,32 @@ function convertColorToRowTable(color) {
                 </td>
                  <td class="m-0 p-0"> ${color.quantity}</td>
                  <td class="m-0 p-0">
-                    <button class="btn btn-circle btn-outline-warning"  color="${color.id}" title="Cập nhật "><i class="fa fa-pen"></i></button>
-                    <button class="btn btn-circle btn-outline-danger" delete="${color.id}" title="Xóa"><i class="fa fa-times"></i></button>
+                    <button class="btn btn-circle btn-outline-warning   edit-product-color"   data-toggle="modal" data-target="#editProductColor" color="${color.id}" title="Cập nhật "><i class="fa fa-pen"></i></button>
+                    <button class="btn btn-circle btn-outline-danger destroy-product-color" delete="${color.id}" title="Xóa"><i class="fa fa-times"></i></button>
                 </td>
             </tr>
         `;
 
 
+}
+
+function convertCategoryToParagraph(categories)
+{
+    let text="";
+    categories.forEach(item=>{
+       text+=`<p>-- ${item.name} </p>`;
+    });
+
+    return text;
+}
+
+function convertSizesToParagraph(sizes)
+{
+    let text="";
+    sizes.forEach(item=>{
+        text+=`<p>Cỡ: ${item.size} </p>`;
+    });
+
+    return text;
 }
 

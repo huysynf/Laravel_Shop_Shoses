@@ -223,6 +223,26 @@ $(function () {
 
     let product = $('#product');
 
+    product.on('click', '.show-product', function () {
+        let id=$(this).attr('show');
+        let url = '/manage/products/'+id;
+        callAjax(url)
+            .then(data => {
+              let product=data.data;
+                $('.product-name').html(product.name);
+                 $('.product-sale').html(product.sale);
+                 $('.product-brand').html(product.brand.name);
+                let status=product.status==0 && 'Hiện thị' || 'không hiện thị';
+                $('.product-status').html(status);
+                $('.product-des').html(product.description);
+                $('.product-image').attr('src','/images/products/'+product.image);
+                let categories=convertCategoryToParagraph(product.categories);
+                let sizes=convertSizesToParagraph(product.sizes);
+                $('.product-category').html(categories);
+                $('.product-size').html(sizes);
+            });
+    });
+
     $('.new-image-product').click(function () {
         let url = '/manage/product-image';
         let data = new FormData($('.new-image-form')[0]);
@@ -369,6 +389,20 @@ $(function () {
     color.on('click', '.destroy-product-color', function () {
         let id = $(this).attr('delete');
         let url = '/manage/product-color/' + id;
+        destroyResourceByAjax(url)
+            .then(data => {
+                alertSuccess(data.message);
+                $(this).parents('tr').remove();
+                countIndexTableOfPage();
+            })
+            .catch(data => {
+                alertError(data.message);
+            });
+    });
+
+    product.on('click', '.delete-product', function () {
+        let id = $(this).attr('delete');
+        let url = '/manage/products/' + id;
         destroyResourceByAjax(url)
             .then(data => {
                 alertSuccess(data.message);

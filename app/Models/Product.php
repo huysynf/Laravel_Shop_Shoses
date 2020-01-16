@@ -54,6 +54,16 @@ class Product extends Model
         $query->when($sale,fn($q)=>where('sale', $sale));
     }
 
+    public function sizes()
+    {
+        return $this->hasMany(ProductSize::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
     public function searchBy(array $searchCondition)
     {
         $categoryName = $searchCondition['category'] ?? null;
@@ -74,7 +84,7 @@ class Product extends Model
 
     public function getBy($id)
     {
-        return $this->with('categories')->with('brand')->findOrFail($id);
+        return $this->with('images')->with('sizes')->with('categories')->with('brand')->findOrFail($id);
     }
 
     public function getCategoryIdsBy($id)

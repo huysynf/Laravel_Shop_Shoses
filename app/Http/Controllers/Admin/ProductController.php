@@ -45,7 +45,10 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        //
+        return response()->json([
+            'status' => 200,
+            'data' => $this->productRepository->getById($id),
+        ]);
     }
 
     public function edit($id)
@@ -67,6 +70,11 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        //
+        $message=$this->productRepository->destroy($id);
+
+        return response()->json([
+            'status'=>200,
+            'message'=>$message
+        ]);
     }
 }

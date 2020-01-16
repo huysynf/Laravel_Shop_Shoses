@@ -111,9 +111,10 @@
                                     add-size="{{$product->id}}" title="Thêm kích cỡ cho sản phẩm"><i
                                     class="fas fa-sort-numeric-up-alt"></i></button>
                             <a class="btn btn-circle btn-outline-primary  "
-                                    href="{{route('products.color.create',$product->id)}}" title="Thêm kích màu cho kích cỡ sản phẩm"><i
+                               href="{{route('products.color.create',$product->id)}}"
+                               title="Thêm kích màu cho kích cỡ sản phẩm"><i
                                     class="fa fa-palette"></i></a>
-                            <button class="btn btn-circle btn-outline-danger " delete="{{$product->id}}"
+                            <button class="btn btn-circle btn-outline-danger delete-product" delete="{{$product->id}}"
                                     title="Xóa sản phầm"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>

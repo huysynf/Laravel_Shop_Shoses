@@ -72,4 +72,23 @@ class ProductRepository extends BaseRepository
 
         return $product;
     }
+
+
+    public function destroy($id)
+    {
+        $product=$this->getById($id);
+        $image=$product->image;
+        $this->model->deleteImage($image,$this->imagePath);
+        $images=$product->images;
+        $product->delete();
+        if(count($images)>0)
+        {
+            foreach($images as $img)
+            {
+                $this->model->deleteImage($img->image,$this->imagePath);
+            }
+        }
+
+        return 'Xóa thành công sản phẩm :'.$product->name;
+    }
 }
