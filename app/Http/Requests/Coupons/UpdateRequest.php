@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'code'=>'required|unique:coupons,code,'.$this->coupon,
+            'type'=>'required',
+            'value'=>'required|numeric|min:0',
+            'status'=>'required',
+            'expiry_date'=>'required',
+            'quantity'=>'required|numeric|min:0',
         ];
     }
 }

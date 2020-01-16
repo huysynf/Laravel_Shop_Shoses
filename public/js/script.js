@@ -414,6 +414,25 @@ $(function () {
             });
     });
 
+
+    let coupon=$('#coupon');
+
+    coupon.on('click', '.delete-coupon', function () {
+        let id = $(this).attr('delete');
+        let url = '/manage/coupons/' + id;
+        destroyResourceByAjax(url)
+            .then(data => {
+                alertSuccessRe(data.message)
+                    .then(data=>{
+                        location.reload();
+                    });
+
+            })
+            .catch(data => {
+                alertError(data.message);
+            });
+    });
+
 });
 
 

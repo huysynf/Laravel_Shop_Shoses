@@ -9,6 +9,27 @@ alertSuccess = (message) => {
     });
 };
 
+alertSuccessRe = (message) => {
+    return new Promise(((resolve, reject) => {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: message,
+            showConfirmButton: true,
+            confirmButtonText: 'ok'
+        }).then((result) => {
+            if (result.value) {
+                resolve('ok');
+
+            }
+            else{
+                reject('not ok');
+            }
+        });
+    }))
+};
+
+
  alertError=(message)=>{
     Swal.fire({
         icon: 'error',
