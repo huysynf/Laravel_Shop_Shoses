@@ -15,17 +15,17 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'category_id',
+        'parent_id',
     ];
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class, 'parent_id');
     }
 
     public function childrenCategories()
     {
-        return $this->hasMany(Category::class)->with('categories');
+        return $this->hasMany(Category::class,'parent_id')->with('categories');
     }
 
     public function setSlugAttribute($value)

@@ -17,11 +17,22 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::create('category_product', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->timestamps();
+        });
+
+
     }
 
     /**
@@ -31,6 +42,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('category_product');
         Schema::dropIfExists('categories');
     }
 }

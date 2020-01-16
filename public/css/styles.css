@@ -3,3 +3,7 @@
     background-image: linear-gradient(180deg,#45464e 10%,rgba(0,0,0,.9) 100%);
     background-size: cover;
 }
+.box-color {
+    width: 30px;
+    height: 20px;
+}

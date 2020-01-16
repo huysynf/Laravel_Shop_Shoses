@@ -170,3 +170,88 @@ function convertBrandToRowTable(brand) {
     `;
 }
 
+//upload file
+$('#file-image').fileinput({
+    theme: 'fa',
+    language: 'vi',
+    showUpload: false,
+    allowedFileExtensions: ['jpg', 'png', 'gif']
+});
+
+function converImageToImageItem(images) {
+    let text = "";
+    images.forEach(image => {
+        text += ` <div class="position-relative p-2 " style="cursor: pointer;width:100px ;height:100px ;border: 1px solid">
+                    <img src="/images/products/${image.image}" alt="" width="100px" height="100px"
+                         style="max-height: 100%;max-width: 100%" >
+                    <span class="delete-image-product position-absolute" delete="${image.id}" style="top: 0;right: 0" title="Xóa ảnh"><i class="fa fa-times text-danger "></i></span>
+                </div>
+        `;
+    });
+    return text;
+}
+function convertSizesToRowTable(sizes) {
+    let text = "";
+    sizes.forEach(size => {
+        text += ` <tr>
+                    <td class="p-0 text-center">${size.size}</td>
+                        <td class="p-0 text-center moneyFormat">${size.price}</td>
+                    <td class="p-0 ">
+                        <button title="Xóa kích kích cỡ này" delete="${size.id}" class="btn btn-circle btn-outline-danger delete-size"><i class="fa fa-times"></i></button></td>
+                </tr>
+        `;
+    });
+    return text;
+}
+
+function convertSizeToRowTable(size) {
+
+        return ` <tr>
+                    <td class="p-0 text-center">${size.size}</td>
+                        <td class="p-0 text-center moneyFormat">${size.price}</td>
+                    <td class="p-0 ">
+                        <button title="Xóa kích kích cỡ này" delete="${size.id}" class="btn btn-circle btn-outline-danger delete-size"><i class="fa fa-times"></i></button></td>
+                </tr>
+        `;
+
+
+}
+function convertColorToRowTable(color) {
+
+    return `<tr>
+                <td class="m-0 p-0">
+                    <div class="box-color" style="background:${color.color}">
+
+                    </div>
+                </td>
+                 <td class="m-0 p-0"> ${color.quantity}</td>
+                 <td class="m-0 p-0">
+                    <button class="btn btn-circle btn-outline-warning   edit-product-color"   data-toggle="modal" data-target="#editProductColor" color="${color.id}" title="Cập nhật "><i class="fa fa-pen"></i></button>
+                    <button class="btn btn-circle btn-outline-danger destroy-product-color" delete="${color.id}" title="Xóa"><i class="fa fa-times"></i></button>
+                </td>
+            </tr>
+        `;
+
+
+}
+
+function convertCategoryToParagraph(categories)
+{
+    let text="";
+    categories.forEach(item=>{
+       text+=`<p>-- ${item.name} </p>`;
+    });
+
+    return text;
+}
+
+function convertSizesToParagraph(sizes)
+{
+    let text="";
+    sizes.forEach(item=>{
+        text+=`<p>Cỡ: ${item.size} </p>`;
+    });
+
+    return text;
+}
+

@@ -20,6 +20,7 @@
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/sweetalert2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('fileinput/fileinput.css')}}">
     <link href="{{asset('css/styles.css')}}" rel="stylesheet">
 
 </head>
@@ -96,9 +97,14 @@
 <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 <script src="{{asset('js/select2.min.js')}}"></script>
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('js/jquery.counterup.min.js')}}"></script>
+<script src="{{asset('fileinput/js/fileinput.js')}}"></script>
+<script src="{{asset('fileinput/js/selectize.js')}}"></script>
+<script src="{{asset('fileinput/js/vi.js')}}"></script>
+<script src="{{asset('js/simple.money.format.js')}}"></script>
 <script src="{{asset('js/function.js')}}"></script>
 <script src="{{asset('js/script.js')}}"></script>
 </body>
-
+@yield('js')
 </html>
