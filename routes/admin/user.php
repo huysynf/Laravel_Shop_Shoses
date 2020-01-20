@@ -1,2 +1,2 @@
 <?php
-Route::resource('users','CouponController');
+Route::resource('users','UserController');
