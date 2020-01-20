@@ -433,6 +433,22 @@ $(function () {
             });
     });
 
+   $('.delete-slide').click(function () {
+        let id = $(this).attr('delete');
+        let url = '/manage/slides/' + id;
+        destroyResourceByAjax(url)
+            .then(data => {
+                alertSuccessRe(data.message)
+                    .then(data=>{
+                        location.reload();
+                    });
+
+            })
+            .catch(data => {
+                alertError(data.message);
+            });
+    });
+
 });
 
 

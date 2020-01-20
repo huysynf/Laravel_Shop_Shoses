@@ -46,12 +46,12 @@ class Product extends Model
 
     public function scopeWithName($query, $name)
     {
-        $query->when($name,fn($q)=>where('name', 'LIKE', '%' . $name . '%'));
+        $query->when($name,fn($q)=>$q->where('name', 'LIKE', '%' . $name . '%'));
     }
 
     public function scopeWithSale($query, $sale)
     {
-        $query->when($sale,fn($q)=>where('sale', $sale));
+        $query->when($sale,fn($q)=>$q->where('sale', $sale));
     }
 
     public function sizes()
