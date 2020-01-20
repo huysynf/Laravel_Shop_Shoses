@@ -7,7 +7,7 @@
         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
         <a title="Thêm mới mã giảm giá"
            href="{{route('slides.create')}}"
-           class="btn btn-outline-primary btn-circle ml-2 add-brand"  >
+           class="btn btn-outline-primary btn-circle ml-2 add-brand">
             <i class="fa fa-plus"></i>
         </a>
     </div>
@@ -38,8 +38,10 @@
             </form>
         </div>
 
-        <div class="text-dark">
-{{--            <p class="p-2">Tổng cộng:{{$slides->total()}}</p>--}}
+        <div class="text-dark d-flex">
+            <p class="p-2">Tổng cộng:{{$slides->total()}}</p>
+            <p class="p-2">Hiện thị :{{$slideShow}}</p>
+            <p class="p-2">Không hiện thị :{{$slideNotShow}}</p>
         </div>
     </div>
     <div class="row" id="coupon">
@@ -48,31 +50,30 @@
                 <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Code</th>
-                    <th>Thể loại</th>
-                    <th>Giá trị</th>
-                    <th>Ngày hết hạn</th>
-                    <th>Trạng thái </th>
-                    <th>Số lượng </th>
+                    <th>Ảnh</th>
+                    <th>Trạng thái</th>
+                    <th>Mô tả</th>
                     <th>Tùy chọn</th>
                 </tr>
                 </thead>
                 <tbody>
-{{--                @foreach($coupons as $coupon)--}}
-{{--                    <tr>--}}
-{{--                        <th><strong></strong></th>--}}
-{{--                        <th>{{$coupon->code}}</th>--}}
-{{--                        <th>{{$coupon->type=='percent'?'Phần trăm':'tiềm mặt'}}</th>--}}
-{{--                        <th>{{$coupon->type=='percent'?$coupon->value.' %':number_format($coupon->value).'VND'}}</th>--}}
-{{--                        <th>{{$coupon->expiry_date}}</th>--}}
-{{--                        <th>{{$coupon->status==0?'Hết hạn':'Còn'}} </th>--}}
-{{--                        <th>{{$coupon->quantity}} </th>--}}
-{{--                        <th>--}}
-{{--                            <a href="{{route('coupons.edit',$coupon->id)}}" title="Cập nhật" class="btn btn-circle btn-outline-warning"><i class="fa fa-edit"></i></a>--}}
-{{--                            <button class="btn btn-circle btn-outline-danger delete-coupon" title="Xóa" delete="{{$coupon->id}}"><i class="fa fa-trash"></i></button>--}}
-{{--                        </th>--}}
-{{--                    </tr>--}}
-{{--                @endforeach--}}
+                @foreach($slides as $slide)
+                    <tr>
+                        <td><strong></strong></td>
+                        <td><img src="{{asset('/images/slides/'.$slide->image)}}"
+                                 style="max-width: 50px;max-height: 50px;" width="100%" height="100%"
+                                 alt="{{$slide->name}}">
+                        </td>
+                        <td>{{$slide->status===1?'Hiện thị':'Không hiện thị '}} </td>
+                        <td style="text-overflow: ellipsis;">{!! $slide->description !!} </td>
+                        <td>
+                            <a href="{{route('slides.edit',$slide->id)}}" title="Cập nhật"
+                               class="btn btn-circle btn-outline-warning"><i class="fa fa-edit"></i></a>
+                            <button class="btn btn-circle btn-outline-danger delete-coupon" title="Xóa"
+                                    delete="{{$slide->id}}"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 
