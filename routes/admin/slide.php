@@ -1,2 +1,2 @@
 <?php
-Route::resource('slides','CouponController');
+Route::resource('slides','SlideController');

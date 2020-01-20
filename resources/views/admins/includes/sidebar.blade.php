@@ -75,7 +75,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link " href="{{route('coupons.index')}}" title="Quản lí đơn hàng">
+        <a class="nav-link " href="{{route('slides.index')}}" title="Quản lý slider">
             <i class="fas fa-fw fa-image text-danger"></i>
             <span>Slider</span>
         </a>
