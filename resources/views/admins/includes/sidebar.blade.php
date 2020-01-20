@@ -26,7 +26,6 @@
         <i class="text-white fa fa-cogs"></i>
         <span>Quản lí</span>
     </div>
-
     <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('categories.index')}}" title="Quản lí danh mục">
@@ -34,23 +33,36 @@
                 <span>Danh mục</span>
             </a>
         </li>
-
+     </li>
     <li class="nav-item">
-        <a class="nav-link collapsed" href="{{route('products.index')}}" title="Quản lí sản phẩm">
+            <a class="nav-link " href="{{route('users.index')}}" title="Quản lí người dùng">
+                <i class="fas fa-fw fa-shopping-bag text-danger"></i>
+                <span>Người dùng</span>
+            </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="{{route('products.index')}}" title="Quản lí sản phẩm">
             <i class="fas fa-fw fa-shopping-bag text-danger"></i>
             <span>Sản phẩm</span>
         </a>
     </li>
-        <a class="nav-link collapsed" href="{{route('brands.index')}}" title="Quản lí thương hiệu">
+    <li class="nav-item">
+        <a class="nav-link " href="{{route('brands.index')}}" title="Quản lí thương hiệu">
             <i class="fas fa-fw fa-trademark text-danger"></i>
             <span>Thương hiệu</span>
         </a>
     </li>
 
-    </li>
-    <a class="nav-link collapsed" href="{{route('coupons.index')}}" title="Quản lí mã giảm giá">
+    <li class="nav-item">
+    <a class="nav-link " href="{{route('coupons.index')}}" title="Quản lí mã giảm giá">
         <i class="fas fa-fw fa-sticky-note text-danger"></i>
         <span>Mã giảm giá</span>
+    </a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link " href="{{route('coupons.index')}}" title="Quản lí đơn hàng">
+        <i class="fas fa-fw fa-shopping-bag text-danger"></i>
+        <span>Đơn hàng</span>
     </a>
     </li>
 
@@ -62,6 +74,12 @@
         <span>Cài đặt</span>
     </div>
 
+    <li class="nav-item">
+        <a class="nav-link " href="{{route('coupons.index')}}" title="Quản lí đơn hàng">
+            <i class="fas fa-fw fa-image text-danger"></i>
+            <span>Slider</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
