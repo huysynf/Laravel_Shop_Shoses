@@ -50,7 +50,7 @@
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="status"
-                               value="0" {{(old('status')==0)?'checked='.'checked':''}}>
+                               value="0" {{(old('status')==2)?'checked='.'checked':''}}>
                         <label class="form-check-label" for="inlineRadio2">Không hiện thị</label>
                     </div>
                     @error('gender')

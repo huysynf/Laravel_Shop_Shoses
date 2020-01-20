@@ -28,7 +28,8 @@ class SlideController extends Controller
 
     public function index(Request $request)
     {
-        $slides=$this->slide->paginate(10);
+        $status=$request->input('status');
+        $slides=$this->slide->search($status);
         $slideShow=$this->slide->countSlideShow();
         $slideNotShow=$this->slide->countSlideNotShow();
 
@@ -60,18 +61,34 @@ class SlideController extends Controller
 
     public function edit($id)
     {
-        //
+        $slide= $this->slide->findOrFail($id);
+
+        return view('admins.slides.edit',compact('slide'));
     }
 
 
     public function update(Request $request, $id)
     {
-        //
+        $slide= $this->slide->findOrFail($id);
+        $data=$this->formatRequest($request);
+        $image =$data['image']??null;
+        $data['image']=$this->slide->updateImage($image,$this->imagePath,$slide->image);
+        $slide->update($data);
+
+        return redirect()->route('slides.index')->with('message','Cập nhật  slide thành công');
     }
 
 
     public function destroy($id)
     {
-        //
+        $slide=$this->slide->findOrFail($id);
+        $image=$slide->image;
+        $slide->delete();
+        $this->slide->deleteImage($image,$this->imagePath);
+
+        return response()->json([
+            'status'=>200,
+            'message'=>'Xóa thành công ',
+        ]);
     }
 }

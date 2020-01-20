@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\ImageTrait;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\Integer;
 
 class Slide extends Model
 {
@@ -22,10 +23,6 @@ class Slide extends Model
         $query->when($status,fn($q)=>$q->where('status', $status));
     }
 
-    public function paginate($limit)
-    {
-        return $this->latest('id')->paginate($limit);
-    }
 
     public function countSlideShow()
     {
@@ -34,6 +31,12 @@ class Slide extends Model
 
     public function countSlideNotShow()
     {
-        return $this->withStatus(0)->get()->count();
+        return $this->withStatus(2)->get()->count();
+
+    }
+
+    public function search($status)
+    {
+        return $this->withStatus($status)->latest('id')->paginate(10);
     }
 }

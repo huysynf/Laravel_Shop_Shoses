@@ -23,10 +23,20 @@
         <div class="col-12 d-flex">
             <form method="get" action="{{route('slides.index')}}" class=" p-1 d-flex"
                   id="subjectFormSearch">
-                <div class="d-flex flex-column">
-                    <lable class="text-primary" for="name">Tên tìm kiếm</lable>
-                    <input value="{{request()->input('name')}}" class="h-50" type="text" placeholder="Tên tìm kiếm..."
-                           name="name">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status"
+                           value="" {{(request()->input('status')=="")?'checked='.'checked':''}}>
+                    <label class="form-check-label" for="inlineRadio2">Tất cả </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status"
+                           value="1" {{(request()->input('status')==1)?'checked='.'checked':''}}>
+                    <label class="form-check-label" for="inlineRadio1">Hiện thị</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="status"
+                           value="2" {{(request()->input('status')==2)?'checked='.'checked':''}}>
+                    <label class="form-check-label" for="inlineRadio2">Không hiện thị</label>
                 </div>
                 <div class="align-self-end ml-1">
                     <button class="btn btn-primary  aqua-gradient btn-rounded btn-sm my-0" type="submit"
@@ -39,9 +49,9 @@
         </div>
 
         <div class="text-dark d-flex">
-            <p class="p-2">Tổng cộng:{{$slides->total()}}</p>
-            <p class="p-2">Hiện thị :{{$slideShow}}</p>
-            <p class="p-2">Không hiện thị :{{$slideNotShow}}</p>
+            <p class="p-2 text-primary">Tổng cộng:{{$slides->total()}}</p>
+            <p class="p-2 text-info">Hiện thị :{{$slideShow}} Slide ảnh </p>
+            <p class="p-2 text-danger">Không hiện thị :{{$slideNotShow}} Slide ảnh</p>
         </div>
     </div>
     <div class="row" id="coupon">
@@ -69,7 +79,7 @@
                         <td>
                             <a href="{{route('slides.edit',$slide->id)}}" title="Cập nhật"
                                class="btn btn-circle btn-outline-warning"><i class="fa fa-edit"></i></a>
-                            <button class="btn btn-circle btn-outline-danger delete-coupon" title="Xóa"
+                            <button class="btn btn-circle btn-outline-danger delete-slide" title="Xóa"
                                     delete="{{$slide->id}}"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
