@@ -6,10 +6,11 @@ use App\Traits\ImageTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable,ImageTrait;
+    use Notifiable,ImageTrait,HasRoles;
 
     protected $fillable = [
         'name',
