@@ -3,10 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Users\CreateRequest;
+use App\Repositories\admin\UserRepository;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+
+    protected UserRepository $userRepository;
+
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     public function index()
     {
@@ -16,13 +28,18 @@ class UserController extends Controller
 
     public function create()
     {
-        return  view('admins.users.create');
+        $roleNames=$this->userRepository->getAllRoleName();
+
+        return  view('admins.users.create',compact('roleNames'));
     }
 
 
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        //
+        $data = $this->userRepository->formatDate($request);
+        $user = $this->userRepository->store($data);
+
+        return redirect()->route('users.create')->with('message','Thêm thành công người dùng: '.$user->name);
     }
 
 
