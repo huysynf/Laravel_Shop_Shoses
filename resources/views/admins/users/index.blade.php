@@ -88,7 +88,9 @@
                         <td>
                             <a href="{{route('users.edit',$user->id)}}" class="btn btn-circle btn-outline-warning"
                                title="Cập nhật "> <i class="fa fa-edit"></i></a>
-                            <button class="btn btn-circle btn-outline-info show-user" title="xem thông tin    "
+                            <button class="btn btn-circle btn-outline-info show-user"
+                                    data-toggle="modal" data-target="#showUserModal"
+                                    title="xem thông tin    "
                                     show="{{$user->id}}"> <i class="fa fa-info"></i></button>
                             <button class="btn btn-circle btn-outline-danger delete-user" title="Xóa "
                                     delete="{{$user->id}}"> <i class="fa fa-trash"></i></button>
@@ -104,6 +106,7 @@
 
         </div>
     </div>
+    @include('admins.users.show_modal')
 @endsection
 @section('js')
     <script src="{{asset('js/user.js')}}"></script>

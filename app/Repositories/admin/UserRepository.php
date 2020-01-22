@@ -52,7 +52,6 @@ class UserRepository extends BaseRepository
         return $user;
     }
 
-
     public function update(array $data, $id)
     {
         $user=$this->getById($id);
@@ -62,5 +61,14 @@ class UserRepository extends BaseRepository
         $user->syncRoles($data['role']);
 
         return  $user;
+    }
+
+    public function show($id):array
+    {
+        $data=$this->getById($id);
+        $user=$data->toArray();
+        $user['role']=$data->roles[0]->name;
+
+        return $user;
     }
 }

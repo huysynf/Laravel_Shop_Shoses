@@ -46,7 +46,12 @@ class UserController extends Controller
 
     public function show($id)
     {
-        //
+        $user=$this->userRepository->show($id);
+
+        return response()->json([
+            'status'=>200,
+            'data'=>$user
+        ]);
     }
 
 
