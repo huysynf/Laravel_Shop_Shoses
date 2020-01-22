@@ -146,7 +146,7 @@
 
         });
     </script>
-
+    <script src="{{asset('js/user.js')}}"></script>
 
 @endsection
 @include('ckfinder::setup')

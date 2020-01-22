@@ -30,7 +30,7 @@ class CreateRequest extends FormRequest
             'role'=>'required',
             'gender'=>'required',
             'address'=>'required',
-            'email'=>'required|unique:users,email','email',
+            'email'=>'required|unique:users,email|email',
             'phone'=>['required',new CheckPhoneNumber()],
             'image'=>'required|image|mimes:jpeg,bmp,png,jpg',
         ];

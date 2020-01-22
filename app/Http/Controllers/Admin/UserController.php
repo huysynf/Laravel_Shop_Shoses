@@ -4,45 +4,45 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\CreateRequest;
+use App\Http\Requests\Users\UpdateRequest;
 use App\Repositories\admin\UserRepository;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-
     protected UserRepository $userRepository;
-
 
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('admins.users.index');
-    }
+        $condition = [
+            'name' =>$request->input('name'),
+            'email' => $request->input('email'),
+            'address' =>$request->input('address'),
+            'role'=>$request->input('role'),
+        ];
 
+        $users = $this->userRepository->search($condition);
+
+        return view('admins.users.index', compact('users'));
+    }
 
     public function create()
     {
-        $roleNames=$this->userRepository->getAllRoleName();
-
-        return  view('admins.users.create',compact('roleNames'));
+        return view('admins.users.create');
     }
-
 
     public function store(CreateRequest $request)
     {
-        $data = $this->userRepository->formatDate($request);
+        $data = $this->userRepository->formatRequest($request);
         $user = $this->userRepository->store($data);
 
-        return redirect()->route('users.create')->with('message','Thêm thành công người dùng: '.$user->name);
+        return redirect()->route('users.create')->with('message', 'Thêm thành công người dùng: ' . $user->name);
     }
-
-
 
     public function show($id)
     {
@@ -52,13 +52,18 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        //
+        $user=$this->userRepository->getById($id);
+
+        return view('admins.users.edit',compact('user'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        //
+        $data=$this->userRepository->formatRequest($request);
+        $user=$this->userRepository->update($data,$id);
+
+        return redirect()->route('users.index')->with('message', 'Cập nhật  thành công người dùng: ' . $user->name);
     }
 
 

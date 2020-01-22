@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Users;
 
+use App\Rules\CheckPhoneNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'role'=>'required',
+            'gender'=>'required',
+            'address'=>'required',
+            'email'=>'required|email|unique:users,email,'.$this->user,
+            'phone'=>['required',new CheckPhoneNumber()],
         ];
     }
 }

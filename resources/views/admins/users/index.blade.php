@@ -1,11 +1,11 @@
 @extends('admins.layouts.app')
 
-@section('title',' Quản lý sản phầm')
+@section('title',' Quản lý người dùng ')
 
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-        <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2"   href="{{route('users.create')}}">
+        <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2" href="{{route('users.create')}}">
             <i class="fa fa-plus"></i>
         </a>
     </div>
@@ -19,22 +19,23 @@
                            name="name">
                 </div>
                 <div class="d-flex flex-column ml-1">
-                    <lable class="text-primary" for="sale">Khuyến mãi</lable>
-                    <input value="{{request()->input('sale')}}" class="h-50" type="text"
-                           placeholder="khuyễn mãi %..." name="sale">
+                    <lable class="text-primary" for="sale">Email</lable>
+                    <input value="{{request()->input('email')}}" class="h-50" type="text"
+                           placeholder="Email..." name="email">
                 </div>
                 <div class="d-flex flex-column ml-1">
-                    <lable class="text-primary" for="role">Tên danh mục</lable>
-                    <select name="category" class="h-50 product-select-category " style="width: 300px">
-                        <option value="">Tất cả</option>
-
-                    </select>
+                    <lable class="text-primary" for="role">Địa chỉ</lable>
+                    <input value="{{request()->input('address')}}" class="h-50" type="text"
+                           placeholder="Địa chỉ ..." name="address">
                 </div>
                 <div class="d-flex flex-column ml-1">
-                    <lable class="text-primary" for="role">Tên hãng</lable>
-                    <select name="brand" class="h-50 product-select-brand " style="width: 300px">
+                    <lable class="text-primary" for="role">Tên quyền</lable>
+                    <select name="role" class="h-50 user-select-role " style="width: 300px">
                         <option value="">Tất cả</option>
-
+                        @foreach($roleNames as $role)
+                            <option
+                                value="{{$role}}" {{(request()->input('role')==$role)?'selected':''}}>{{$role}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="align-self-end ml-1">
@@ -48,7 +49,7 @@
         </div>
 
         <div class="text-dark">
-{{--            <p class="p-2">Tổng cộng:{{$products->total()}}</p>--}}
+            {{--            <p class="p-2">Tổng cộng:{{$products->total()}}</p>--}}
         </div>
     </div>
     @if(session('message'))
@@ -66,15 +67,35 @@
                 <tr>
                     <th>STT</th>
                     <th>Ảnh</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Danh mục</th>
-                    <th>Thương hiệu</th>
-                    <th>Khuyến mại</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>Giới tính</th>
                     <th>Tùy chọn</th>
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($users as $user)
+                    <tr>
+                        <td><strong></strong></td>
+                        <td>
+                            <img src="{{asset('/images/users/'.$user->image)}}"
+                                 style="max-width: 50px;max-height: 50px;" width="100%" height="100%"
+                                 alt="{{$user->name}}">
+                        </td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->gender==1?'Nam':'Nữ '}}</td>
+                        <td>
+                            <a href="{{route('users.edit',$user->id)}}" class="btn btn-circle btn-outline-warning"
+                               title="Cập nhật "> <i class="fa fa-edit"></i></a>
+                            <button class="btn btn-circle btn-outline-info show-user" title="xem thông tin    "
+                                    show="{{$user->id}}"> <i class="fa fa-info"></i></button>
+                            <button class="btn btn-circle btn-outline-danger delete-user" title="Xóa "
+                                    delete="{{$user->id}}"> <i class="fa fa-trash"></i></button>
 
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 
@@ -83,4 +104,7 @@
 
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="{{asset('js/user.js')}}"></script>
 @endsection
