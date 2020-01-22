@@ -76,4 +76,9 @@ class User extends Authenticatable
                     ->paginate(10);
     }
 
+    public static function findOrFail($id)
+    {
+        return User::with('roles')->findOrFail($id);
+    }
+
 }
