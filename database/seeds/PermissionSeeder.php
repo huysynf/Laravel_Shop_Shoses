@@ -1,8 +1,9 @@
 <?php
+
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class PermissionSeeder extends Seeder
 {
@@ -59,18 +60,53 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'not permission']);
         //role
-        Role::create(['name' => 'ADMIN']);
+        $manageUser = Role::create(['name' => 'MANAGE USER']);
 
-        Role::create(['name' => 'AUTHOR']);
+        $manageProduct = Role::create(['name' => 'MANAGE PRODUCT']);
 
-        Role::create(['name' => 'EMPLOYEE']);
+        $manageCategory = Role::create(['name' => 'MANAGE CATEGORY']);
 
-        Role::create(['name' => 'CUSTOMER']);
+        $manageBrand = Role::create(['name' => 'MANAGE BRAND']);
 
-        $admin=  Role::create(['name' => 'SUPPER ADMIN']);
+        $manageOrder = Role::create(['name' => 'MANAGE ORDER']);
 
-        $permissions=Permission::where('name','<>','not permission')->get('id')->pluck('id');
-        $admin->syncPermissions($permissions);
+        $manageRole = Role::create(['name' => 'MANAGE ROLE']);
 
+        $manageSlide = Role::create(['name' => 'MANAGE SLIDE']);
+
+        $manageCoupon = Role::create(['name' => 'MANAGE COUPON']);
+
+        $customer=Role::create(['name' => 'CUSTOMER']);
+
+
+        $permissionUsers = Permission::where('name', '<>', 'not permission')->andWhere('name','LIKE','%'.'user'.'%')->get('id')->pluck('id');
+        $manageUser->syncPermissions($permissionUsers);
+
+        $permissionProducts = Permission::where('name', '<>', 'not permission')->andWhere('name','LIKE','%'.'product'.'%')->get('id')->pluck('id');
+        $manageProduct->syncPermissions($permissionProducts);
+
+        $permissionCategories = Permission::where('name', '<>', 'not permission')->andWhere('name','LIKE','%'.'category'.'%')->get('id')->pluck('id');
+        $manageCategory->syncPermissions($permissionCategories);
+
+        $permissionBrand = Permission::where('name', '<>', 'not permission')->andWhere('name','LIKE','%'.'brand'.'%')->get('id')->pluck('id');
+        $manageBrand->syncPermissions($permissionBrand);
+
+        $permissionOrder = Permission::where('name', '<>', 'not permission')->andWhere('name','LIKE','%'.'order'.'%')->get('id')->pluck('id');
+        $manageOrder->syncPermissions($permissionOrder);
+
+        $permissionRole = Permission::where('name', '<>', 'not permission')->andWhere('name','LIKE','%'.'role'.'%')->get('id')->pluck('id');
+        $manageRole->syncPermissions($permissionRole);
+
+        $permissionSlide = Permission::where('name', '<>', 'not permission')->andWhere('name','LIKE','%'.'slide'.'%')->get('id')->pluck('id');
+        $manageSlide->syncPermissions($permissionSlide);
+
+        $permissionCoupon = Permission::where('name', '<>', 'not permission')->andWhere('name','LIKE','%'.'coupon'.'%')->get('id')->pluck('id');
+        $manageCoupon->syncPermissions($permissionCoupon);
+
+        $permissionCustomer = Permission::where('name', 'not permission')->andWhere('name','LIKE','%'.'order'.'%')->get('id')->pluck('id');
+        $customer->syncPermissions($permissionCustomer);
+
+        $user=\App\Models\User::find(1);
+        $user->syncRoles(['MANAGE USER','MANAGE PRODUCT','MANAGE CATEGORY','MANAGE BRAND','MANAGE ORDER','MANAGE ROLE','MANAGE SLIDE','MANAGE COUPON']);
     }
 }

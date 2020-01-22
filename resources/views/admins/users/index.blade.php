@@ -49,7 +49,7 @@
         </div>
 
         <div class="text-dark">
-            {{--            <p class="p-2">Tổng cộng:{{$products->total()}}</p>--}}
+                        <p class="p-2">Tổng cộng:{{$users->total()}}</p>
         </div>
     </div>
     @if(session('message'))
@@ -86,8 +86,10 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->gender==1?'Nam':'Nữ '}}</td>
                         <td>
+
                             <a href="{{route('users.edit',$user->id)}}" class="btn btn-circle btn-outline-warning"
                                title="Cập nhật "> <i class="fa fa-edit"></i></a>
+
                             <button class="btn btn-circle btn-outline-info show-user"
                                     data-toggle="modal" data-target="#showUserModal"
                                     title="xem thông tin    "
@@ -103,7 +105,7 @@
 
         </div>
         <div>
-
+                {{$users}}
         </div>
     </div>
     @include('admins.users.show_modal')

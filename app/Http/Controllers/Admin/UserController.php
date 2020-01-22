@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\CreateRequest;
 use App\Http\Requests\Users\UpdateRequest;
+use App\Models\User;
 use App\Repositories\admin\UserRepository;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,6 @@ class UserController extends Controller
             'address' =>$request->input('address'),
             'role'=>$request->input('role'),
         ];
-
         $users = $this->userRepository->search($condition);
 
         return view('admins.users.index', compact('users'));
@@ -46,7 +46,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user=$this->userRepository->show($id);
+        $user=$this->userRepository->getById($id)->toArray();
 
         return response()->json([
             'status'=>200,
@@ -57,9 +57,9 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user=$this->userRepository->getById($id);
+        $data=$this->userRepository->getDataToEditBy($id);
 
-        return view('admins.users.edit',compact('user'));
+        return view('admins.users.edit')->with(['user'=>$data['user'],'listRoles'=>$data['listRoles']]);
     }
 
 
@@ -74,6 +74,11 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        //
+        $user=$this->userRepository->destroy($id);
+
+        return response()->json([
+            'status'=>200,
+            'message'=>'Xóa thành công :'.$user->name,
+        ]);
     }
 }
