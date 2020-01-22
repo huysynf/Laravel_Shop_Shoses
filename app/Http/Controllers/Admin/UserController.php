@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Users\ChangePasswordRequest;
 use App\Http\Requests\Users\CreateRequest;
 use App\Http\Requests\Users\UpdateRequest;
-use App\Models\User;
 use App\Repositories\admin\UserRepository;
 use Illuminate\Http\Request;
 
@@ -79,6 +79,16 @@ class UserController extends Controller
         return response()->json([
             'status'=>200,
             'message'=>'Xóa thành công :'.$user->name,
+        ]);
+    }
+
+    public function changePassword(ChangePasswordRequest $request, $id)
+    {
+        $message=$this->userRepository->changePassword($request->input('password'), $id);
+
+        return response()->json([
+            'status' => 200,
+            'message' => $message,
         ]);
     }
 }

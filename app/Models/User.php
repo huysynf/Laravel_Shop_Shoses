@@ -81,4 +81,9 @@ class User extends Authenticatable
         return User::with('roles')->findOrFail($id);
     }
 
+    public function changePassword($id, $password)
+    {
+        return $this->findOrFail($id)->update(['password' => $password]);
+    }
+
 }

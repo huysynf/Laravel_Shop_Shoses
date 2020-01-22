@@ -84,4 +84,12 @@ class UserRepository extends BaseRepository
     {
         return $this->model->findOrFail($id);
     }
+
+    public function changePassword($password, $id)
+    {
+        $this->model->changePassword($id, $password);
+
+        return 'Cập nhật mật khẩu thành công';
+
+    }
 }

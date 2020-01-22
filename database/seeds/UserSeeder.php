@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
         User::create([
             'name'=>'Hạ Huy ',
             'email'=>'admin@admin.com',
-            'password'=>'$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password,
-            'image'=>'->default.jpg',
+            'password'=>'password', // 123456,
+            'image'=>'default.jpg',
             'phone'=>'0337172888',
             'gender'=>'1',
             'address'=>'Hà Nội',
