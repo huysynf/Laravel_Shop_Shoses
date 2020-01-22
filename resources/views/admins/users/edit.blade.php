@@ -88,10 +88,10 @@
                     </div>
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Quyền </label>
-                        <select name="role" id="" class="form-control user-select-role">
+                        <select name="role[]" id="" class="form-control user-select-role" multiple>
                             <option value=" ">---Chọn quyền --</option>
                             @foreach($roleNames as $role)
-                                <option value="{{$role}}"  {{($user->roles[0]->name==$role)?'selected':''}}>{{$role}}</option>
+                                <option value="{{$role}}"{{ in_array($role, $listRoles) ? 'selected' : '' }}>{{$role}}</option>
                             @endforeach
                         </select>
                         @error('role')

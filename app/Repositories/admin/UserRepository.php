@@ -7,7 +7,6 @@ namespace App\Repositories\admin;
 use App\Models\User;
 use App\Repositories\BaseRepository;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Collection;
 use Spatie\Permission\Models\Role;
 
 class UserRepository extends BaseRepository
@@ -47,28 +46,42 @@ class UserRepository extends BaseRepository
         $image = $data['image'];
         $data['image'] = $this->model->saveImage($image, $this->imagePath);
         $user = $this->model->create($data);
-        $user->assignRole($data['role']);
+        $user->syncRoles($data['role']);
 
         return $user;
     }
 
     public function update(array $data, $id)
     {
-        $user=$this->getById($id);
+        $user = $this->getById($id);
         $image = $data['image'] ?? null;
-        $data['image'] =$this->model->updateImage($image, $this->imagePath, $user->image);
+        $data['image'] = $this->model->updateImage($image, $this->imagePath, $user->image);
         $user->update($data);
         $user->syncRoles($data['role']);
 
-        return  $user;
+        return $user;
     }
 
-    public function show($id):array
+    public function destroy($id)
     {
-        $data=$this->getById($id);
-        $user=$data->toArray();
-        $user['role']=$data->roles[0]->name;
+        $user=$this->getById($id);
+        $image=$user->image;
+        $this->model->deleteImage($image,$this->imagePath);
+        $user->delete();
 
         return $user;
+    }
+
+    public function getDataToEditBy($id):array
+    {
+        $data['user']=$this->getById($id);
+        $data['listRoles']=$data['user']->roles->pluck('name')->toArray();
+
+        return $data;
+    }
+
+    public function getById($id)
+    {
+        return $this->model->findOrFail($id);
     }
 }
