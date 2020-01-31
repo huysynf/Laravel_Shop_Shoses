@@ -15,11 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(
+   [
+       'register' => false,
+       'verify' => true,
+       'reset' => false,
+       'login' => false,
+   ]
+);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'manage','middleware'=>'auth'], function () {
-
     include_route_files(__DIR__.'/admin/');
+});
+
+Route::group(['namespace' => 'Auth', 'prefix' => 'manage'], function () {
+    Route::get('/login','LoginController@showLoginForm')->name('manage.login');
 });
