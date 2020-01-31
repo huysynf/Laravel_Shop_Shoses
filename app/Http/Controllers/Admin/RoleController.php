@@ -26,7 +26,10 @@ class RoleController extends Controller
 
     public function index(Request $request)
     {
-        $roles = Role::with('permissions')->paginate(5);
+        $name=$request->input('role');
+        $permission=$request->input('permission');
+        $roles=$this->roleRepository->search($name,$permission);
+
         return view('admins.roles.index', compact('roles'));
     }
 

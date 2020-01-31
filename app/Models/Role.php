@@ -43,4 +43,13 @@ class Role extends Model
         return Role::findOrFail($id)->permissions()->pluck('permission_id')->toArray();
     }
 
+    public static function search($name,$permission)
+    {
+        return Role::when($name,fn($q)=>$q->where('name','LIKE','%'.$name.'%'))
+            ->when($permission,
+                fn($query, $q) => $query->whereHas('permissions', fn($q) => $q->where('name', $permission)))
+            ->latest('id')
+            ->paginate(10);
+    }
+
 }

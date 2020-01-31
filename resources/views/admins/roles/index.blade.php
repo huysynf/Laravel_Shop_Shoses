@@ -14,27 +14,17 @@
             <form method="get" action="{{route('roles.index')}}" class=" p-1 d-flex"
                   id="subjectFormSearch">
                 <div class="d-flex flex-column">
-                    <lable class="text-primary" for="name">Tên tìm kiếm</lable>
-                    <input value="{{request()->input('name')}}" class="h-50" type="text" placeholder="Tên tìm kiếm..."
+                    <lable class="text-primary" for="role">Tên tìm kiếm</lable>
+                    <input value="{{request()->input('role')}}" class="h-50" type="text" placeholder="Tên tìm kiếm..."
                            name="name">
                 </div>
                 <div class="d-flex flex-column ml-1">
                     <lable class="text-primary" for="sale">Quyền</lable>
-                    <select name="permission" class="select-permission-search">
+                    <select name="permission" class="select-permission-search"  style="width: 300px">
                         <option value="">Tất cả</option>
                         @foreach($permissions as $permission)
                             <option
                                 value="{{$permission->name}}" {{(request()->input('permission')==$permission->name)?'selected':''}}>{{$permission->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="d-flex flex-column ml-1">
-                    <lable class="text-primary" for="role">Tên nhóm quyền</lable>
-                    <select name="role" class="h-50 user-select-role " style="width: 300px">
-                        <option value="">Tất cả</option>
-                        @foreach($roles as $role)
-                            <option
-                                value="{{$role->name}}" {{(request()->input('role')==$role->name)?'selected':''}}>{{$role->name}}</option>
                         @endforeach
                     </select>
                 </div>

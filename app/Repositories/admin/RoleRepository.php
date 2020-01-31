@@ -19,9 +19,9 @@ class RoleRepository extends BaseRepository
     }
 
 
-    public function search()
+    public function search($name,$permission)
     {
-
+        return \App\Models\Role::search($name,$permission);
     }
 
     public function formatRequest(Request $request):array
