@@ -24,7 +24,7 @@
                         <option value="">Tất cả</option>
                         @foreach($permissions as $permission)
                             <option
-                                value="{{$permission->name}}" {{(request()->input('permission')==$permission)?'selected':''}}>{{$permission->name}}</option>
+                                value="{{$permission->name}}" {{(request()->input('permission')==$permission->name)?'selected':''}}>{{$permission->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -34,7 +34,7 @@
                         <option value="">Tất cả</option>
                         @foreach($roles as $role)
                             <option
-                                value="{{$role->name}}" {{(request()->input('role')==$role)?'selected':''}}>{{$role->name}}</option>
+                                value="{{$role->name}}" {{(request()->input('role')==$role->name)?'selected':''}}>{{$role->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="text-dark">
-            {{--            <p class="p-2">Tổng cộng:{{$users->total()}}</p>--}}
+                        <p class="p-2">Tổng cộng:{{$roles->total()}}</p>
         </div>
     </div>
     @if(session('message'))

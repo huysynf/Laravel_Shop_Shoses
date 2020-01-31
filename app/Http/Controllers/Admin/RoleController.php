@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Roles\CreateRequest;
+use App\Http\Requests\Roles\UpdateRequest;
+use App\Models\Role;
 use App\Repositories\admin\RoleRepository;
 use Illuminate\Http\Request;
-use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -20,13 +21,13 @@ class RoleController extends Controller
 
     public function setRepository($repository)
     {
-        return $this->roleRepository=$repository;
+        return $this->roleRepository = $repository;
     }
 
     public function index(Request $request)
     {
-        $roles=Role::with('permissions')->paginate(5);
-        return view('admins.roles.index',compact('roles'));
+        $roles = Role::with('permissions')->paginate(5);
+        return view('admins.roles.index', compact('roles'));
     }
 
     public function create()
@@ -36,15 +37,40 @@ class RoleController extends Controller
 
     public function store(CreateRequest $request)
     {
-       $data=$this->roleRepository->formatRequest($request);
+        $data = $this->roleRepository->formatRequest($request);
 
-       $role=$this->roleRepository->store($data);
+        $role = $this->roleRepository->store($data);
 
-        return redirect()->route('roles.create')->with('message','Tạo nhóm quyền '.$role->name.' thành công');
+        return redirect()->route('roles.create')->with('message', 'Tạo nhóm quyền ' . $role->name . ' thành công');
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $role = $this->roleRepository->getById($id);
+        if ($role->isRoleDefault()) {
+            abort(404);
+        }
 
+        $permissionIds = $this->roleRepository->getPermissionIdBy($id);
+
+        return view('admins.roles.edit', compact('role', 'permissionIds'));
+    }
+
+    public function update(UpdateRequest $request, $id)
+    {
+        $data = $this->roleRepository->formatRequest($request);
+        $role = $this->roleRepository->update($data, $id);
+
+        return redirect()->route('roles.index')->with('message', 'Cập nhật   nhóm quyền ' . $role->name . ' thành công');
+    }
+
+    public function  destroy($id)
+    {
+        $role=$this->roleRepository->deleteById($id);
+
+        return response()->json([
+            'status'=>200,
+            'message'=>'Xóa nhóm quyền  Thành công ',
+        ]);
     }
 }

@@ -10,9 +10,12 @@ use Spatie\Permission\Models\Role;
 
 class RoleRepository extends BaseRepository
 {
+    protected Role $role;
+
     public function __construct(Role $role)
     {
         $this->model = $role;
+
     }
 
 
@@ -30,13 +33,30 @@ class RoleRepository extends BaseRepository
 
     public function store(array  $data)
     {
-        $role=$this->model->create([
-            'name'=>$data['name'],
-        ]);
-
+        $role=$this->model->create(['name'=>$data['name']]);
         $role->syncPermissions($data['permissions']);
 
         return $role;
     }
+
+    public function getById($id)
+    {
+        return \App\Models\Role::findOrFail($id);
+    }
+
+    public  function  getPermissionIdBy($id):array
+    {
+        return \App\Models\Role::getPermissisonIdsBy($id);
+    }
+
+    public function update(array $data,$id)
+    {
+        $role=$this->model->findOrFail($id);
+        $role->update(['name'=>$data['name']]);
+        $role->syncPermissions($data['permissions']);
+
+        return $role;
+    }
+
 
 }

@@ -19,4 +19,19 @@ $(function () {
         $('.un-select-all').prop("checked", false);
     });
 
+    $('.delete-role').click(function () {
+        let id=$(this).attr('delete');
+        let url='/manage/roles/'+id;
+        destroyResourceByAjax(url)
+            .then(data=>{
+                alertSuccessRe(data.message)
+                    .then(data=>{
+                        location.reload();
+                    });
+            })
+            .catch(data=>{
+                alertError(data.message);
+            });
+    })
+
 });

@@ -37,4 +37,10 @@ class Role extends Model
             'permission_id'
         );
     }
+
+    public static function getPermissisonIdsBy($id):array
+    {
+        return Role::findOrFail($id)->permissions()->pluck('permission_id')->toArray();
+    }
+
 }
