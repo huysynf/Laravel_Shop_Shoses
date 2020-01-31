@@ -40,6 +40,13 @@
                 <span>Người dùng</span>
             </a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link " href="{{route('roles.index')}}" title="Quản lí người dùng">
+            <i class="fas fa-fw fa-paperclip text-danger"></i>
+            <span>Quyền</span>
+        </a>
+    </li>
     <li class="nav-item">
         <a class="nav-link " href="{{route('products.index')}}" title="Quản lí sản phẩm">
             <i class="fas fa-fw fa-shopping-bag text-danger"></i>
