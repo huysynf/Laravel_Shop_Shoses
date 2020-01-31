@@ -82,22 +82,26 @@
                             @endforeach
                         </td>
                         <td>
+                            @if(!$role->isRoleDefault())
 
-                            <a href="{{route('roles.edit',$role->id)}}" class="btn btn-circle btn-outline-warning"
-                               title="Cập nhật "> <i class="fa fa-edit"></i></a>
+                                <a href="{{route('roles.edit',$role->id)}}" class="btn btn-circle btn-outline-warning"
+                                   title="Cập nhật "> <i class="fa fa-edit"></i></a>
 
-                            <button class="btn btn-circle btn-outline-danger delete-role" title="Xóa "
-                                    delete="{{$role->id}}"><i class="fa fa-trash"></i></button>
+                                <button class="btn btn-circle btn-outline-danger delete-role" title="Xóa "
+                                        delete="{{$role->id}}"><i class="fa fa-trash"></i></button>
+
+                            @else
+                            <span class="text-danger">Quyền mặc định của hệ thống</span>
+                            @endif
 
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-
         </div>
         <div>
-            {{--            {{$users}}--}}
+            {{$roles}}
         </div>
     </div>
 @endsection
