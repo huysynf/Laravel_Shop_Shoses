@@ -5,10 +5,12 @@
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-        <a title="Quay lại trang quản lý" class="btn btn-outline-primary btn-circle ml-2"
-           href="{{route('coupons.index')}}">
-            <i class="fa fa-undo"></i>
-        </a>
+
+            <a title="Quay lại trang quản lý" class="btn btn-outline-primary btn-circle ml-2"
+               href="{{route('coupons.index')}}">
+                <i class="fa fa-undo"></i>
+            </a>
+
     </div>
     @if(session('message'))
         <div class="alert alert-info alert-dismissible fade show" role="alert">

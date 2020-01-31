@@ -5,11 +5,13 @@
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-        <a title="Thêm mới mã giảm giá"
-           href="{{route('coupons.create')}}"
-           class="btn btn-outline-primary btn-circle ml-2 add-brand"  >
-            <i class="fa fa-plus"></i>
-        </a>
+        @can('new coupon')
+            <a title="Thêm mới mã giảm giá"
+               href="{{route('coupons.create')}}"
+               class="btn btn-outline-primary btn-circle ml-2 add-brand">
+                <i class="fa fa-plus"></i>
+            </a>
+        @endcan
     </div>
     @if(session('message'))
         <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -68,8 +70,14 @@
                     <th>{{$coupon->status==0?'Hết hạn':'Còn'}} </th>
                     <th>{{$coupon->quantity}} </th>
                     <th>
-                        <a href="{{route('coupons.edit',$coupon->id)}}" title="Cập nhật" class="btn btn-circle btn-outline-warning"><i class="fa fa-edit"></i></a>
-                        <button class="btn btn-circle btn-outline-danger delete-coupon" title="Xóa" delete="{{$coupon->id}}"><i class="fa fa-trash"></i></button>
+                        @can('update coupon')
+                            <a href="{{route('coupons.edit',$coupon->id)}}" title="Cập nhật"
+                               class="btn btn-circle btn-outline-warning"><i class="fa fa-edit"></i></a>
+                        @endcan
+                        @can('delete coupon')
+                            <button class="btn btn-circle btn-outline-danger delete-coupon" title="Xóa"
+                                    delete="{{$coupon->id}}"><i class="fa fa-trash"></i></button>
+                        @endcan
                     </th>
                 </tr>
                 @endforeach

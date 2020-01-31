@@ -5,9 +5,12 @@
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-        <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2" href="{{route('roles.create')}}">
-            <i class="fa fa-plus"></i>
-        </a>
+        @can('new role')
+            <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2"
+               href="{{route('roles.create')}}">
+                <i class="fa fa-plus"></i>
+            </a>
+        @endcan
     </div>
     <div class="row d-flex mb-1">
         <div class="col-12 d-flex">
@@ -20,7 +23,7 @@
                 </div>
                 <div class="d-flex flex-column ml-1">
                     <lable class="text-primary" for="sale">Quyền</lable>
-                    <select name="permission" class="select-permission-search"  style="width: 300px">
+                    <select name="permission" class="select-permission-search" style="width: 300px">
                         <option value="">Tất cả</option>
                         @foreach($permissions as $permission)
                             <option
@@ -39,7 +42,7 @@
         </div>
 
         <div class="text-dark">
-                        <p class="p-2">Tổng cộng:{{$roles->total()}}</p>
+            <p class="p-2">Tổng cộng:{{$roles->total()}}</p>
         </div>
     </div>
     @if(session('message'))
@@ -73,15 +76,17 @@
                         </td>
                         <td>
                             @if(!$role->isRoleDefault())
-
-                                <a href="{{route('roles.edit',$role->id)}}" class="btn btn-circle btn-outline-warning"
-                                   title="Cập nhật "> <i class="fa fa-edit"></i></a>
-
-                                <button class="btn btn-circle btn-outline-danger delete-role" title="Xóa "
-                                        delete="{{$role->id}}"><i class="fa fa-trash"></i></button>
-
+                                @can('update role')
+                                    <a href="{{route('roles.edit',$role->id)}}"
+                                       class="btn btn-circle btn-outline-warning"
+                                       title="Cập nhật "> <i class="fa fa-edit"></i></a>
+                                @endcan
+                                @can('delete role')
+                                    <button class="btn btn-circle btn-outline-danger delete-role" title="Xóa "
+                                            delete="{{$role->id}}"><i class="fa fa-trash"></i></button>
+                                @endcan
                             @else
-                            <span class="text-danger">Quyền mặc định của hệ thống</span>
+                                <span class="text-danger">Quyền mặc định của hệ thống</span>
                             @endif
 
                         </td>

@@ -5,11 +5,13 @@
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-        <a title="Thêm mới thương hiệu"
-           data-toggle="modal" data-target="#BrandModal"
-           class="btn btn-outline-primary btn-circle ml-2 add-brand"  >
-            <i class="fa fa-plus"></i>
-        </a>
+        @can('new brand')
+            <a title="Thêm mới thương hiệu"
+               data-toggle="modal" data-target="#BrandModal"
+               class="btn btn-outline-primary btn-circle ml-2 add-brand">
+                <i class="fa fa-plus"></i>
+            </a>
+        @endcan
     </div>
     <div class="row d-flex mb-1">
         <div class="col-12 d-flex">
@@ -55,12 +57,16 @@
                         </td>
                         <td>{{$brand->name}}</td>
                         <td>
-                            <button class="btn btn-circle btn-outline-primary  edit-brand"
-                                    data-toggle="modal" data-target="#editBrandModal"
-                                    edit="{{$brand->id}}" title="Cập nhật thông tin"><i
-                                    class="fa fa-pen"></i></button>
-                            <button class="btn btn-circle btn-outline-danger delete-brand" delete="{{$brand->id}}"
-                                    title="Xóa sản phầm"><i class="fa fa-times"></i></button>
+                            @can('update brand')
+                                <button class="btn btn-circle btn-outline-primary  edit-brand"
+                                        data-toggle="modal" data-target="#editBrandModal"
+                                        edit="{{$brand->id}}" title="Cập nhật thông tin"><i
+                                        class="fa fa-pen"></i></button>
+                            @endcan
+                            @can('delete brand')
+                                <button class="btn btn-circle btn-outline-danger delete-brand" delete="{{$brand->id}}"
+                                        title="Xóa sản phầm"><i class="fa fa-times"></i></button>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

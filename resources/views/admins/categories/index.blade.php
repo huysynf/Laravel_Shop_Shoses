@@ -5,9 +5,11 @@
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">Danh mục</h1>
+        @can('new category')
         <button title="Thêm mới danh mục" class="btn btn-outline-primary btn-circle ml-2 add-category" data-toggle="modal" data-target="#newCategoryModal">
             <i class="fa fa-plus"></i>
         </button>
+        @endcan
         <a title="thùng rác" href="{{route('categories.trash')}}" class="btn btn-outline-danger btn-circle ml-2 " >
             <i class="fa fa-trash"></i>
         </a>
@@ -47,6 +49,7 @@
                             <td>{{$category->name}}</td>
                             <td>{{$category->category->name??'không có'}}</td>
                             <td>
+                                @can('update category')
                                 <a href="#"
                                    class="btn btn-circle btn-outline-warning edit-category"
                                    title="Cập nhật thông tin"
@@ -56,6 +59,8 @@
                                 >
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
+                                @endcan
+                                @can('delete category')
                                 <button title="Xóa "
                                         class="btn btn-circle btn-outline-danger delete-category"
                                         delete-id="{{$category->id}}"
@@ -63,7 +68,7 @@
                                 >
                                     <i class="fas fa-times"></i>
                                 </button>
-
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

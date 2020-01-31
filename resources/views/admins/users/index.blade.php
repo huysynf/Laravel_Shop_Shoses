@@ -5,9 +5,12 @@
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-        <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2" href="{{route('users.create')}}">
-            <i class="fa fa-plus"></i>
-        </a>
+        @can('new user')
+            <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2"
+               href="{{route('users.create')}}">
+                <i class="fa fa-plus"></i>
+            </a>
+        @endcan
     </div>
     <div class="row d-flex mb-1">
         <div class="col-12 d-flex">
@@ -49,7 +52,7 @@
         </div>
 
         <div class="text-dark">
-                        <p class="p-2">Tổng cộng:{{$users->total()}}</p>
+            <p class="p-2">Tổng cộng:{{$users->total()}}</p>
         </div>
     </div>
     @if(session('message'))
@@ -86,17 +89,20 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->gender==1?'Nam':'Nữ '}}</td>
                         <td>
-
-                            <a href="{{route('users.edit',$user->id)}}" class="btn btn-circle btn-outline-warning"
-                               title="Cập nhật "> <i class="fa fa-edit"></i></a>
-
-                            <button class="btn btn-circle btn-outline-info show-user"
-                                    data-toggle="modal" data-target="#showUserModal"
-                                    title="xem thông tin    "
-                                    show="{{$user->id}}"> <i class="fa fa-info"></i></button>
-                            <button class="btn btn-circle btn-outline-danger delete-user" title="Xóa "
-                                    delete="{{$user->id}}"> <i class="fa fa-trash"></i></button>
-
+                            @can('update user')
+                                <a href="{{route('users.edit',$user->id)}}" class="btn btn-circle btn-outline-warning"
+                                   title="Cập nhật "> <i class="fa fa-edit"></i></a>
+                            @endcan
+                            @can('view user')
+                                <button class="btn btn-circle btn-outline-info show-user"
+                                        data-toggle="modal" data-target="#showUserModal"
+                                        title="xem thông tin    "
+                                        show="{{$user->id}}"><i class="fa fa-info"></i></button>
+                            @endcan
+                            @can('delete user')
+                                <button class="btn btn-circle btn-outline-danger delete-user" title="Xóa "
+                                        delete="{{$user->id}}"><i class="fa fa-trash"></i></button>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach
@@ -105,7 +111,7 @@
 
         </div>
         <div>
-                {{$users}}
+            {{$users}}
         </div>
     </div>
     @include('admins.users.show_modal')
