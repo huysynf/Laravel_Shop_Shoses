@@ -1,7 +1,7 @@
 <?php
 
 Route::group(['prefix' => 'coupons'], function () {
-    Route::get('/', 'ClassroomController@index')->name('coupons.index')->middleware('permission:view coupon');
+    Route::get('/', 'CouponController@index')->name('coupons.index')->middleware('permission:view coupon');
     Route::get('/{id}', 'CouponController@show')->where('id', '[0-9]+')->middleware('permission:view coupon');
     Route::get('/create','CouponController@create')->name('coupons.create')->middleware('permission:delete coupon');
     Route::post('/', 'CouponController@store')->name('coupons.store')->middleware('permission:new coupon');
