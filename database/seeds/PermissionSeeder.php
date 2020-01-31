@@ -111,8 +111,7 @@ class PermissionSeeder extends Seeder
             '%' . 'coupon' . '%')->get('id')->pluck('id');
         $manageCoupon->syncPermissions($permissionCoupon);
 
-        $permissionCustomer = Permission::where('name', 'not permission')->Where('name', 'LIKE',
-            '%' . 'order' . '%')->get('id')->pluck('id');
+        $permissionCustomer = Permission::where('name', 'not permission')->get('id')->pluck('id');
         $customer->syncPermissions($permissionCustomer);
 
         $user = \App\Models\User::find(1);

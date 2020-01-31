@@ -5,13 +5,13 @@
 @section('content')
     <div class="d-flex  mb-4">
         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-        <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2" href="{{route('users.create')}}">
+        <a title="Thêm mới sản phẩm" class="btn btn-outline-primary btn-circle ml-2" href="{{route('roles.create')}}">
             <i class="fa fa-plus"></i>
         </a>
     </div>
     <div class="row d-flex mb-1">
         <div class="col-12 d-flex">
-            <form method="get" action="{{route('users.index')}}" class=" p-1 d-flex"
+            <form method="get" action="{{route('roles.index')}}" class=" p-1 d-flex"
                   id="subjectFormSearch">
                 <div class="d-flex flex-column">
                     <lable class="text-primary" for="name">Tên tìm kiếm</lable>
