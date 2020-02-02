@@ -15,7 +15,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Người dùng</div>
-                            <div class="h5 mb-0 font-weight-bold text-primary counter" data-count="1000">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-primary counter" data-count="{{$userCount}}">0</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-user fa-2x text-primary"></i>
@@ -24,76 +24,37 @@
                 </div>
             </div>
         </div>
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"></div>
-                            <div class="h5 mb-0 font-weight-bold text-success counter" data-count="000">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-users fa-2x text-success"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"></div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-info counter" data-count="100">0</div>
-                                </div>
-                            </div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Slide</div>
+                            <div class="h5 mb-0 font-weight-bold text-info counter" data-count="{{$slideCount}}">0</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-school fa-2x text-info"></i>
+                            <i class="fas fa-image fa-2x text-info"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Sản phẩm </div>
+                            <div class="h5 mb-0 font-weight-bold text-primary counter" data-count="{{$productCount}}">0</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-product-hunt fa-2x text-primary"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"></div>
-                            <div class="h5 mb-0 font-weight-bold text-warning counter" data-count="100">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-book fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"></div>
-                            <div class="h5 mb-0 font-weight-bold text-danger counter" data-count="100">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-building fa-2x text-danger"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 @endsection
