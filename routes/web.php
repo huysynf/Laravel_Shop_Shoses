@@ -24,7 +24,12 @@ Auth::routes(
     ]
 );
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['namespace' => 'Client'], function () {
+    include_route_files(__DIR__ . '/client/');
+});
+
+
+
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'manage', 'middleware' => ['auth','check.user']], function () {
     include_route_files(__DIR__ . '/admin/');
