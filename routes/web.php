@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'manage'], function () {
     Route::get('/login', 'LoginController@showLoginForm')->name('manage.getLogin');
     Route::post('/login', 'LoginController@Login')->name('manage.login');
 });
+
 Route::get('/login', function () {
     abort(404);
 });
