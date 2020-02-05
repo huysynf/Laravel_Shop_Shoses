@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\Permission;
 use App\Models\Product;
 use App\Models\Role;
 use App\Models\Slide;
@@ -22,6 +23,7 @@ class DashboardController extends Controller
         $couponCount=Coupon::count();
         $slideCount=Slide::count();
         $roleCount=Role::count();
-        return view('admins.dashboard',compact('userCount','productCount','brandCount','categoryCount','couponCount','slideCount','roleCount'));
+        $permissionCount=Permission::count();
+        return view('admins.dashboard',compact('userCount','productCount','brandCount','categoryCount','couponCount','slideCount','roleCount','permissionCount'));
     }
 }
