@@ -9,9 +9,22 @@
                 </div>
                 <div class="right-top-bar flex-w h-full">
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Tài khoản
-                    </a>
+                    @if(Auth::guard()->check())
+                        <a class="flex-c-m trans-04 p-lr-25" href="" onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();"> <i
+                                class="text-danger fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</a>
+                        <form id="logout-form" action="{{ route('login.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            Acount
+                        </a>
+                    @else
+                        <a href="{{route('login.login')}}" class="flex-c-m trans-04 p-lr-25">
+                           Đăng nhập
+                        </a>
+                    @endif
 
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         EN

@@ -18,7 +18,7 @@ trait ImageTrait
     {
         if ($this->veryfyImage($image)) {
             $name = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(300, 300)->save($path . $name);
+            Image::make($image)->save($path . $name);
             return $name;
         }
 

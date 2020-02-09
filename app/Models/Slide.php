@@ -39,4 +39,9 @@ class Slide extends Model
     {
         return $this->withStatus($status)->latest('id')->paginate(10);
     }
+
+    public function getAllActive()
+    {
+        return $this->withStatus(1)->get();
+    }
 }
