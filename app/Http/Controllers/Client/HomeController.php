@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductSize;
-use Illuminate\Http\Request;
 
 
 class HomeController extends Controller
@@ -18,40 +17,44 @@ class HomeController extends Controller
      * HomeController constructor.
      * @param $category
      */
-    public function __construct(Category $category,Product $product)
+    public function __construct(Category $category, Product $product)
     {
         $this->category = $category;
-        $this->product=$product;
+        $this->product = $product;
     }
 
 
     public function index()
     {
-        return view('clients.home');
+        $newProducts=$this->product->latest('id')->paginate(20);
+        $menProducts=$this->product->getProductByCategoryName('Nam');
+        $girlProducts=$this->product->getProductByCategoryName('Nữ');
+        $saleProducts=$this->product->where('sale','>',0)->paginate(20);
+        return view('clients.home',compact('newProducts','menProducts','girlProducts','saleProducts'));
     }
 
 
     public function showproduct($slug)
     {
-            $category=$this->category->findWithSlug($slug);
-            $products=$category->products;
-            return view('clients.products.show_product',compact('category'));
+        $category = $this->category->findWithSlug($slug);
+        $products = $category->products;
+        return view('clients.products.show_product', compact('category'));
     }
 
 
     public function productdetail($slug)
     {
-        $product=$this->product->getBySlug($slug);
-        return view('clients.products.product_detail',compact('product'));
+        $product = $this->product->getBySlug($slug);
+        return view('clients.products.product_detail', compact('product'));
     }
 
     public function getcolor($id)
     {
-            $size=ProductSize::with('colors')->find($id);
+        $size = ProductSize::with('colors')->find($id);
 
-            return response()->json(
-                ['size'=>$size,]
-                );
+        return response()->json(
+            ['size' => $size,]
+        );
 
     }
 }

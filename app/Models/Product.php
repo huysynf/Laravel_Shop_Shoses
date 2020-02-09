@@ -49,6 +49,12 @@ class Product extends Model
         $query->when($name,fn($q)=>$q->where('name', 'LIKE', '%' . $name . '%'));
     }
 
+    public function scopeWithCategory($query, $name)
+    {
+        $query->when($name,
+            fn($query, $q) => $query->whereHas('categories', fn($q) => $q->where('name', $name)));
+    }
+
     public function scopeWithSale($query, $sale)
     {
         $query->when($sale,fn($q)=>$q->where('sale', $sale));
@@ -81,6 +87,14 @@ class Product extends Model
             ->latest('id')
             ->paginate(10);
     }
+
+    public function getProductByCategoryName($name)
+    {
+        return $this->withCategory($name)
+            ->latest('id')
+            ->paginate(10);
+    }
+
     public function scopeWithSlug($query, $slug)
     {
         return $query->where('slug',$slug);
