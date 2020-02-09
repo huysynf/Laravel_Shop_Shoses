@@ -54,93 +54,93 @@
 @include('clients.includes.header')
 
 <!-- Cart -->
-{{--<div class="wrap-header-cart js-panel-cart">--}}
-{{--    <div class="s-full js-hide-cart"></div>--}}
+<div class="wrap-header-cart js-panel-cart">
+    <div class="s-full js-hide-cart"></div>
 
-{{--    <div class="header-cart flex-col-l p-l-65 p-r-25">--}}
-{{--        <div class="header-cart-title flex-w flex-sb-m p-b-8">--}}
-{{--				<span class="mtext-103 cl2">--}}
-{{--					Your Cart--}}
-{{--				</span>--}}
+    <div class="header-cart flex-col-l p-l-65 p-r-25">
+        <div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Giở hàng
+				</span>
 
-{{--            <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">--}}
-{{--                <i class="zmdi zmdi-close"></i>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+            <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+                <i class="zmdi zmdi-close"></i>
+            </div>
+        </div>
 
-{{--        <div class="header-cart-content flex-w js-pscroll">--}}
-{{--            <ul class="header-cart-wrapitem w-full">--}}
-{{--                <li class="header-cart-item flex-w flex-t m-b-12">--}}
-{{--                    <div class="header-cart-item-img">--}}
-{{--                        <img src="{{asset('client/images/item-cart-01.jpg')}}" alt="IMG">--}}
-{{--                    </div>--}}
+        <div class="header-cart-content flex-w js-pscroll">
+            <ul class="header-cart-wrapitem w-full">
+                <li class="header-cart-item flex-w flex-t m-b-12">
+                    <div class="header-cart-item-img">
+                        <img src="{{asset('client/images/item-cart-01.jpg')}}" alt="IMG">
+                    </div>
 
-{{--                    <div class="header-cart-item-txt p-t-8">--}}
-{{--                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">--}}
-{{--                            White Shirt Pleat--}}
-{{--                        </a>--}}
+                    <div class="header-cart-item-txt p-t-8">
+                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            White Shirt Pleat
+                        </a>
 
-{{--                        <span class="header-cart-item-info">--}}
-{{--								1 x $19.00--}}
-{{--							</span>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
+                        <span class="header-cart-item-info">
+								1 x $19.00
+							</span>
+                    </div>
+                </li>
 
-{{--                <li class="header-cart-item flex-w flex-t m-b-12">--}}
-{{--                    <div class="header-cart-item-img">--}}
-{{--                        <img src="{{asset('client/images/item-cart-02.jpg')}}" alt="IMG">--}}
-{{--                    </div>--}}
+                <li class="header-cart-item flex-w flex-t m-b-12">
+                    <div class="header-cart-item-img">
+                        <img src="{{asset('client/images/item-cart-02.jpg')}}" alt="IMG">
+                    </div>
 
-{{--                    <div class="header-cart-item-txt p-t-8">--}}
-{{--                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">--}}
-{{--                            Converse All Star--}}
-{{--                        </a>--}}
+                    <div class="header-cart-item-txt p-t-8">
+                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            Converse All Star
+                        </a>
 
-{{--                        <span class="header-cart-item-info">--}}
-{{--								1 x $39.00--}}
-{{--							</span>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
+                        <span class="header-cart-item-info">
+								1 x $39.00
+							</span>
+                    </div>
+                </li>
 
-{{--                <li class="header-cart-item flex-w flex-t m-b-12">--}}
-{{--                    <div class="header-cart-item-img">--}}
-{{--                        <img src="{{asset('client/images/item-cart-02.jpg')}}" alt="IMG">--}}
-{{--                    </div>--}}
+                <li class="header-cart-item flex-w flex-t m-b-12">
+                    <div class="header-cart-item-img">
+                        <img src="{{asset('client/images/item-cart-02.jpg')}}" alt="IMG">
+                    </div>
 
-{{--                    <div class="header-cart-item-txt p-t-8">--}}
-{{--                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">--}}
-{{--                            Nixon Porter Leather--}}
-{{--                        </a>--}}
+                    <div class="header-cart-item-txt p-t-8">
+                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            Nixon Porter Leather
+                        </a>
 
-{{--                        <span class="header-cart-item-info">--}}
-{{--								1 x $17.00--}}
-{{--							</span>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
+                        <span class="header-cart-item-info">
+								1 x $17.00
+							</span>
+                    </div>
+                </li>
+            </ul>
 
-{{--            <div class="w-full">--}}
-{{--                <div class="header-cart-total w-full p-tb-40">--}}
-{{--                    Total: $75.00--}}
-{{--                </div>--}}
+            <div class="w-full">
+                <div class="header-cart-total w-full p-tb-40">
+                    Total: $75.00
+                </div>
 
-{{--                <div class="header-cart-buttons flex-w w-full">--}}
-{{--                    <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">--}}
-{{--                        View Cart--}}
-{{--                    </a>--}}
+                <div class="header-cart-buttons flex-w w-full">
+                    <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                        Xem Giỏ hàng
+                    </a>
 
-{{--                    <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">--}}
-{{--                        Check Out--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+                    <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                       Thanh toán
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
-{{--@yield('content')--}}
+@yield('content')
 
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
@@ -148,39 +148,25 @@
         <div class="row">
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Categories
+                    Danh mục
                 </h4>
 
                 <ul>
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Women
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Men
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shoes
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Watches
-                        </a>
-                    </li>
+                    @foreach($categories as $category)
+                        @if ($category->parent_id==null)
+                            <li class="p-b-10">
+                                <a href="{{route('categories.product',$category->slug)}}" class="stext-107 cl7 hov-cl1 trans-04">
+                                    {{$category->name}}
+                                </a>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Help
+                    Trợ giúp
                 </h4>
 
                 <ul>
@@ -279,7 +265,7 @@
 
             <p class="stext-107 cl6 txt-center">
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://fb.com/huy007" target="_blank">Huy</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
             </p>
@@ -311,7 +297,6 @@
                         <div class="wrap-slick3 flex-sb flex-w">
                             <div class="wrap-slick3-dots"></div>
                             <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
                             <div class="slick3 gallery-lb">
                                 <div class="item-slick3" data-thumb="images/product-detail-01.jpg">
                                     <div class="wrap-pic-w pos-relative">
@@ -353,9 +338,9 @@
                             Lightweight Jacket
                         </h4>
 
-                        <span class="mtext-106 cl2">
+                        <span class="mtext-106 cl2 ">
 								$58.79
-							</span>
+                        </span>
 
                         <p class="stext-102 cl3 p-t-23">
                             Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
@@ -454,6 +439,7 @@
 <script src="{{asset('client/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <script src="{{asset('js/sweetalert2.min.js')}}"></script>
 <script src="{{asset('js/select2.min.js')}}"></script>
+<script src="{{asset('js/function.js')}}"></script>
 <!--===============================================================================================-->
 <script src="{{asset('client/vendor/animsition/js/animsition.min.js')}}"></script>
 <!--===============================================================================================-->
@@ -553,7 +539,6 @@
 </script>
 <!--===============================================================================================-->
 <script src="{{asset('client/js/main.js')}}"></script>
-
 </body>
 @yield('js')
 </html>

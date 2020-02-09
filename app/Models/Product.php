@@ -81,7 +81,10 @@ class Product extends Model
             ->latest('id')
             ->paginate(10);
     }
-
+    public function scopeWithSlug($query, $slug)
+    {
+        return $query->where('slug',$slug);
+    }
     public function getBy($id)
     {
         return $this->with('images')->with('sizes')->with('categories')->with('brand')->findOrFail($id);
@@ -90,5 +93,10 @@ class Product extends Model
     public function getCategoryIdsBy($id)
     {
         return $this->findOrFail($id)->categories()->pluck('category_id')->toArray();
+    }
+
+    public function getBySlug($slug)
+    {
+        return $this->withSlug($slug)->with('images')->with('sizes')->with('categories')->with('brand')->first();
     }
 }
