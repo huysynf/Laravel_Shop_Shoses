@@ -29,7 +29,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            ['admins.categories.form', 'admins.products.create', 'admins.products.edit', 'admins.products.index',],
+            ['admins.categories.form', 'admins.products.create', 'admins.products.edit', 'admins.products.index'],
             CategoryComposer::class
         );
 
