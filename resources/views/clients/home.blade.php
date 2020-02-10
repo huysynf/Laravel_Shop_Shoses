@@ -347,12 +347,23 @@
                 @foreach($newProducts as $product)
                     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item new">
                         <!-- Block2 -->
-                        <div class="block2">
+                        <div class="block2 position-relative">
+                            @if($product->sale>0)
+                                <div class="position-absolute" style="     width: 45px;
+                                                                                height: 45px;
+                                                                                border: 1px solid red;
+                                                                                border-radius: 50%;
+                                                                                z-index: 5;
+                                                                                text-align: center;
+                                                                                padding: 3% 2%; color: red">
+                                    -{{$product->sale}}%
+                                </div>
+                            @endif
                             <div class="block2-pic hov-img0">
                                 <img src="{{asset('images/products/'.$product->image)}}" alt="IMG-PRODUCT">
 
                                 <a href="{{route('product.detail',$product->slug)}}"
-                                   class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                   class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                     Chi tiết
                                 </a>
                             </div>
@@ -372,12 +383,6 @@
 								</span>
                                 </div>
 
-                                <div class="block2-txt-child2 flex-r p-t-3">
-                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                        <i class="icon-heart1 dis-block trans-04 fa fa-cart-plus"></i>
-                                        <i class="icon-heart2 dis-block trans-04 ab-t-l fa fa-cart-plus"></i>
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -386,13 +391,24 @@
                 @foreach($girlProducts as $product)
                     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                         <!-- Block2 -->
-                        <div class="block2">
+                        <div class="block2 position-relative">
+                            @if($product->sale>0)
+                                <div class="position-absolute" style="     width: 45px;
+                                                                                height: 45px;
+                                                                                border: 1px solid red;
+                                                                                border-radius: 50%;
+                                                                                z-index: 5;
+                                                                                text-align: center;
+                                                                                padding: 3% 2%; color: red">
+                                    -{{$product->sale}}%
+                                </div>
+                            @endif
                             <div class="block2-pic hov-img0">
                                 <img src="{{asset('images/products/'.$product->image)}}" alt="IMG-PRODUCT">
 
-                                <a href="#"
-                                   class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                    Thêm vào giỏ hàng
+                                <a href="{{route('product.detail',$product->slug)}}"
+                                   class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+                                    Chi tiết
                                 </a>
                             </div>
 
@@ -410,15 +426,6 @@
 
 								</span>
                                 </div>
-
-                                <div class="block2-txt-child2 flex-r p-t-3">
-                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                        <img class="icon-heart1 dis-block trans-04"
-                                             src="{{asset('client/images/icons/icon-heart-01.png')}}" alt="ICON">
-                                        <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                             src="{{asset('client/images/icons/icon-heart-02.png')}}" alt="ICON">
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -426,12 +433,24 @@
                     @foreach($menProducts as $product)
                         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item men">
                             <!-- Block2 -->
-                            <div class="block2">
+                            <div class="block2 position-relative">
+                                @if($product->sale>0)
+                                    <div class="position-absolute" style="     width: 45px;
+                                                                                height: 45px;
+                                                                                border: 1px solid red;
+                                                                                border-radius: 50%;
+                                                                                z-index: 5;
+                                                                                text-align: center;
+                                                                                padding: 3% 2%; color: red">
+                                        -{{$product->sale}}%
+                                    </div>
+                                @endif
                                 <div class="block2-pic hov-img0">
                                     <img src="{{asset('images/products/'.$product->image)}}" alt="IMG-PRODUCT">
 
-                                    <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                        Thêm vào giỏ hàng
+                                    <a href="{{route('product.detail',$product->slug)}}"
+                                       class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                        Chi tiết
                                     </a>
                                 </div>
 
@@ -447,13 +466,6 @@
                                             @endif
 
 								</span>
-                                    </div>
-
-                                    <div class="block2-txt-child2 flex-r p-t-3">
-                                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                            <img class="icon-heart1 dis-block trans-04" src="{{asset('client/images/icons/icon-heart-01.png')}}" alt="ICON">
-                                            <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('client/images/icons/icon-heart-02.png')}}" alt="ICON">
-                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -462,12 +474,24 @@
                     @foreach($saleProducts as $product)
                         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item sale">
                             <!-- Block2 -->
-                            <div class="block2">
+                            <div class="block2 position-relative">
+                                @if($product->sale>0)
+                                    <div class="position-absolute" style="     width: 45px;
+                                                                                height: 45px;
+                                                                                border: 1px solid red;
+                                                                                border-radius: 50%;
+                                                                                z-index: 5;
+                                                                                text-align: center;
+                                                                                padding: 3% 2%; color: red">
+                                        -{{$product->sale}}%
+                                    </div>
+                                @endif
                                 <div class="block2-pic hov-img0">
                                     <img src="{{asset('images/products/'.$product->image)}}" alt="IMG-PRODUCT">
 
-                                    <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                        Thêm vào giỏ hàng
+                                    <a href="{{route('product.detail',$product->slug)}}"
+                                       class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                        Chi tiết
                                     </a>
                                 </div>
 
@@ -483,13 +507,6 @@
                                             @endif
 
 								</span>
-                                    </div>
-
-                                    <div class="block2-txt-child2 flex-r p-t-3">
-                                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                            <img class="icon-heart1 dis-block trans-04" src="{{asset('client/images/icons/icon-heart-01.png')}}" alt="ICON">
-                                            <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('client/images/icons/icon-heart-02.png')}}" alt="ICON">
-                                        </a>
                                     </div>
                                 </div>
                             </div>

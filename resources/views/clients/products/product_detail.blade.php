@@ -5,7 +5,14 @@
     <div class="sec-banner bg0 p-t-80 p-b-50">
 
     </div>
-
+    @if(session('message'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong> {{session('message')}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
         <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
@@ -68,69 +75,83 @@
                     </h4>
 
                     <span class="mtext-106 cl2 product-price">
-
+                            Giá tiền: chọn màu để hiện giá tiền.
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">
 
                     </p>
-
+                    <form class="add-cart-form" method="post" action="{{route('cart.add')}}">
+                        @csrf
+                        <input type="hidden" value="{{$product->id}}" name="id">
                     <!--  -->
                     <div class="p-t-33">
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6">
-                                Kích cỡ
+                                Kích cỡ *
                             </div>
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2 change-product-color" name="time">
-                                        <option>Chọn cỡ</option>
+                                    <select class="js-select2 change-product-color" name="size">
+                                        <option value="">Chọn cỡ</option>
                                         @foreach($product->sizes as $size)
-                                            <option value="{{$size->size}}" class="option-color" size="{{$size->id}}">{{$size->size}}</option>
+                                            <option value="{{$size->size}}" {{old('size')==$size->size ?'selected':''}} class="option-color" size="{{$size->id}}">{{$size->size}}</option>
                                         @endforeach
                                     </select>
+
                                     <div class="dropDownSelect2"></div>
                                 </div>
                             </div>
+                            @error('size')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6">
-                                Màu sắc
+                                Màu sắc *
                             </div>
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="time product-color">
-                                        <option>Chọn màu</option>
+                                    <select class="js-select2" name="color">
+                                        <option value="">Chọn màu</option>
                                     </select>
+
                                     <div class="dropDownSelect2"></div>
                                 </div>
                             </div>
+                            @error('color')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-204 flex-w flex-m respon6-next">
                                 <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                    <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">*
                                         <i class="fs-16 zmdi zmdi-minus"></i>
                                     </div>
 
-                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="qty" value="1">
 
                                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fs-16 zmdi zmdi-plus"></i>
                                     </div>
+                                    @error('qty')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
-                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04  add-cart"  title="Thêm vào giỏ hàng">
                                     Thêm vào giỏ hàng
                                 </button>
                             </div>
                         </div>
                     </div>
 
+                    </form>
                     <!--  -->
                 </div>
             </div>

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Coupons;
+namespace App\Http\Requests\carts;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class CartRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,18 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'code'=>'required|unique:coupons,code,'.$this->id,
-            'type'=>'required',
-            'value'=>'required|numeric|min:0',
-            'status'=>'required',
-            'expiry_date'=>'required',
-            'quantity'=>'required|numeric|min:0',
+            'qty'=>'min:0',
+            'color'=>'required',
+            'size'=>'required',
+        ];
+    }
+    public function messages()
+    {
+        return
+        [
+            'qty.min'=>'Số lượng lớn hơn 0',
+            'color.required'=>'Chọn màu',
+            'size.required'=>'Chọn Kích cỡ',
         ];
     }
 }

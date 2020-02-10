@@ -102,7 +102,7 @@
                     <a class="dropdown-item btn" href="" onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();"> <i
                             class="text-danger fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ route('login.logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>

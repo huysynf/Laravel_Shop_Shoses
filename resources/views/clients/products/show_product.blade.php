@@ -322,7 +322,18 @@
                     @foreach($category->products as $product)
                         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                             <!-- Block2 -->
-                            <div class="block2">
+                            <div class="block2 position-relative" >
+                               @if($product->sale>0)
+                                    <div class="position-absolute" style="     width: 45px;
+                                                                                height: 45px;
+                                                                                border: 1px solid red;
+                                                                                border-radius: 50%;
+                                                                                z-index: 5;
+                                                                                text-align: center;
+                                                                                padding: 3% 2%; color: red">
+                                            -{{$product->sale}}%
+                                    </div>
+                                   @endif
                                 <div class="block2-pic hov-img0">
                                     <img src="{{asset('images/products/'.$product->image)}}" alt="{{$product->name}}">
                                     <a href="{{route('product.detail',$product->slug)}}"
@@ -344,12 +355,6 @@
 								</span>
                                     </div>
 
-                                    <div class="block2-txt-child2 flex-r p-t-3">
-                                        <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                            <i class="icon-heart1 dis-block trans-04 fa fa-cart-plus"></i>
-                                            <i class="icon-heart2 dis-block trans-04 ab-t-l fa fa-cart-plus"></i>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

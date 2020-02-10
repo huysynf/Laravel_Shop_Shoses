@@ -7,7 +7,7 @@ $(function () {
             .then(data=>{
                let colors=data.size.colors;
                let price=data.size.price;
-                $('.product-price').html(price +" VND");
+                $('.product-price').html('Giá tiền: '+price +" VND");
                 let colorText='';
                 colors.forEach(item=>{
                     colorText+=` <option value="${item.color}">${item.color}</option>`;

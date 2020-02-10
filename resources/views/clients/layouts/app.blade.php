@@ -539,6 +539,7 @@
 </script>
 <!--===============================================================================================-->
 <script src="{{asset('client/js/main.js')}}"></script>
+<script src="{{asset('client/js/cart.js')}}"></script>
 </body>
 @yield('js')
 </html>

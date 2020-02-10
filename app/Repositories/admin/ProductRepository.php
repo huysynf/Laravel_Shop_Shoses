@@ -46,7 +46,7 @@ class ProductRepository extends BaseRepository
         $image =$data['image']??null;
         $data['image']=$this->model->saveImage($image,$this->imagePath);
         $product=$this->model->create($data);
-        $product->categories()->sync($data['categories']);
+        $product->categories()->attach($data['categories']);
 
         return $product;
     }
@@ -69,7 +69,7 @@ class ProductRepository extends BaseRepository
         $image = $data['image'] ?? null;
         $data['image'] =$this->model->updateImage($image, $this->imagePath, $product->image);
         $product->update($data);
-
+        $product->categories()->sync($data['categories']);
         return $product;
     }
 
