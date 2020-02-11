@@ -322,8 +322,8 @@
                     @foreach($category->products as $product)
                         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                             <!-- Block2 -->
-                            <div class="block2 position-relative" >
-                               @if($product->sale>0)
+                            <div class="block2 position-relative">
+                                @if($product->sale>0)
                                     <div class="position-absolute" style="     width: 45px;
                                                                                 height: 45px;
                                                                                 border: 1px solid red;
@@ -331,9 +331,9 @@
                                                                                 z-index: 5;
                                                                                 text-align: center;
                                                                                 padding: 3% 2%; color: red">
-                                            -{{$product->sale}}%
+                                        -{{$product->sale}}%
                                     </div>
-                                   @endif
+                                @endif
                                 <div class="block2-pic hov-img0">
                                     <img src="{{asset('images/products/'.$product->image)}}" alt="{{$product->name}}">
                                     <a href="{{route('product.detail',$product->slug)}}"
@@ -349,8 +349,14 @@
                                             {{$product->name}}
                                         </a>
                                         <span class="stext-105 cl3">
-									@if($product->sizes->count()>0)
-                                                {{$product->sizes->first()->price}} VND
+									        @if($product->sizes->count()>0)
+                                                @if( $product->sale >0)
+                                                    <span style="text-decoration:line-through">{{$product->sizes->first()->price}}</span>
+                                                    <span >{{$product->sizes->first()->price - ($product->sizes->first()->price *($product->sale/100)) }} VND</span>
+                                                @else
+                                                    {{number_format($product->sizes->first()->price)}} VND
+                                                @endif
+
                                             @endif
 								</span>
                                     </div>

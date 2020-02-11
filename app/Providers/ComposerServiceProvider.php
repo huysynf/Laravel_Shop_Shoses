@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Composers\Admin\BrandComposer;
+use App\Http\Composers\Admin\CartComposer;
 use App\Http\Composers\Admin\CategoryComposer;
 use App\Http\Composers\Admin\PermissionComposer;
 use App\Http\Composers\Admin\RoleComposer;
@@ -51,6 +52,11 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             ['clients.includes.header','clients.layouts.app'],
             CategoryComposer::class
+        );
+
+        View::composer(
+            ['clients.includes.header','clients.layouts.app'],
+            CartComposer::class
         );
     }
 }

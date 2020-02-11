@@ -377,7 +377,12 @@
 
                                     <span class="stext-105 cl3">
                                         @if($product->sizes->count()>0)
-                                            {{$product->sizes->first()->price}} VND
+                                            @if( $product->sale >0)
+                                                <span style="text-decoration:line-through">{{$product->sizes->first()->price}}</span>
+                                                <span >{{$product->sizes->first()->price - ($product->sizes->first()->price *($product->sale/100)) }} VND</span>
+                                            @else
+                                                {{number_format($product->sizes->first()->price)}} VND
+                                            @endif
                                         @endif
 
 								</span>
@@ -421,7 +426,12 @@
 
                                     <span class="stext-105 cl3">
                                         @if($product->sizes->count()>0)
-                                            {{$product->sizes->first()->price}}
+                                            @if( $product->sale >0)
+                                                <span style="text-decoration:line-through">{{$product->sizes->first()->price}}</span>
+                                                <span >{{$product->sizes->first()->price - ($product->sizes->first()->price *($product->sale/100)) }} VND</span>
+                                            @else
+                                                {{number_format($product->sizes->first()->price)}} VND
+                                            @endif
                                         @endif
 
 								</span>
@@ -462,7 +472,12 @@
 
                                         <span class="stext-105 cl3">
                                         @if($product->sizes->count()>0)
-                                                {{$product->sizes->first()->price}}
+                                                @if( $product->sale >0)
+                                                    <span style="text-decoration:line-through">{{$product->sizes->first()->price}}</span>
+                                                    <span >{{$product->sizes->first()->price - ($product->sizes->first()->price *($product->sale/100)) }} VND</span>
+                                                @else
+                                                    {{number_format($product->sizes->first()->price)}} VND
+                                                @endif
                                             @endif
 
 								</span>
@@ -503,7 +518,12 @@
 
                                         <span class="stext-105 cl3">
                                         @if($product->sizes->count()>0)
-                                                {{$product->sizes->first()->price}}
+                                                @if( $product->sale >0)
+                                                    <span style="text-decoration:line-through">{{$product->sizes->first()->price}}</span>
+                                                    <span >{{$product->sizes->first()->price - ($product->sizes->first()->price *($product->sale/100)) }} VND</span>
+                                                @else
+                                                    {{number_format($product->sizes->first()->price)}} VND
+                                                @endif
                                             @endif
 
 								</span>

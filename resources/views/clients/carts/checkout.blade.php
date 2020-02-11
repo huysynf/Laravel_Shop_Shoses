@@ -1,5 +1,5 @@
 @extends('clients.layouts.app')
-@section('tittle','Giỏ hàng ')
+@section('tittle','Thanh toán  ')
 @section('content')
     <div class="sec-banner bg0 p-t-80 p-b-50">
 
@@ -14,12 +14,12 @@
     @endif
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-            <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+            <a href="{{route('home')}}" class="stext-109 cl8 hov-cl1 trans-04">
                 Trang chủ
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
             <span class="stext-109 cl4">
-				Giỏ hàng
+				Thanh toán
 			</span>
         </div>
     </div>
@@ -75,24 +75,9 @@
                                             @else
                                                 {{number_format($item->price)}} VND
                                             @endif
-
                                         </td>
                                         <td class="column-3">
-                                            <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                                <div
-                                                    class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m quantity-update"
-                                                    cart="{{$item->id}}">
-                                                    <i class="fs-16 zmdi zmdi-minus"></i>
-                                                </div>
-                                                <input class="mtext-104 cl3 txt-center num-product quantity-cart"
-                                                       type="number" name="num-product1" value="{{$item->quantity}}">
-
-                                                <div
-                                                    class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m quantity-update"
-                                                    cart="{{$item->id}}">
-                                                    <i class="fs-16 zmdi zmdi-plus"></i>
-                                                </div>
-                                            </div>
+                                            {{$item->quantity}}
                                         </td>
                                         <td class="column-3">{{$item->attributes->size}}</td>
                                         <td class="column-3">{{$item->attributes->color}}</td>
@@ -109,6 +94,28 @@
                                 @endforeach
                             </table>
                         </div>
+                        <form action="{{route('cart.coupon')}}" method="post">
+                            <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+
+                                @csrf
+                                <input type="hidden" name="Total_amountPrice" value="{{$total}}">
+                                <div class="flex-w flex-m m-r-20 m-tb-5">
+                                    <input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text"
+                                           name="coupon_code" placeholder="Mã giảm giá..."
+                                           style="text-transform: uppercase;" value="{{old('coupon_code')}}"
+                                           @error('coupon_code')autofocus @enderror>
+                                    @error('coupon_code')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <button
+                                        class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5"
+                                        type="submit">
+                                        Mã giảm giá
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -133,23 +140,51 @@
                             </div>
                         </div>
                         @if($cartOrders->count()>0)
-                        <div class="flex-w flex-t bor12 p-b-13">
-                            <div class="size-208">
+                            <div class="flex-w flex-t bor12 p-b-13">
+                                <div class="size-208">
 								<span class="stext-110 cl2">
 									Tổng cộng:
 								</span>
-                            </div>
+                                </div>
 
-                            <div class="size-209">
+                                <div class="size-209">
 								<span class="mtext-110 cl2">
 									{{number_format($total)}} VND
 								</span>
+                                </div>
                             </div>
-                        </div>
-                        <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" href="{{route('cart.checkout')}}">
-                            Tiến hành thanh toán
-                        </a>
-                    @endif
+                            @if(Session::has('discount_amount_price'))
+                                <div class="flex-w flex-t p-t-27 p-b-33">
+                                    <div class="size-208">
+								<span class="mtext-101 cl2">
+									Giảm Giá (code: {{Session::get('coupon_code')}}):
+								</span>
+                                    </div>
+
+                                    <div class="size-209 p-t-1">
+								<span class="mtext-110 cl2">
+									{{number_format(Session::get('discount_amount_price'))}}VND
+								</span>
+                                    </div>
+                                </div>
+                                <div class="flex-w flex-t p-t-27 p-b-33">
+                                    <div class="size-208">
+								<span class="mtext-101 cl2">
+									Còn lại:
+								</span>
+                                    </div>
+
+                                    <div class="size-209 p-t-1">
+								<span class="mtext-110 cl2">
+									{{number_format($total-(Session::get('discount_amount_price')))}} VND
+								</span>
+                                    </div>
+                                </div>
+                            @endif
+                            <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" href="{{route('cart.checkout')}}">
+                               thanh toán
+                            </a>
+                        @endif
                     </div>
 
                 </div>

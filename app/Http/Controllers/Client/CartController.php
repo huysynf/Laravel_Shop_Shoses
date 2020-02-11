@@ -90,17 +90,13 @@ class CartController extends Controller
     }
 
 
-    public function delete(Request $request, $id)
+    public function delete( $id)
     {
-        $carts = $request->session()->get('cart');
-        // lấy key của sản session
-        $key = $carts->search(function ($item) use ($id) {
-            return $item->id = $id;
-        });
-        // xóa phần tử collection có key là $id
-        $carts->pull($key);
-        $request->session()->put('cart', $carts);
-        return redirect()->route('carts.index');
+        \Cart::remove($id);
+        return response()->json([
+            'message' => 'Xóa thành công',
+        ]);
+
     }
 
     public function updateQuantity(Request $request, $id)
@@ -156,6 +152,8 @@ class CartController extends Controller
         {
             $discount_amount_price = $coupon->value;
         }
+
+        Session::put('coupon_id', $coupon->id);
         Session::put('discount_amount_price', $discount_amount_price);
         Session::put('coupon_code', $coupon->code);
         return back()->with('message', 'Áp dụng thành công');

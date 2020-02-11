@@ -20,4 +20,7 @@ Route::delete('/delete-cart/{id}','CartController@delete');
 
 Route::post('/update-quantity-cart/{id}','CartController@updateQuantity');
 
-Route::post('/apply-coupon','CartController@applyCoupon')->name('cart.coupon');
+Route::group([ 'middleware' => 'check.login'], function () {
+    Route::post('/apply-coupon','CartController@applyCoupon')->name('cart.coupon');
+    Route::get('/checkout','CheckoutController@index')->name('cart.checkout');
+});
