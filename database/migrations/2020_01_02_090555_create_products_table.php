@@ -24,8 +24,11 @@ class CreateProductsTable extends Migration
             $table->smallInteger('status')->default(0);
             $table->string('slug')->unique();
             $table->timestamps();
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+
         });
+
+
+
     }
 
     /**

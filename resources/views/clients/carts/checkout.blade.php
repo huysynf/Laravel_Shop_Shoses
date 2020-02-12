@@ -181,8 +181,8 @@
                                     </div>
                                 </div>
                             @endif
-                            <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" href="{{route('cart.checkout')}}">
-                               thanh toán
+                            <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" href="{{route('cart.order')}}">
+                              Chuyển sang bước tiếp theo
                             </a>
                         @endif
                     </div>

@@ -24,11 +24,10 @@ class CartController extends Controller
             $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
         }
 
-        Session::put('totalCart', count($totalPro));
+        Session::put('totalCart', count($total));
         return view('clients.carts.cart')->with([
             'cartOrders' => $cartOrders,
             'total' => $total,
-
         ]);
     }
 
