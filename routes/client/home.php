@@ -24,7 +24,7 @@ Route::group(['middleware' => 'check.login'], function () {
     Route::post('/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon');
     Route::get('/checkout', 'CheckoutController@index')->name('cart.checkout');
     Route::get('/order', 'OrderController@index')->name('cart.order');
-    Route::post('/order', 'OrderController@store')->name('order.create');
+    Route::post('/order', 'OrderController@store')->name('user.order.store');
 
-    Route::get('/orders', 'OrderController@getorder')->name('userorder.index');
+    Route::get('/orders', 'OrderController@getorder')->name('user.order.index');
 });

@@ -22,6 +22,17 @@ class Order extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_order');
+        return $this->belongsToMany(Product::class, 'product_order')->withPivot(['quantity','color','size']);
+    }
+
+
+    public function getOrderBy($user_id)
+    {
+        return $this->with('products')->where('user_id',$user_id)->latest()->get();
+    }
+
+    public function countNewOrderBy($user_id)
+    {
+        return $this->getOrderBy($user_id)->where('status','Đã nhận được đơn hàng')->count();
     }
 }

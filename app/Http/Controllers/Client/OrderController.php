@@ -11,6 +11,18 @@ use Auth;
 
 class OrderController extends Controller
 {
+    protected $order;
+
+    /**
+     * OrderController constructor.
+     * @param $order
+     */
+    public function __construct(Order $order)
+    {
+        $this->order = $order;
+    }
+
+
     public function index()
     {
         $cartOrders = \Cart::getContent();
@@ -39,26 +51,34 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
+
         $cartOrders = \Cart::getContent();
         $proIds = [];
+        $quantity=[];
         foreach ($cartOrders as $cart) {
             $proIds[] = $cart->attributes->product_id;
+            $quantity[]=$cart->quantity;
         }
+
         $data = $request->all();
         $data['total'] = Session::get('totalCart');
         $data['code'] = $this->generateRandomString();
         $data['status'] = 'Đã nhận được đơn hàng';
         $order = Order::create($data);
 
-        $order->products()->attach($proIds);
+        $order->products()->attach($proIds,['quantity'=>$quantity]);
 
-        return redirect()->route('userorder.index')->with('message', 'Tạo đơn hàng thành công ');
+        Session::forget('discount_amount_price');
+
+        Session::forget('coupon_code');
+
+        return redirect()->route('user.order.index')->with('message', 'Tạo đơn hàng thành công ');
     }
 
     public function getorder()
     {
+        $orders = $this->order->with('products')->where('user_id',Auth::guard()->id())->latest('id')->paginate(10);
 
-        $orders = Order::where('user_id', Auth::guard()->id());
         return view('clients.carts.order_index', compact('orders'));
     }
 }

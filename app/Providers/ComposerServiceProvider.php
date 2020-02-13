@@ -55,7 +55,7 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         View::composer(
-            ['clients.includes.header','clients.layouts.app'],
+            ['clients.includes.header','clients.layouts.app','clients.includes.header'],
             CartComposer::class
         );
     }

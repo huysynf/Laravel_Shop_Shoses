@@ -23,4 +23,40 @@
 			</span>
         </div>
     </div>
+<?php $stt=0; ?>
+    <div class="container mb-4 mt-4">
+        <div class="row">
+            <div>
+                <h4>Danh sách các đơn hàng</h4>
+            </div>
+            <div class="col-12">
+                <table class="table table-hover">
+                    <tr>
+                        <th>STT</th>
+                        <th>Danh sách tên hàng</th>
+                        <th>Trạng thái </th>
+                        <th> Tổng tiền </th>
+                    </tr>
+
+                    @foreach($orders as $order)
+                        <tr>
+                            <td>{{$stt+=1}}</td>
+                            <td>
+                               @foreach($order->products as $product)
+                                <p>{{ $product->name }}  X {{$product->pivot->quantity}} X {{$product->pivot->size}}  X {{$product->pivot->color}}</p>
+                                @endforeach
+                            </td>
+                            <td>{{$order->status}} </td>
+                            <td> {{number_format($order->total)}}  VND</td>
+                        </tr>
+                  @endforeach
+                </table>
+                <div>
+                    {{$orders}}
+                </div>
+            </div>
+        </div>
+    </div>
     @endsection
+
+

@@ -54,7 +54,7 @@
                 <h4 class="pl-3">Thông tin thanh toán </h4>
             </div>
             <div class="col-12">
-                <form action="{{route('order.create')}}" method="post">
+                <form action="{{route('user.order.store')}}" method="post">
                         @csrf
                     <input type="hidden" name="user_id" value="{{Auth::guard()->id()}}">
                     <div class="row form-group">

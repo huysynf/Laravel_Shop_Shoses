@@ -5,7 +5,7 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                   Free ship với đơn hàng trên 500k
+                    Free ship với đơn hàng trên 500k
                 </div>
                 <div class="right-top-bar flex-w h-full">
 
@@ -13,7 +13,8 @@
                         <a class="flex-c-m trans-04 p-lr-25" href="" onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();"> <i
                                 class="text-danger fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</a>
-                        <form id="logout-form" action="{{ route('login.logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ route('login.logout') }}" method="POST"
+                              style="display: none;">
                             @csrf
                         </form>
 
@@ -22,7 +23,7 @@
                         </a>
                     @else
                         <a href="{{route('login.login')}}" class="flex-c-m trans-04 p-lr-25">
-                           Đăng nhập
+                            Đăng nhập
                         </a>
                     @endif
 
@@ -54,13 +55,15 @@
                             @if ($category->parent_id==null)
                                 <li>
                                     <a href="{{route('categories.product',$category->slug)}}">{{$category->name}}</a>
-                                @if ($category->childrenCategories->count()>0)
-                                    <ul class="sub-menu">
-                                        @foreach($category->childrenCategories as $sub)
-                                            <li> <a href="{{route('categories.product',$sub->slug)}}">{{$sub->name}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                @endif
+                                    @if ($category->childrenCategories->count()>0)
+                                        <ul class="sub-menu">
+                                            @foreach($category->childrenCategories as $sub)
+                                                <li>
+                                                    <a href="{{route('categories.product',$sub->slug)}}">{{$sub->name}}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                 </li>
                             @endif
 
@@ -85,7 +88,12 @@
                          data-notify="{{$carts->count()}}">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
-
+                    @auth
+                        <a class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti " title="Đơn hàng" href="{{route('user.order.index')}}"
+                           >
+                            <i class="fa fa-shopping-bag"></i>
+                        </a>
+                    @endauth
                 </div>
             </nav>
         </div>
@@ -109,6 +117,7 @@
                 <i class="zmdi zmdi-shopping-cart"></i>
 
             </div>
+
 
             <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
                data-notify="0">
@@ -138,7 +147,7 @@
                 <div class="right-top-bar flex-w h-full">
 
                     <a href="#" class="flex-c-m p-lr-10 trans-04">
-                       Tài khoản
+                        Tài khoản
                     </a>
 
                     <a href="#" class="flex-c-m p-lr-10 trans-04">
@@ -163,7 +172,7 @@
                         @if ($category->childrenCategories->count()>0)
                             <ul class="sub-menu">
                                 @foreach($category->childrenCategories as $sub)
-                                    <li> <a href="{{route('categories.product',$sub->slug)}}">{{$sub->name}}</a></li>
+                                    <li><a href="{{route('categories.product',$sub->slug)}}">{{$sub->name}}</a></li>
                                 @endforeach
                             </ul>
                         @endif

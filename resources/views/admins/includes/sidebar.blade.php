@@ -78,7 +78,7 @@
     @endcan
     @can('view order')
         <li class="nav-item">
-            <a class="nav-link " href="{{route('coupons.index')}}" title="Quản lí đơn hàng">
+            <a class="nav-link " href="{{route('admin.orders.index')}}" title="Quản lí đơn hàng">
                 <i class="fas fa-fw fa-shopping-bag text-danger"></i>
                 <span>Đơn hàng</span>
             </a>
