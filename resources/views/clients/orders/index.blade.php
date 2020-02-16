@@ -48,6 +48,8 @@
                             <td>{{$order->status}}</td>
                             <td>{{$order->ship =='free' ? $order->ship  :number_format($order->ship ).'VND'}}</td>
                             <td>{{$order->payment}}</td>
+                            <td>
+                                <button class="btn btn-outline-warning btn-circle delete-order" order="{{$order->id}}" {{ $order->status !='Đã nhận được đơn hàng' ?'disabled':'' }} title="Hủy đơn hàng "><i class="fa fa-trash text-danger"> </i></button></td>
                         </tr>
                     @endforeach
                 </table>
@@ -55,3 +57,6 @@
         </div>
     </div>
 @endsection
+@section('js')
+    <script src="{{asset('js/order.js')}}"></script>
+    @endsection

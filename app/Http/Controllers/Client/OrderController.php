@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Order;
 use Hash;
 use Illuminate\Http\Request;
@@ -13,10 +14,6 @@ class OrderController extends Controller
 {
     protected $order;
 
-    /**
-     * OrderController constructor.
-     * @param $order
-     */
     public function __construct(Order $order)
     {
         $this->order = $order;
@@ -32,10 +29,12 @@ class OrderController extends Controller
             $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
         }
         Session::put('totalCart', count($totalPro));
+        $discount_amount_price= Session::get('discount_amount_price')??0;
+
         return view('clients.orders.create')->with([
             'cartOrders' => $cartOrders,
             'total' => $total,
-
+            'discount_price'=>$discount_amount_price,
         ]);
 
     }
@@ -50,7 +49,18 @@ class OrderController extends Controller
     }
     public function store(Request $request)
     {
-
+        $cartOrders = \Cart::getContent();
+        $totalPro = [];
+        $total = 0;
+        foreach ($cartOrders as $cart) {
+            $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
+        }
+        $discount_amount_price= Session::get('discount_amount_price')??0;
+        $totalCart=$total;
+        if($discount_amount_price >1)
+        {
+            $totalCart=$total-$discount_amount_price;
+        }
 
         $cartOrders = \Cart::getContent();
         $proIds = [];
@@ -65,7 +75,7 @@ class OrderController extends Controller
         }
 
         $data = $request->all();
-        $data['total'] = Session::get('totalCart');
+        $data['total'] = $totalCart;
         $data['code'] = $this->generateRandomString();
         $data['status'] = 'Đã nhận được đơn hàng';
         $order = Order::create($data);
@@ -80,9 +90,16 @@ class OrderController extends Controller
                 ]
             );
         }
-
-
+       if(Session::has('coupon_code')){
+       $coupon = Coupon::where('id',Session::get('coupon_code'))->first();
+        if ($coupon->quantity > 0) {
+            $coupon->update([
+                'quantity' => $coupon->quantity - 1,
+            ]);
+        }
+    }
         Session::forget('discount_amount_price');
+        Session::forget('coupon_id');
 
         Session::forget('coupon_code');
 
@@ -95,4 +112,14 @@ class OrderController extends Controller
 
         return view('clients.orders.index', compact('orders'));
     }
+
+    public function destroy($id)
+    {
+        Order::destroy($id);
+
+        return response()->json([
+           'message'=>'Hủy đơn hàng thành công '
+        ]);
+    }
+
 }

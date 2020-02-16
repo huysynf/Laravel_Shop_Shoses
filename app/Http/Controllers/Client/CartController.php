@@ -9,7 +9,7 @@ use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-//use Session;
+use Session;
 
 class CartController extends Controller
 {
@@ -129,18 +129,18 @@ class CartController extends Controller
         $total_amount = $request->input('Total_amountPrice');
 
         $coupon = Coupon::where('code', $coupon_code)->first();
-        dd($request->all());
+
         if ($coupon == null) {
 
             return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá không tồn tại !');
         }
-        dd($request->all());
+
         $now = date('Y-m-d');
         if($coupon->status ==0) {
             return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá không tồn tại !');
         }
 
-        if( $coupon->quantity<0 ) {
+        if($coupon->quantity <= 0) {
             return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá hết  !');
         }
         if( $coupon->expiry_date < $now) {
@@ -154,10 +154,11 @@ class CartController extends Controller
         {
             $discount_amount_price = $coupon->value;
         }
-            dd($request->all());
+
         Session::put('coupon_id', $coupon->id);
         Session::put('discount_amount_price', $discount_amount_price);
         Session::put('coupon_code', $coupon->code);
+
         return back()->with('message', 'Áp dụng thành công');
     }
 }

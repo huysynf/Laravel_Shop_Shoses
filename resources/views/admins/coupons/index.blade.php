@@ -62,7 +62,7 @@
                 <tbody>
                 @foreach($coupons as $coupon)
                 <tr>
-                    <th><strong></strong></th>
+                    <td><strong></strong></td>
                     <th>{{$coupon->code}}</th>
                     <th>{{$coupon->type=='percent'?'Phần trăm':'tiềm mặt'}}</th>
                     <th>{{$coupon->type=='percent'?$coupon->value.' %':number_format($coupon->value).'VND'}}</th>

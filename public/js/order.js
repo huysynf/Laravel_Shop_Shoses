@@ -23,4 +23,18 @@ $(function () {
                        })
                 });
         });
+
+    $('.delete-order').click(function () {
+
+            let id=$(this).attr('order');
+            let url='/order-destroy/'+id;
+            destroyResourceByAjax(url)
+            .then(data => {
+                alertSuccess(data.message);
+                location.reload();
+            })
+            .catch(data => {
+                alertError(data.message);
+            });
+    })
 });

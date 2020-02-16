@@ -43,7 +43,16 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td rowspan="3">Tổng cộng: {{number_format($total)}} VND</td>
+                    <td rowspan="3">
+                        Tổng cộng:
+                        @if($discount_price>1)
+                            <span style="text-decoration:line-through"> {{number_format($total)}}</span>
+                            <span>{{number_format($total-$discount_price)}}</span>
+                        @else
+                            {{number_format($total)}}
+                        @endif fVND
+
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -97,7 +106,7 @@
                                 <p> Miễn phí giao hàng</p>
                             </div>
                             <div class="d-flex">
-                                <input type="radio" name="ship" value="" {{$total>5000000 ? 'disabled':'checked'}}>
+                                <input type="radio" name="ship" value="30000" {{$total>5000000 ? 'disabled':'checked'}}>
                                 <p> {{number_format('30000')}} VND</p>
                             </div>
                         </div>
