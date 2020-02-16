@@ -17,13 +17,13 @@ class CheckoutController extends Controller
         foreach ($cartOrders as $cart) {
             $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
         }
-
         Session::put('totalCart', count($totalPro));
         return view('clients.carts.checkout')->with([
             'cartOrders' => $cartOrders,
             'total' => $total,
-
         ]);
 
     }
+
+
 }

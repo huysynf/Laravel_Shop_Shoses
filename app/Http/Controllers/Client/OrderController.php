@@ -23,7 +23,7 @@ class OrderController extends Controller
     }
 
 
-    public function index()
+    public function getOrderForm()
     {
         $cartOrders = \Cart::getContent();
         $totalPro = [];
@@ -32,7 +32,7 @@ class OrderController extends Controller
             $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
         }
         Session::put('totalCart', count($totalPro));
-        return view('clients.carts.order')->with([
+        return view('clients.orders.create')->with([
             'cartOrders' => $cartOrders,
             'total' => $total,
 
@@ -54,10 +54,14 @@ class OrderController extends Controller
 
         $cartOrders = \Cart::getContent();
         $proIds = [];
-        $quantity=[];
+        $quantities=[];
+        $colors=[];
+        $sizes=[];
         foreach ($cartOrders as $cart) {
             $proIds[] = $cart->attributes->product_id;
-            $quantity[]=$cart->quantity;
+            $quantities[]=$cart->quantity;
+            $colors[] =$cart->attributes->color;
+            $sizes[] =$cart->attributes->size;
         }
 
         $data = $request->all();
@@ -66,7 +70,17 @@ class OrderController extends Controller
         $data['status'] = 'Đã nhận được đơn hàng';
         $order = Order::create($data);
 
-        $order->products()->attach($proIds,['quantity'=>$quantity]);
+        foreach ($proIds as $key=> $prodId)
+        {
+            $order->products()->attach(
+                $prodId,[
+                    'quantity'=>$quantities[$key],
+                    'color'=>$colors[$key],
+                    'size'=>$sizes[$key],
+                ]
+            );
+        }
+
 
         Session::forget('discount_amount_price');
 
@@ -75,10 +89,10 @@ class OrderController extends Controller
         return redirect()->route('user.order.index')->with('message', 'Tạo đơn hàng thành công ');
     }
 
-    public function getorder()
+    public function index()
     {
         $orders = $this->order->with('products')->where('user_id',Auth::guard()->id())->latest('id')->paginate(10);
 
-        return view('clients.carts.order_index', compact('orders'));
+        return view('clients.orders.index', compact('orders'));
     }
 }

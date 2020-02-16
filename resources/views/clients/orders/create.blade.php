@@ -24,7 +24,7 @@
         </div>
     </div>
     <!-- Shoping Cart -->
-    <?php $stt=0; ?>
+
     <div class="container mt-3 mb-3">
         <div class="row">
             <h4>Danh Sách hàng</h4>
@@ -36,9 +36,8 @@
                 </tr>
                 <tbody>
                 @foreach($cartOrders as $key=>$cart)
-                    <?php $stt +=1; ?>
                     <tr>
-                        <td><strong>{{$stt}}</strong></td>
+                        <td><strong></strong></td>
                         <td>{{$cart->name}} </td>
                         <td>{{$cart->quantity}}</td>
                     </tr>
@@ -55,7 +54,7 @@
             </div>
             <div class="col-12">
                 <form action="{{route('user.order.store')}}" method="post">
-                        @csrf
+                    @csrf
                     <input type="hidden" name="user_id" value="{{Auth::guard()->id()}}">
                     <div class="row form-group">
                         <div class="col-6 ">
@@ -90,7 +89,7 @@
                                 <input type="radio" name="payment" value="" disabled>
                                 <p>Đang update ...</p>
                             </div>
-                   </div>
+                        </div>
                         <div class="col-6">
                             <label for="">Chi phí ship </label>
                             <div class="d-flex">

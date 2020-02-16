@@ -1,5 +1,5 @@
 @extends('clients.layouts.app')
-@section('tittle','Thanh toán  ')
+@section('tittle','Đặt hàng ')
 @section('content')
     <div class="sec-banner bg0 p-t-80 p-b-50">
 
@@ -19,44 +19,39 @@
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
             <span class="stext-109 cl4">
-				Đơn hàng
+				Đơn  hàng
 			</span>
         </div>
     </div>
-<?php $stt=0; ?>
     <div class="container mb-4 mt-4">
         <div class="row">
-            <div>
-                <h4>Danh sách các đơn hàng</h4>
-            </div>
             <div class="col-12">
-                <table class="table table-hover">
+                <table class="table table-bordered">
                     <tr>
                         <th>STT</th>
-                        <th>Danh sách tên hàng</th>
-                        <th>Trạng thái </th>
-                        <th> Tổng tiền </th>
+                        <th>Danh sách sản phẩm</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Ship</th>
+                        <th>Thanh toán</th>
                     </tr>
-
                     @foreach($orders as $order)
                         <tr>
-                            <td>{{$stt+=1}}</td>
+                            <td><strong></strong></td>
                             <td>
-                               @foreach($order->products as $product)
-                                <p>{{ $product->name }}  X {{$product->pivot->quantity}} X {{$product->pivot->size}}  X {{$product->pivot->color}}</p>
+                                @foreach($order->products as $product)
+                                    <p>Sản phẩm:{{$product->name}}, Số lượng :{{$product->pivot->quantity}}, Cỡ
+                                        : {{$product->pivot->size}} , Màu:{{$product->pivot->color }}</p>
                                 @endforeach
                             </td>
-                            <td>{{$order->status}} </td>
-                            <td> {{number_format($order->total)}}  VND</td>
+                            <td>{{number_format($order->total)}} VND</td>
+                            <td>{{$order->status}}</td>
+                            <td>{{$order->ship =='free' ? $order->ship  :number_format($order->ship ).'VND'}}</td>
+                            <td>{{$order->payment}}</td>
                         </tr>
-                  @endforeach
+                    @endforeach
                 </table>
-                <div>
-                    {{$orders}}
-                </div>
             </div>
         </div>
     </div>
-    @endsection
-
-
+@endsection

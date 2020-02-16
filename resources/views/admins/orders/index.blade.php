@@ -18,13 +18,23 @@
                   id="subjectFormSearch">
                 <div class="d-flex flex-column">
                     <lable class="text-primary" for="name">Tên tìm kiếm</lable>
-                    <input value="{{request()->input('name')}}" class="h-50" type="text" placeholder="Tên tìm kiếm..."
-                           name="name">
+                    <input value="{{request()->input('user_name')}}" class="h-50" type="text" placeholder="Tên khách hàng"
+                           name="user_name">
                 </div>
                 <div class="d-flex flex-column ml-1">
-                    <lable class="text-primary" for="sale">Khuyến mãi</lable>
-                    <input value="{{request()->input('sale')}}" class="h-50" type="text"
-                           placeholder="khuyễn mãi %..." name="sale">
+                    <lable class="text-primary" for="sale">Địa chỉ </lable>
+                    <input value="{{request()->input('user_address')}}" class="h-50" type="text"
+                           placeholder="Địa chỉ " name="user_address">
+                </div>
+                <div class="d-flex flex-column ml-1">
+                    <lable class="text-primary" for="sale">Số điện thoại </lable>
+                    <input value="{{request()->input('user_phone')}}" class="h-50" type="text"
+                           placeholder=" Số điện thoại  " name="user_phone">
+                </div>
+                <div class="d-flex flex-column ml-1">
+                    <lable class="text-primary" for="sale">Trạng thái</lable>
+                    <input value="{{request()->input('status')}}" class="h-50" type="text"
+                           placeholder="Trạng thái" name="status">
                 </div>
                 <div class="align-self-end ml-1">
                     <button class="btn btn-primary  aqua-gradient btn-rounded btn-sm my-0" type="submit"
@@ -58,35 +68,36 @@
                     <th>Địa chỉ</th>
                     <th>Số điện thoại</th>
                     <th>Tên Hàng</th>
-                    <th>Tổng tiền </th>
-                    <th>Ship </th>
+                    <th>Tổng tiền</th>
+                    <th>Ship</th>
                     <th>Trạng thái</th>
-                    <th>Thanh toán </th>
+                    <th>Thanh toán</th>
                     <th>Tùy chọn</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($orders as $order)
+                @foreach($orders as $order)
+                    <tr>
                         <td><strong></strong></td>
                         <td>{{$order->user_name}}</td>
                         <td>{{$order->user_address}}</td>
                         <td>{{$order->user_phone}}</td>
                         <td>
                             @foreach($order->products as $product)
-                                <p>{{$product->name}} X {{$product->pivot->quantity}} X {{$product->pivot->size}}  X {{$product->pivot->color}}</p>
+                                <p>Sản phẩm:{{$product->name}}, Số lượng :{{$product->pivot->quantity}}, Cỡ : {{$product->pivot->size}} , Màu:{{$product->pivot->color }}</p>
                             @endforeach
-
                         </td>
-
                         <td>{{number_format($order->total)}} VND</td>
-                        <td>{{$order->ship}} </td>
-                        <td>{{$order->status}} </td>
+                        <td>{{$order->ship =='free' ? $order->ship  :number_format($order->ship ).'VND'}}</td>
+                        <td order="{{$order->id}}">{{$order->status}} </td>
                         <td>{{$order->payment}} </td>
                         <td>
-                            <button class="btn btn-outline-warning" title="Cập nhật"  data-toggle="modal" data-target="#editOrderModal" order="{{$order->id}}"
+                            <button class="btn btn-outline-warning edit-order" title="Cập nhật" data-toggle="modal"
+                                    data-target="#editOrderModal" order="{{$order->id}}"
                             ><i class="fa fa-edit"></i></button>
                         </td>
-                    @endforeach
+                    </tr>
+                @endforeach
 
                 </tbody>
             </table>
@@ -99,7 +110,8 @@
     @include('admins.products.modal')
 
 
-    <div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalTitle" aria-hidden="true">
+    <div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="editOrderModalTitle"
+         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -108,13 +120,24 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-primary update-order-status">Cập nhật</button>
-                </div>
+                <form class="update-order-form">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="">Trạng thái </label>
+                            <select name="status" class="form-control select-status-order">
+                                <option value="Đã nhận được đơn hàng">Đã nhận được đơn hàng</option>
+                                <option value="Đang vận chuyển">Đang vận chuyển</option>
+                                <option value="Giao hàng thành công">Giao hàng thành công</option>
+                                <option value="Đơn hàng bị hủy">Đơn hàng bị hủy</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-primary update-order-status">Cập nhật</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

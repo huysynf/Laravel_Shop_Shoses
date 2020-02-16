@@ -27,13 +27,13 @@
                         </a>
                     @endif
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        EN
-                    </a>
+{{--                    <a href="#" class="flex-c-m trans-04 p-lr-25">--}}
+{{--                        EN--}}
+{{--                    </a>--}}
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        VN
-                    </a>
+{{--                    <a href="#" class="flex-c-m trans-04 p-lr-25">--}}
+{{--                        VN--}}
+{{--                    </a>--}}
                 </div>
             </div>
         </div>
@@ -89,9 +89,13 @@
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
                     @auth
-                        <a class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti " title="Đơn hàng" href="{{route('user.order.index')}}"
+                        <a class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10  " title="Thanh toán" href="{{route('cart.checkout')}}"
+                        >
+                            <i class="fa fa-money-bill text-primary"></i>
+                        </a>
+                        <a class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10  " title="Đơn hàng" href="{{route('user.order.index')}}"
                            >
-                            <i class="fa fa-shopping-bag"></i>
+                            <i class="fa fa-shopping-bag text-info  "></i>
                         </a>
                     @endauth
                 </div>

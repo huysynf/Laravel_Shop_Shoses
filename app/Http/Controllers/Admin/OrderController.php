@@ -40,7 +40,7 @@ class OrderController extends Controller
         ]);
 
         return response()->json([
-            'message'=>'Cập nhật đơn hàng thành công ',
+            'message'=>'Cập nhật đơn hàng thành công',
             'status'=>200,
         ]);
     }

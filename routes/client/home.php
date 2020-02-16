@@ -23,8 +23,8 @@ Route::post('/update-quantity-cart/{id}', 'CartController@updateQuantity');
 Route::group(['middleware' => 'check.login'], function () {
     Route::post('/apply-coupon', 'CartController@applyCoupon')->name('cart.coupon');
     Route::get('/checkout', 'CheckoutController@index')->name('cart.checkout');
-    Route::get('/order', 'OrderController@index')->name('cart.order');
+    Route::get('/order', 'OrderController@getOrderForm')->name('cart.order');
     Route::post('/order', 'OrderController@store')->name('user.order.store');
 
-    Route::get('/orders', 'OrderController@getorder')->name('user.order.index');
+    Route::get('/orders', 'OrderController@index')->name('user.order.index');
 });

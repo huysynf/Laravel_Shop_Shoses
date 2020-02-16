@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\carts;
+use App\Http\Requests\carts\ApplyCodeRequest;
+use App\Http\Requests\carts\CartRequest ;
 use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Session;
+//use Session;
 
 class CartController extends Controller
 {
@@ -24,14 +25,14 @@ class CartController extends Controller
             $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
         }
 
-        Session::put('totalCart', count($total));
+        Session::put('totalCart', $total);
         return view('clients.carts.cart')->with([
             'cartOrders' => $cartOrders,
             'total' => $total,
         ]);
     }
 
-    public function addcart(carts\CartRequest $request)
+    public function addcart(CartRequest $request)
     {
         $data = $request->all();
         Session::forget('discount_amount_price');
@@ -120,7 +121,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function applyCoupon(carts\ApplyCodeRequest $request)
+    public function applyCoupon(ApplyCodeRequest $request)
     {
 
         $coupon_code = Str::upper($request->input('coupon_code'));
@@ -128,20 +129,22 @@ class CartController extends Controller
         $total_amount = $request->input('Total_amountPrice');
 
         $coupon = Coupon::where('code', $coupon_code)->first();
-
+        dd($request->all());
         if ($coupon == null) {
-            return back()->with('message', 'Mã giảm giá không tồn tại!');
+
+            return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá không tồn tại !');
         }
+        dd($request->all());
         $now = date('Y-m-d');
         if($coupon->status ==0) {
-            return back()->with('message', 'Mã giảm giá không tồn tạ !');
+            return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá không tồn tại !');
         }
 
         if( $coupon->quantity<0 ) {
-            return back()->with('message', 'Mã giảm giá hết  !');
+            return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá hết  !');
         }
         if( $coupon->expiry_date < $now) {
-            return back()->with('message', 'Mã giảm giá hết hạn !');
+            return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá hết hạn !');
         }
         if($coupon->type=='percent')
         {
@@ -151,7 +154,7 @@ class CartController extends Controller
         {
             $discount_amount_price = $coupon->value;
         }
-
+            dd($request->all());
         Session::put('coupon_id', $coupon->id);
         Session::put('discount_amount_price', $discount_amount_price);
         Session::put('coupon_code', $coupon->code);
