@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         User::create([
             'name'=>'Hạ Huy ',
             'email'=>'admin@admin.com',
-            'password'=>'password', // 123456,
+            'password'=>'123456', // 123456,
             'image'=>'default.jpg',
             'phone'=>'0337172888',
             'gender'=>'1',

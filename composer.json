@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.4",
         "ckfinder/ckfinder-laravel-package": "v3.5.1.2",
+        "darryldecode/cart": "^4.1",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",

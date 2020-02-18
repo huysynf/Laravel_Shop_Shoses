@@ -107,4 +107,7 @@
 <script src="{{asset('js/script.js')}}"></script>
 </body>
 @yield('js')
+<script >
+    countIndexTableOfPage();
+</script>
 </html>

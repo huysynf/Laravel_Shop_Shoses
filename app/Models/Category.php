@@ -25,7 +25,7 @@ class Category extends Model
 
     public function childrenCategories()
     {
-        return $this->hasMany(Category::class,'parent_id')->with('categories');
+        return $this->hasMany(Category::class,'parent_id');
     }
 
     public function setSlugAttribute($value)
@@ -77,4 +77,16 @@ class Category extends Model
     {
         return $this->onlyTrashed()->findOrFail($id)->restore();
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+
+    }
+
+    public function findWithSlug($slug)
+    {
+        return $this->withSlug($slug)->with('products')->first();
+    }
+
 }

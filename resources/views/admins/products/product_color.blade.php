@@ -40,6 +40,8 @@
                     <tbody class="tbody-product-color" size="{{$size->size}}">
                     @foreach($size->colors as $color)
                         <tr>
+
+
                             <td class="m-0 p-0">
                                 <div class="box-color" style="background:{{$color->color}}">
                                 </div>
@@ -86,7 +88,7 @@
 
                         <div class=" form-group">
                             <label for="">Chọn màu</label>
-                            <input type="color" name="color">
+                            <input type="text" name="color">
                         </div>
                         <div class="form-group">
                             <label for="">Số lượng </label>
@@ -122,7 +124,7 @@
                         @csrf
                         <div class=" form-group">
                             <label for="">Chọn màu</label>
-                            <input type="color" name="color" class="product-color">
+                            <input type="text" name="color" class="product-color">
                         </div>
                         <div class="form-group">
                             <label for="">Số lượng </label>

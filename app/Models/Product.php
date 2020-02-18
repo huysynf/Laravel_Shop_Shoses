@@ -49,6 +49,12 @@ class Product extends Model
         $query->when($name,fn($q)=>$q->where('name', 'LIKE', '%' . $name . '%'));
     }
 
+    public function scopeWithCategory($query, $name)
+    {
+        $query->when($name,
+            fn($query, $q) => $query->whereHas('categories', fn($q) => $q->where('name', $name)));
+    }
+
     public function scopeWithSale($query, $sale)
     {
         $query->when($sale,fn($q)=>$q->where('sale', $sale));
@@ -82,6 +88,17 @@ class Product extends Model
             ->paginate(10);
     }
 
+    public function getProductByCategoryName($name)
+    {
+        return $this->withCategory($name)
+            ->latest('id')
+            ->paginate(10);
+    }
+
+    public function scopeWithSlug($query, $slug)
+    {
+        return $query->where('slug',$slug);
+    }
     public function getBy($id)
     {
         return $this->with('images')->with('sizes')->with('categories')->with('brand')->findOrFail($id);
@@ -90,5 +107,10 @@ class Product extends Model
     public function getCategoryIdsBy($id)
     {
         return $this->findOrFail($id)->categories()->pluck('category_id')->toArray();
+    }
+
+    public function getBySlug($slug)
+    {
+        return $this->withSlug($slug)->with('images')->with('sizes')->with('categories')->with('brand')->first();
     }
 }

@@ -56,7 +56,7 @@ $(function () {
                     categoryParent = data.data.category.name;
                 }
                 $('.category-parent-name').html(categoryParent);
-                $('.category-parent').val(data.data.category_id);
+                $('.category-parent').val(data.data.parent_id);
             })
     });
 

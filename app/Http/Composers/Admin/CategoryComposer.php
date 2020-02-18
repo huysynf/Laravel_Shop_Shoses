@@ -17,5 +17,6 @@ class CategoryComposer
 
     public function compose(View $view){
         $view->with('categories',$this->categoryRepository->get());
+
     }
 }

@@ -35,6 +35,6 @@ class CheckPhoneNumber implements Rule
      */
     public function message()
     {
-        return 'The :attribute not is phone number';
+        return 'Không phải là số điện thoại';
     }
 }
