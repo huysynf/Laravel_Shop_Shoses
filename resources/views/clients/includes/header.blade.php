@@ -18,8 +18,8 @@
                             @csrf
                         </form>
 
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            Acount
+                        <a href="{{route('home.account')}}" class="flex-c-m trans-04 p-lr-25">
+                           Tài khoản
                         </a>
                     @else
                         <a href="{{route('login.login')}}" class="flex-c-m trans-04 p-lr-25">
@@ -42,8 +42,8 @@
             <nav class="limiter-menu-desktop container">
 
                 <!-- Logo desktop -->
-                <a href="#" class="logo">
-                    <img src="images/icons/logo-01.png" alt="IMG-LOGO">
+                <a href="{{route('home')}}" class="logo">
+                    <img src="{{asset('client/images/icons/logo-01.png')}}" alt="IMG-LOGO">
                 </a>
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
@@ -69,11 +69,7 @@
 
                         @endforeach
                         <li>
-                            <a href="about.html">Thông tin</a>
-                        </li>
-
-                        <li>
-                            <a href="contact.html">Liên hệ</a>
+                            <a href="{{route('home.contact')}}">Liên hệ</a>
                         </li>
                     </ul>
                 </div>

@@ -3,32 +3,32 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Users\UpdateClientRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductSize;
+use App\Models\User;
 
 
 class HomeController extends Controller
 {
     protected $category;
     protected $product;
+    protected $user;
 
-    /**
-     * HomeController constructor.
-     * @param $category
-     */
-    public function __construct(Category $category, Product $product)
+    public function __construct(Category $category, Product $product,User $user)
     {
         $this->category = $category;
         $this->product = $product;
+        $this->user=$user;
     }
 
 
     public function index()
     {
         $newProducts=$this->product->latest('id')->paginate(20);
-        $menProducts=$this->product->getProductByCategoryName('Nam');
-        $girlProducts=$this->product->getProductByCategoryName('Nữ');
+        $menProducts=$this->product->getProductByCategoryName('Giày nam');
+        $girlProducts=$this->product->getProductByCategoryName('Giày nữ');
         $saleProducts=$this->product->where('sale','>',0)->paginate(20);
         return view('clients.home',compact('newProducts','menProducts','girlProducts','saleProducts'));
     }
@@ -56,6 +56,32 @@ class HomeController extends Controller
             ['size' => $size,]
         );
 
+    }
+
+
+    public function info()
+    {
+        return view('clients.info.info');
+    }
+
+    public function contact()
+    {
+        return view('clients.contacts.contact');
+    }
+    public function account()
+    {
+        return view('clients.account.account');
+    }
+
+    public function accountUpdate(UpdateClientRequest $request ,$id)
+    {
+        $data=$request->all();
+        $user = $this->user->findOrFail($id);
+
+        $image = $data['image'] ?? null;
+        $data['image'] = $this->user->updateImage($image,'images/users/', $user->image);
+        $user->update($data);
+        return redirect()->route('home.account')->with('message','Cập nhật thành công ');
     }
 }
 

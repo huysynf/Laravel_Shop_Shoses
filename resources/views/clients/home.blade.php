@@ -10,15 +10,15 @@
                     <div class="block1 wrap-pic-w">
                         <img src="{{asset('client/images/banner-01.jpg')}}" alt="IMG-BANNER">
 
-                        <a href="product.html"
+                        <a href="{{route('categories.product','giay-nu')}}"
                            class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Women
+									Giày nữ
 								</span>
 
                                 <span class="block1-info stext-102 trans-04">
-									Spring 2018
+									Thời trang
 								</span>
                             </div>
 
@@ -36,15 +36,15 @@
                     <div class="block1 wrap-pic-w">
                         <img src="{{asset('client/images/banner-02.jpg')}}" alt="IMG-BANNER">
 
-                        <a href="product.html"
+                        <a href="{{route('categories.product','giay-nam')}}"
                            class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                             <div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Men
+									Giày nam
 								</span>
 
                                 <span class="block1-info stext-102 trans-04">
-									Spring 2018
+                                    Thời thượng
 								</span>
                             </div>
 
@@ -57,31 +57,31 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-                    <!-- Block1 -->
-                    <div class="block1 wrap-pic-w">
-                        <img src="{{asset('client/images/banner-03.jpg')}}" alt="IMG-BANNER">
+{{--                <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">--}}
+{{--                    <!-- Block1 -->--}}
+{{--                    <div class="block1 wrap-pic-w">--}}
+{{--                        <img src="{{asset('client/images/banner-03.jpg')}}" alt="IMG-BANNER">--}}
 
-                        <a href="product.html"
-                           class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Accessories
-								</span>
+{{--                        <a href="product.html"--}}
+{{--                           class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">--}}
+{{--                            <div class="block1-txt-child1 flex-col-l">--}}
+{{--								<span class="block1-name ltext-102 trans-04 p-b-8">--}}
+{{--									Accessories--}}
+{{--								</span>--}}
 
-                                <span class="block1-info stext-102 trans-04">
-									New Trend
-								</span>
-                            </div>
+{{--                                <span class="block1-info stext-102 trans-04">--}}
+{{--									New Trend--}}
+{{--								</span>--}}
+{{--                            </div>--}}
 
-                            <div class="block1-txt-child2 p-b-4 trans-05">
-                                <div class="block1-link stext-101 cl0 trans-09">
-                                    Shop Now
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+{{--                            <div class="block1-txt-child2 p-b-4 trans-05">--}}
+{{--                                <div class="block1-link stext-101 cl0 trans-09">--}}
+{{--                                    Shop Now--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
@@ -103,11 +103,11 @@
                     </button>
 
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-                        Nữ
+                        Giày Nữ
                     </button>
 
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-                        Nam
+                      Giày  Nam
                     </button>
 
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".sale">
@@ -543,8 +543,8 @@
 
             <!-- Load more -->
             <div class="flex-c-m flex-w w-full p-t-45">
-                <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                    Load More
+                <a href="{{route('home')}}" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                   Nhiều hơn
                 </a>
             </div>
         </div>

@@ -1,6 +1,10 @@
 <?php
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/shop-info', 'HomeController@info')->name('home.info');
+Route::get('/shop-contact', 'HomeController@contact')->name('home.contact');
+Route::get('/account-info', 'HomeController@account')->name('home.account');
+Route::put('/account-update/{id}', 'HomeController@accountUpdate')->name('home.account.update');
 
 Route::get('/products/{slug}', 'HomeController@showproduct')->name('categories.product');
 Route::get('/product/{slug}', 'HomeController@productdetail')->name('product.detail');

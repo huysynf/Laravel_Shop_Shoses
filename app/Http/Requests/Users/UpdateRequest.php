@@ -29,7 +29,7 @@ class UpdateRequest extends FormRequest
             'role'=>'required',
             'gender'=>'required',
             'address'=>'required',
-            'email'=>'required|email|unique:users,email,'.$this->user,
+            'email'=>'required|email|unique:users,email,'.$this->id,
             'phone'=>['required',new CheckPhoneNumber()],
         ];
     }

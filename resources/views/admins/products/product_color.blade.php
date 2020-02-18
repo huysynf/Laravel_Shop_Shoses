@@ -40,9 +40,11 @@
                     <tbody class="tbody-product-color" size="{{$size->size}}">
                     @foreach($size->colors as $color)
                         <tr>
-                            <div class="box-color" style="background:{{$color->color}}">
-                            </div>
+
+
                             <td class="m-0 p-0">
+                                <div class="box-color" style="background:{{$color->color}}">
+                                </div>
                             </td>
                             <td class="m-0 p-0"> {{$color->quantity==0?'Hết hàng':$color->quantity}}</td>
                             <td class="m-0 p-0">
