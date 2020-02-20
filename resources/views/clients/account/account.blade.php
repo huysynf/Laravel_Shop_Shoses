@@ -26,12 +26,21 @@
         </div>
     </div>
     <!-- Product Detail -->
+
     <section class="sec-product-detail bg0 p-t-65 p-b-60">
         <div class="container">
+            <button class=" btn btn-outline-primary      change-user-password" title="Đổi mật khẩu"
+                    data-toggle="modal"
+                    user="{{Auth::guard()->user()->id}}"
+                    data-target="#changeUserPasswordModal">
+                <i class="fa fa-key text-warning fa-sm fa-fw mr-2 text-gray-400"></i>
+                Đổi mật khẩu
+            </button>
             <form action="{{route('home.account.update',Auth::guard()->id())}}" method="post"  enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <button type="submit" class="btn btn-outline-primary mb-1"><i class="fa fa-edit"></i>Cập nhật </button>
+
                 <div class="row">
                     <div class="form-group col-md-6 col-lg-6 col-sm-12">
                         <label for="">Tên </label>
@@ -101,11 +110,10 @@
         </div>
     </section>
 
-
     <!-- Related Products -->
-
-
+    @include('admins.users.change_password')
 @endsection
 @section('js')
-
+    <script src="{{asset('js/script.js')}}"></script>
 @endsection
+

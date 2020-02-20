@@ -112,3 +112,4 @@
     </ul>
 </nav>
 @include('admins.users.change_password')
+@include('admins.users.show_modal')

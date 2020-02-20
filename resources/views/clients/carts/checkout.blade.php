@@ -56,7 +56,7 @@
                                                 </div>
                                             @endif
                                             <span class="position-absolute delete-cart-item"
-                                                  style="top: 40%;font-size: 20px; cursor: pointer;right: 80%"
+                                                  style="top: 30%;font-size: 20px; cursor: pointer;right: 65%"
                                                   cart="{{$item->id}}" title="Xóa hàng này"> <i
                                                     class="fa fa-times text-danger"></i></span>
                                             <div class="how-itemcart1">
