@@ -26,7 +26,7 @@ class OrderShipped extends Mailable
     public function build()
     {
         return $this->subject('xac nhan don hang')
-                    -> view('admins.orders.ship')
-            ->with($this->order);
+                    -> view('admins.orders.ship');
+
     }
 }

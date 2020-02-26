@@ -6,6 +6,7 @@ use App\Events\OrderShipped;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -49,7 +50,9 @@ class OrderController extends Controller
     public function ship(Request $request,$orderId)
     {
         $order = $this->order->findOrFail($orderId);
-        event(new OrderShipped($order));
+       Mail::to($order->user_email)->send(new \App\Mail\OrderShipped($order));
+       return redirect()->route('order.getship')->with('message','ok');
+//        event(new OrderShipped($order));
     }
 
 
