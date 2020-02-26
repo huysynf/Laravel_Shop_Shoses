@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\NewCustomerHasRegister;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\ChangePasswordRequest;
 use App\Http\Requests\Users\CreateRequest;
 use App\Http\Requests\Users\UpdateRequest;
+use App\Mail\WelcomeNewUserMail;
 use App\Repositories\admin\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -40,6 +43,8 @@ class UserController extends Controller
     {
         $data = $this->userRepository->formatRequest($request);
         $user = $this->userRepository->store($data);
+
+        event(new NewCustomerHasRegister($user));
 
         return redirect()->route('users.create')->with('message', 'Thêm thành công người dùng: ' . $user->name);
     }

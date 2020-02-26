@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\NewCustomerHasRegister;
 use App\Events\OrderPayment;
 use App\Events\OrderShipped;
 use App\Listeners\SendShipmentNotification;
 use App\Listeners\SentEmailAfterOrderPayment;
+use App\Listeners\WelComeNewCustomer;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -26,6 +28,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderShipped::class=>[
             SendShipmentNotification::class,
+        ],
+        NewCustomerHasRegister::class=>[
+            WelComeNewCustomer::class,
+            \App\Listeners\RegisterCustomerToNewsLetter::class,
+            \App\Listeners\NotifyAdminViaSlack::class,
         ]
 
     ];
