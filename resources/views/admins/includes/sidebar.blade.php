@@ -100,6 +100,19 @@
         </a>
     </li>
 
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        <i class="text-danger fa fa-cog"></i>
+        <span>Tính năng mới</span>
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link " href="{{route('order.getship',3)}}" title="Quản lý slider">
+            <i class="fas fa-mail-bulk fa-image text-danger"></i>
+            <span>Gửi mail order</span>
+        </a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
