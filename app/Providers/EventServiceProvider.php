@@ -3,11 +3,12 @@
 namespace App\Providers;
 
 use App\Events\OrderPayment;
+use App\Events\OrderShipped;
+use App\Listeners\SendShipmentNotification;
 use App\Listeners\SentEmailAfterOrderPayment;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -20,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        OrderPayment::class => [
+            SentEmailAfterOrderPayment::class,
+        ],
+        OrderShipped::class=>[
+            SendShipmentNotification::class,
+        ]
 
     ];
 

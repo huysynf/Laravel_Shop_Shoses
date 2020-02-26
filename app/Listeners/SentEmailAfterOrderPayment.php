@@ -26,6 +26,6 @@ class SentEmailAfterOrderPayment
      */
     public function handle(OrderPayment $event)
     {
-        //
+        dd($event);
     }
 }

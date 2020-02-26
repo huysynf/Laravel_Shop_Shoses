@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Events\OrderShipped;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Order;
@@ -120,6 +121,13 @@ class OrderController extends Controller
         return response()->json([
            'message'=>'Hủy đơn hàng thành công '
         ]);
+    }
+
+    public function ship($orderId)
+    {
+        $order=$this->order->findOrFail($orderId);
+
+        event(new OrderShipped($order));
     }
 
 }
