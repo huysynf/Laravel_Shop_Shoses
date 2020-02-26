@@ -12,7 +12,7 @@ class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
-   public  $order;
+   public Order $order;
     public function __construct(Order $order)
     {
         $this->order=$order;
@@ -25,7 +25,8 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->from('xemmer1999@gmail.com')
-                -> view('view.name');
+        return $this->subject('xac nhan don hang')
+                    -> view('admins.orders.ship')
+            ->with($this->order);
     }
 }

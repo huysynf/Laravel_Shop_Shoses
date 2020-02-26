@@ -6,5 +6,5 @@ Route::group(['prefix'=>'orders'],function (){
     Route::post('/update/{id}', 'OrderController@update');
 
     Route::post('/order-ship/{id}', 'OrderController@ship')->name('order.ship');
-    Route::get('/order-ship', 'OrderController@getship')->name('order.getship');
+    Route::get('/order-ship/{id}', 'OrderController@getship')->name('order.getship');
 });

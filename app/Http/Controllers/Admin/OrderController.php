@@ -49,13 +49,13 @@ class OrderController extends Controller
     public function ship(Request $request,$orderId)
     {
         $order = $this->order->findOrFail($orderId);
-
         event(new OrderShipped($order));
     }
 
 
-    public function getship()
+    public function getship($id)
     {
-        return view('admins.orders.ship');
+        $order=$this->order->findOrFail($id);
+        return view('admins.orders.ship',compact('order'));
     }
 }

@@ -1,4 +1,4 @@
-@extends('backends.layouts.app')
+@extends('admins.layouts.app')
 
 @section('title','Lỗi 403')
 
