@@ -8,12 +8,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendShipmentNotification implements ShouldQueue
 {
 
-    public $connection = 'sqs';
-
-    public $queue = 'listeners';
-
-    public $delay = 60;
-
     public function __construct()
     {
         //
@@ -27,7 +21,7 @@ class SendShipmentNotification implements ShouldQueue
      */
     public function handle(Ordershipped $event)
     {
-        //
+        dd($event->order);
     }
 
     public function failed(Ordershipped $event, $exception)

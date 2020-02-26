@@ -33,5 +33,5 @@ Route::group(['middleware' => 'check.login'], function () {
     Route::get('/orders', 'OrderController@index')->name('user.order.index');
     Route::delete('/order-destroy/{id}', 'OrderController@destroy');
 
-    Route::get('/order-ship/{id}', 'OrderController@ship');
+
 });

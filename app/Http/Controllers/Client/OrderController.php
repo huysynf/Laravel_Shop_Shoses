@@ -123,11 +123,6 @@ class OrderController extends Controller
         ]);
     }
 
-    public function ship($orderId)
-    {
-        $order=$this->order->findOrFail($orderId);
 
-        event(new OrderShipped($order));
-    }
 
 }

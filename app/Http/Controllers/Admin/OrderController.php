@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\OrderShipped;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -43,5 +44,18 @@ class OrderController extends Controller
             'message'=>'Cập nhật đơn hàng thành công',
             'status'=>200,
         ]);
+    }
+
+    public function ship(Request $request,$orderId)
+    {
+        $order = $this->order->findOrFail($orderId);
+
+        event(new OrderShipped($order));
+    }
+
+
+    public function getship()
+    {
+        return view('admins.orders.ship');
     }
 }

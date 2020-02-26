@@ -14,7 +14,7 @@ use Illuminate\Queue\SerializesModels;
 class OrderShipped
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    private Order $order;
+    public  $order;
 
     public function __construct(Order $order)
     {
