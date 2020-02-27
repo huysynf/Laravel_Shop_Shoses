@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\=User;
+use App\User;
 
 class AccountObserver
 {
@@ -12,7 +12,7 @@ class AccountObserver
      * @param  \App\=User  $=User
      * @return void
      */
-    public function created(=User $=User)
+    public function created(User $User)
     {
         //
     }
@@ -23,7 +23,7 @@ class AccountObserver
      * @param  \App\=User  $=User
      * @return void
      */
-    public function updated(=User $=User)
+    public function updated(User $User)
     {
         //
     }
@@ -34,7 +34,7 @@ class AccountObserver
      * @param  \App\=User  $=User
      * @return void
      */
-    public function deleted(=User $=User)
+    public function deleted(User $User)
     {
         //
     }
@@ -45,7 +45,7 @@ class AccountObserver
      * @param  \App\=User  $=User
      * @return void
      */
-    public function restored(=User $=User)
+    public function restored(User $User)
     {
         //
     }
@@ -56,7 +56,7 @@ class AccountObserver
      * @param  \App\=User  $=User
      * @return void
      */
-    public function forceDeleted(=User $=User)
+    public function forceDeleted(User $User)
     {
         //
     }
