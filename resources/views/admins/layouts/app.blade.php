@@ -89,6 +89,7 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
+<script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 
@@ -105,6 +106,7 @@
 <script src="{{asset('js/simple.money.format.js')}}"></script>
 <script src="{{asset('js/function.js')}}"></script>
 <script src="{{asset('js/script.js')}}"></script>
+
 </body>
 @yield('js')
 <script >

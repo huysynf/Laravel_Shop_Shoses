@@ -39,3 +39,7 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'manage'], function () {
 Route::get('/login', function () {
     abort(404);
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
