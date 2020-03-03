@@ -27,13 +27,16 @@
                         </a>
                     @endif
 
-{{--                    <a href="#" class="flex-c-m trans-04 p-lr-25">--}}
-{{--                        EN--}}
-{{--                    </a>--}}
+                    <a href="{{route('lang.client','en')}}" class="flex-c-m trans-04 p-lr-25" title="English">
+                        EN
+                    </a>
 
-{{--                    <a href="#" class="flex-c-m trans-04 p-lr-25">--}}
-{{--                        VN--}}
-{{--                    </a>--}}
+                    <a href="{{route('lang.client','vn')}}" class="flex-c-m trans-04 p-lr-25" title="Tiếng việt">
+                        VN
+                    </a>
+                        <a href="{{route('lang.client','vn')}}" class="flex-c-m trans-04 p-lr-25" title="Tiếng việt">
+                            {{ __('content.test') }}
+                    </a>
                 </div>
             </div>
         </div>

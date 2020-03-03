@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes(
     [
         'register' => false,
@@ -24,7 +26,7 @@ Auth::routes(
     ]
 );
 
-Route::group(['namespace' => 'Client'], function () {
+Route::group(['namespace' => 'Client','middleware'=>'lang'], function () {
     include_route_files(__DIR__ . '/client/');
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'manage', 'middleware' => ['auth','check.user']], function () {

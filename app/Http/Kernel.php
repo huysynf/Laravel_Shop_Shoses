@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\Lang::class,
         ],
 
         'api' => [
@@ -66,6 +67,7 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'check.user'=>\App\Http\Middleware\CheckUser::class,
         'check.login'=>\App\Http\Middleware\CheckLogin::class,
+        'lang'=>\App\Http\Middleware\Lang::class,
     ];
 
     /**

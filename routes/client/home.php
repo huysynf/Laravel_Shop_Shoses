@@ -33,3 +33,9 @@ Route::group(['middleware' => 'check.login'], function () {
     Route::get('/orders', 'OrderController@index')->name('user.order.index');
     Route::delete('/order-destroy/{id}', 'OrderController@destroy');
 });
+
+//lang
+Route::get('/lang={lang}', function($lang) {
+     session(['lang'=>$lang]);
+    return back();
+})->name('lang.client');
