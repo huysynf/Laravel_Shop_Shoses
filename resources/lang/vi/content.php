@@ -51,4 +51,7 @@ return [
     'total'=>'Tổng cộng',
     'coupon'=>'Mã giảm giá',
 
+    //status
+    'success'=>'thành công',
+
 ];

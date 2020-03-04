@@ -1,6 +1,6 @@
 
 @extends('clients.layouts.app')
-@section('tittle','Thông tin tài khoản')
+@section('title',__('content.account'))
 @section('content')
     <div class="sec-banner bg0 p-t-80 p-b-50">
 
@@ -16,12 +16,12 @@
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
             <a href="{{route('home')}}" class="stext-109 cl8 hov-cl1 trans-04">
-                Trang chủ
+                @lang('content.home')
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
 
             <span class="stext-109 cl4">
-				Thông tin tài khoàn
+				@yield('title')
 			</span>
         </div>
     </div>
@@ -31,12 +31,12 @@
         <div class="container">
             <button class=" btn btn-outline-primary      change-user-password" title="Đổi mật khẩu"
                     data-toggle="modal"
-                    user="{{Auth::guard()->user()->id}}"
+                    user="{{Auth::guard()->id()}}"
                     data-target="#changeUserPasswordModal">
                 <i class="fa fa-key text-warning fa-sm fa-fw mr-2 text-gray-400"></i>
                 Đổi mật khẩu
             </button>
-            <form action="{{route('home.account.update',Auth::guard()->id())}}" method="post"  enctype="multipart/form-data">
+            <form action="{{route('home.account.update',Auth::guard()->user()->id)}}" method="post"  enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <button type="submit" class="btn btn-outline-primary mb-1"><i class="fa fa-edit"></i>Cập nhật </button>

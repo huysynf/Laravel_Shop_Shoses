@@ -41,3 +41,9 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'manage'], function () {
 Route::get('/login', function () {
     abort(404);
 });
+
+//auth with google
+Route::group(['namespace' => 'Auth','middleware'=>'lang'], function () {
+    include_route_files(__DIR__ . '/auth/');
+});
+
