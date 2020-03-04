@@ -1,5 +1,5 @@
 @extends('clients.layouts.app')
-@section('tittle','Đặt hàng ')
+@section('title',__('content.order'))
 @section('content')
     <div class="sec-banner bg0 p-t-80 p-b-50">
 
@@ -15,11 +15,11 @@
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
             <a href="{{route('home')}}" class="stext-109 cl8 hov-cl1 trans-04">
-                Trang chủ
+               @lang('content.home')
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
             <span class="stext-109 cl4">
-				Đơn  hàng
+			@yield('title')
 			</span>
         </div>
     </div>
@@ -29,11 +29,11 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>STT</th>
-                        <th>Danh sách sản phẩm</th>
-                        <th>Tổng tiền</th>
-                        <th>Trạng thái</th>
+                        <th>  @lang('content.product')</th>
+                        <th>  @lang('content.total')</th>
+                        <th>  @lang('content.status')</th>
                         <th>Ship</th>
-                        <th>Thanh toán</th>
+                        <th>  @lang('content.payment')</th>
                     </tr>
                     @foreach($orders as $order)
                         <tr>

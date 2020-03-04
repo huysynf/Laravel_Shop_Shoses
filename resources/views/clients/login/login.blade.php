@@ -1,5 +1,5 @@
 @extends('clients.layouts.app')
-@section('title','Đăng nhập')
+@section('title',__('content.login'))
 @section('content')
     <div class="sec-banner bg0 p-t-80 p-b-50">
 
@@ -7,8 +7,8 @@
 
     <div class="container">
         <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-            <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-                Trang chủ
+            <a href="{{route('home')}}" class="stext-109 cl8 hov-cl1 trans-04">
+               @lang('content.home')
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
             <span class="stext-109 cl4">
@@ -47,7 +47,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">@lang('content.login')</h1>
                                     </div>
                                     <form class="user" method="post" action="{{route('login.postlogin')}}">
                                         @csrf
@@ -68,14 +68,14 @@
                                             @enderror
                                         </div>
                                         <button  class="btn btn-primary btn-user btn-block">
-                                            Login
+                                            @lang('content.login')
                                         </button>
                                         <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                            <i class="fab fa-google fa-fw"></i> @lang('content.login')  @lang('content.with') Google
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                            <i class="fab fa-facebook-f fa-fw"></i> @lang('content.login')  @lang('content.with') Facebook
                                         </a>
                                     </form>
                                     <hr>
@@ -83,7 +83,7 @@
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{{route('login.getregister')}}">Tạo tài khoản mới!</a>
+                                        <a class="small" href="{{route('login.getregister')}}">@lang('content.register')!</a>
                                     </div>
                                 </div>
                             </div>

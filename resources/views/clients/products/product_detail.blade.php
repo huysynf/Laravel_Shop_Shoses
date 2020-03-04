@@ -1,6 +1,6 @@
 
 @extends('clients.layouts.app')
-@section('tittle','Sản phẩm '.$product->name)
+@section('tittle',__('content.product').$product->name)
 @section('content')
     <div class="sec-banner bg0 p-t-80 p-b-50">
 
@@ -16,7 +16,7 @@
     <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
         <a href="{{route('home')}}" class="stext-109 cl8 hov-cl1 trans-04">
-            Trang chủ
+            @lang('content.home')
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
@@ -70,7 +70,7 @@
                     </h4>
 
                     <span class="mtext-106 cl2 product-price">
-                            Giá tiền: chọn màu để hiện giá tiền.
+                           @lang('message.chose-size-to-show-money')
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">
@@ -83,13 +83,13 @@
                     <div class="p-t-33">
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6">
-                                Kích cỡ *
+                                @lang('content.size') *
                             </div>
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
                                     <select class="js-select2 change-product-color" name="size">
-                                        <option value="">Chọn cỡ</option>
+                                        <option value="">@lang('content.chose') @lang('content.size')</option>
                                         @foreach($product->sizes as $size)
                                             <option value="{{$size->size}}" {{old('size')==$size->size ?'selected':''}} class="option-color" size="{{$size->id}}">{{$size->size}}</option>
                                         @endforeach
@@ -105,13 +105,13 @@
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6">
-                                Màu sắc *
+                                @lang('content.color')*
                             </div>
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
                                     <select class="js-select2" name="color">
-                                        <option value="">Chọn màu</option>
+                                        <option value="">@lang('content.chose') @lang('content.color')</option>
                                     </select>
 
                                     <div class="dropDownSelect2"></div>
@@ -140,7 +140,7 @@
                                 </div>
 
                                 <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04  add-cart"  title="Thêm vào giỏ hàng">
-                                    Thêm vào giỏ hàng
+                                    @lang('message.add-to-cart')
                                 </button>
                             </div>
                         </div>
@@ -158,11 +158,11 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item p-b-10">
-                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Mô tả</a>
+                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">@lang('content.description')</a>
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">Thên thông tin</a>
+                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">@lang('content.more')</a>
                     </li>
 
                     <li class="nav-item p-b-10">

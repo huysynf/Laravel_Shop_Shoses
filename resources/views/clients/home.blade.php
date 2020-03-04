@@ -2,89 +2,63 @@
 @section('tittle','Trang chủ')
 @section('content')
     @include('clients.includes.slide')
-    <div class="sec-banner bg0 p-t-80 p-b-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-                    <!-- Block1 -->
-                    <div class="block1 wrap-pic-w">
-                        <img src="{{asset('client/images/banner-01.jpg')}}" alt="IMG-BANNER">
+        <div class="sec-banner bg0 p-t-80 p-b-50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+                        <!-- Block1 -->
+                        <div class="block1 wrap-pic-w">
+                            <img src="{{asset('client/images/banner-01.jpg')}}" alt="IMG-BANNER">
 
-                        <a href="{{route('categories.product','giay-nu')}}"
-                           class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Giày nữ
-								</span>
+                            <a href="{{route('categories.product','giay-nu')}}"
+                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                                <div class="block1-txt-child1 flex-col-l">
+                                    <span class="block1-name ltext-102 trans-04 p-b-8">
+                                          @lang('content.women')
+                                    </span>
 
-                                <span class="block1-info stext-102 trans-04">
-									Thời trang
-								</span>
-                            </div>
-
-                            <div class="block1-txt-child2 p-b-4 trans-05">
-                                <div class="block1-link stext-101 cl0 trans-09">
-                                    Shop Now
+                                    <span class="block1-info stext-102 trans-04">
+                                      @lang('content.fashion')
+                                    </span>
                                 </div>
-                            </div>
-                        </a>
+
+                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                    <div class="block1-link stext-101 cl0 trans-09">
+                                        @lang('content.buy-now')
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+                        <!-- Block1 -->
+                        <div class="block1 wrap-pic-w">
+                            <img src="{{asset('client/images/banner-02.jpg')}}" alt="IMG-BANNER">
+
+                            <a href="{{route('categories.product','giay-nam')}}"
+                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                                <div class="block1-txt-child1 flex-col-l">
+                                    <span class="block1-name ltext-102 trans-04 p-b-8">
+                                          @lang('content.men')
+                                    </span>
+
+                                    <span class="block1-info stext-102 trans-04">
+                                          @lang('content.fashion')
+                                    </span>
+                                </div>
+
+                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                    <div class="block1-link stext-101 cl0 trans-09">
+                                        @lang('content.buy-now')
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-                    <!-- Block1 -->
-                    <div class="block1 wrap-pic-w">
-                        <img src="{{asset('client/images/banner-02.jpg')}}" alt="IMG-BANNER">
-
-                        <a href="{{route('categories.product','giay-nam')}}"
-                           class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                            <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Giày nam
-								</span>
-
-                                <span class="block1-info stext-102 trans-04">
-                                    Thời thượng
-								</span>
-                            </div>
-
-                            <div class="block1-txt-child2 p-b-4 trans-05">
-                                <div class="block1-link stext-101 cl0 trans-09">
-                                    Shop Now
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-{{--                <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">--}}
-{{--                    <!-- Block1 -->--}}
-{{--                    <div class="block1 wrap-pic-w">--}}
-{{--                        <img src="{{asset('client/images/banner-03.jpg')}}" alt="IMG-BANNER">--}}
-
-{{--                        <a href="product.html"--}}
-{{--                           class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">--}}
-{{--                            <div class="block1-txt-child1 flex-col-l">--}}
-{{--								<span class="block1-name ltext-102 trans-04 p-b-8">--}}
-{{--									Accessories--}}
-{{--								</span>--}}
-
-{{--                                <span class="block1-info stext-102 trans-04">--}}
-{{--									New Trend--}}
-{{--								</span>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="block1-txt-child2 p-b-4 trans-05">--}}
-{{--                                <div class="block1-link stext-101 cl0 trans-09">--}}
-{{--                                    Shop Now--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
             </div>
         </div>
-    </div>
 
 
     <!-- Product -->
@@ -92,26 +66,26 @@
         <div class="container">
             <div class="p-b-10">
                 <h3 class="ltext-103 cl5">
-                    Sản phẩm
+                    @lang('content.product')
                 </h3>
             </div>
 
             <div class="flex-w flex-sb-m p-b-52">
                 <div class="flex-w flex-l-m filter-tope-group m-tb-10">
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter=".new">
-                        Sản phẩm mới
+                        @lang('content.new-product')
                     </button>
 
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-                        Giày Nữ
+                        @lang('content.women')
                     </button>
 
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-                      Giày  Nam
+                        @lang('content.men')
                     </button>
 
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".sale">
-                        Khuyễn mãi
+                        @lang('content.sale')
                     </button>
 
                     <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".update">
@@ -126,13 +100,13 @@
                         class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
                         <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                         <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                        Filter
+                        @lang('content.filter')
                     </div>
 
                     <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
                         <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
                         <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                        Search
+                        @lang('content.search')
                     </div>
                 </div>
 
@@ -364,7 +338,7 @@
 
                                 <a href="{{route('product.detail',$product->slug)}}"
                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                    Chi tiết
+                                    @lang('content.detail')
                                 </a>
                             </div>
 
@@ -413,7 +387,7 @@
 
                                 <a href="{{route('product.detail',$product->slug)}}"
                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Chi tiết
+                                    @lang('content.detail')
                                 </a>
                             </div>
 
@@ -460,7 +434,7 @@
 
                                     <a href="{{route('product.detail',$product->slug)}}"
                                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                        Chi tiết
+                                        @lang('content.detail')
                                     </a>
                                 </div>
 
@@ -506,7 +480,7 @@
 
                                     <a href="{{route('product.detail',$product->slug)}}"
                                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
-                                        Chi tiết
+                                        @lang('content.detail')
                                     </a>
                                 </div>
 
@@ -544,7 +518,7 @@
             <!-- Load more -->
             <div class="flex-c-m flex-w w-full p-t-45">
                 <a href="{{route('home')}}" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                   Nhiều hơn
+                    @lang('content.more')
                 </a>
             </div>
         </div>
