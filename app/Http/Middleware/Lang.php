@@ -8,14 +8,12 @@ use Session;
 
 class Lang
 {
-    private array  $lang = ['en', 'vn'];
+    private array  $lang = ['en', 'vi'];
 
     public function handle($request, Closure $next)
     {
         if (session('lang')) {
             App::setLocale(session('lang'));
-
-            var_dump(App::setLocale('vn'));
         }
         return $next($request);
     }

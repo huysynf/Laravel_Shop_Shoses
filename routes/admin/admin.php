@@ -6,4 +6,4 @@ Route::get('/','DashboardController@index')->name('dashboard.index');
 Route::get('/lang={lang}', function($lang) {
     session(['lang'=>$lang]);
     return back();
-})->name('lang.client');
+})->name('lang.admin');

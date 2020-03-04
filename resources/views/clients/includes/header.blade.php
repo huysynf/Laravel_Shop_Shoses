@@ -5,38 +5,36 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free ship với đơn hàng trên 500k
+                    Free ship @lang('message.with-order') 500k
                 </div>
                 <div class="right-top-bar flex-w h-full">
 
                     @if(Auth::guard()->check())
                         <a class="flex-c-m trans-04 p-lr-25" href="" onclick="event.preventDefault();
                        document.getElementById('logout-form').submit();"> <i
-                                class="text-danger fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout</a>
+                                class="text-danger fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>  @lang('content.logout')</a>
                         <form id="logout-form" action="{{ route('login.logout') }}" method="POST"
                               style="display: none;">
                             @csrf
                         </form>
 
                         <a href="{{route('home.account')}}" class="flex-c-m trans-04 p-lr-25">
-                           Tài khoản
+                          @lang('content.account')
                         </a>
                     @else
                         <a href="{{route('login.login')}}" class="flex-c-m trans-04 p-lr-25">
-                            Đăng nhập
+                            @lang('content.login')
                         </a>
                     @endif
 
-                    <a href="{{route('lang.client','en')}}" class="flex-c-m trans-04 p-lr-25" title="English">
+                    <a href="{{route('lang.client','en')}}" class="flex-c-m trans-04 p-lr-25  {{config('app.locale') == 'en' ? 'bg-info text-dark':''}}  " title="English" disabled>
                         EN
                     </a>
 
-                    <a href="{{route('lang.client','vn')}}" class="flex-c-m trans-04 p-lr-25" title="Tiếng việt">
+                    <a href="{{route('lang.client','vi')}}" class="flex-c-m trans-04 p-lr-25 {{config('app.locale') == 'vi' ? 'bg-info text-dark':''}}" title="Tiếng việt">
                         VN
                     </a>
-                        <a href="{{route('lang.client','vn')}}" class="flex-c-m trans-04 p-lr-25" title="Tiếng việt">
-                            {{ __('content.test') }}
-                    </a>
+
                 </div>
             </div>
         </div>
@@ -52,7 +50,7 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu">
-                            <a href="{{route('home')}}">Trang chủ</a>
+                            <a href="{{route('home')}}">@lang('content.home')</a>
                         </li>
                         @foreach($categories as $category)
                             @if ($category->parent_id==null)
@@ -142,22 +140,36 @@
         <ul class="topbar-mobile">
             <li>
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                    Free ship @lang('message.with-order') 500k
                 </div>
             </li>
 
             <li>
                 <div class="right-top-bar flex-w h-full">
+                    @if(Auth::guard()->check())
+                        <a class="flex-c-m trans-04 p-lr-10" href="" onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();"> <i
+                                class="text-danger fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>  @lang('content.logout')</a>
+                        <form id="logout-form" action="{{ route('login.logout') }}" method="POST"
+                              style="display: none;">
+                            @csrf
+                        </form>
 
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        Tài khoản
-                    </a>
+                        <a href="{{route('home.account')}}" class="flex-c-m trans-04 p-lr-10">
+                            @lang('content.account')
+                        </a>
+                    @else
+                        <a href="{{route('login.login')}}" class="flex-c-m trans-04 p-lr-10">
+                            @lang('content.login')
+                        </a>
+                    @endif
 
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
+
+                    <a href="{{route('lang.client','en')}}" class="flex-c-m p-lr-10 trans-04       ">
                         EN
                     </a>
 
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
+                    <a href="{{route('lang.client','vi')}}" class="flex-c-m p-lr-10 trans-04  ">
                         VN
                     </a>
                 </div>
@@ -166,7 +178,7 @@
 
         <ul class="main-menu-m">
             <li class="active-menu">
-                <a href="{{route('home')}}">Trang chủ</a>
+                <a href="{{route('home')}}"> @lang('content.home')</a>
             </li>
             @foreach($categories as $category)
                 @if ($category->parent_id==null)
@@ -184,12 +196,18 @@
 
             @endforeach
             <li>
-                <a href="about.html">Thông tin</a>
+                <a href="{{route('home.contact')}}">Liên hệ</a>
             </li>
-
-            <li>
-                <a href="contact.html">Liên hệ</a>
-            </li>
+            @auth
+                <a class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10  " title="Thanh toán" href="{{route('cart.checkout')}}"
+                >
+                    <i class="fa fa-money-bill text-primary"></i>
+                </a>
+                <a class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10  " title="Đơn hàng" href="{{route('user.order.index')}}"
+                >
+                    <i class="fa fa-shopping-bag text-info  "></i>
+                </a>
+            @endauth
         </ul>
     </div>
 

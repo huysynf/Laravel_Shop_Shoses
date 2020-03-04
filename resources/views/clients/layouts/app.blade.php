@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 <head>
 
     <meta charset="utf-8">
@@ -60,7 +60,7 @@
     <div class="header-cart flex-col-l p-l-65 p-r-25">
         <div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Giở hàng
+					@lang('content.cart')
 				</span>
 
             <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -107,16 +107,16 @@
                     }
 
                     ?>
-                    Tổng cộng: {{number_format($total)}}VND
+                        @lang('content.total'): {{number_format($total)}}VND
                 </div>
 
                 <div class="header-cart-buttons flex-w w-full">
                     <a href="{{route('carts.index')}}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                        Xem Giỏ hàng
+                        @lang('content.view')  @lang('content.cart')
                     </a>
                     @if($carts->count()>0)
                             <a href="{{route('cart.checkout')}}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                           Thanh toán
+                                @lang('content.checkout')
                         </a>
                     @endif
                 </div>
@@ -135,7 +135,7 @@
         <div class="row">
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Danh mục
+                    @lang('content.category')
                 </h4>
 
                 <ul>
@@ -153,7 +153,7 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Trợ giúp
+                    @lang('content.help')
                 </h4>
 
                 <ul>
@@ -185,7 +185,7 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Địa chỉ
+                    @lang('content.address')
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
