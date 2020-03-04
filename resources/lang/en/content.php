@@ -51,7 +51,8 @@ return[
     'coupon'=>'Coupon',
     'category'=>'Category',
 
-
+    //status
+    'success'=>'success'
 
 
 

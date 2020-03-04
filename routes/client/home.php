@@ -39,3 +39,5 @@ Route::get('/lang={lang}', function($lang) {
      session(['lang'=>$lang]);
     return back();
 })->name('lang.client');
+
+Route::get('/search', 'SearchController@index')->name('search.name');
