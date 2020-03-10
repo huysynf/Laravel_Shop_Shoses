@@ -3,12 +3,12 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Category;
-use Faker\Generator as Faker;
 
-$factory->define(Category::class, function (Faker $faker) {
+
+$factory->define(Category::class, function () {
     return [
-       'name'=>$faker->name,
-        'slug'=>$faker->slug,
+       'name'=>'hdasdsa',
+        'slug'=>'hnfghh',
         'parent_id'=>null
     ];
 });

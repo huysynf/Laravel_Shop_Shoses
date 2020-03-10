@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\Models\User;
-use Faker\Generator as Faker;
+
 use Illuminate\Support\Str;
 
 /*
@@ -16,16 +16,16 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(User::class, function () {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'name' => 'huy',
+        'email' => 'admin@admin.com',
         'email_verified_at' => now(),
         'password' => 'password', // password
         'remember_token' => Str::random(10),
         'image'=>'default.jpg',
         'phone'=>'03371112000',
         'gender'=>1,
-        'address'=>$faker->address,
+        'address'=>'hn',
     ];
 });
