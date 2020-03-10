@@ -1,12 +1,12 @@
 @extends('admins.layouts.app')
 
-@section('title',' dashboard')
+@section('title',__('content.category'))
 
 @section('content')
     <div class="d-flex  mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Danh mục</h1>
+        <h1 class="h3 mb-0 text-gray-800">@lang('content.category')</h1>
         @can('new category')
-        <button title="Thêm mới danh mục" class="btn btn-outline-primary btn-circle ml-2 add-category" data-toggle="modal" data-target="#newCategoryModal">
+        <button title="@lang('content.add-new') @lang('content.category')" class="btn btn-outline-primary btn-circle ml-2 add-category" data-toggle="modal" data-target="#newCategoryModal">
             <i class="fa fa-plus"></i>
         </button>
         @endcan
@@ -28,7 +28,7 @@
             </form>
         </div>
         <div class="text-dark">
-            <p class="p-2">Tổng cộng:{{$categories->total()}}</p>
+            <p class="p-2">@lang('content.total'):{{$categories->total()}}</p>
         </div>
     </div>
     <div class="row" id="category">
@@ -37,9 +37,9 @@
                 <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Tên danh mục</th>
-                    <th>Dannh mục cha</th>
-                    <th>Tùy chọn</th>
+                    <th>@lang('content.category')</th>
+                    <th>@lang('content.parent-category')</th>
+                    <th>@lang('content.action')</th>
                 </tr>
                 </thead>
                 <tbody>

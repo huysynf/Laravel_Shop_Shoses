@@ -54,4 +54,16 @@ return [
     //status
     'success'=>'thành công',
 
+    //admin
+    'lang'=>'Ngôn ngữ',
+     'role'=>'Quyền',
+    'user'=>'Người dùng',
+    'brand'=>'Thương hiệu',
+    'manage'=>'Quản lý',
+    'setting'=>'Cài đặt',
+    'add-new'=>'Thêm mới',
+
+    //category
+    'parent-category'=>'Danh mục cha',
+    'action'=>'Tùy chọn '
 ];

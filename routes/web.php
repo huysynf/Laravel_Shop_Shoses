@@ -29,7 +29,7 @@ Auth::routes(
 Route::group(['namespace' => 'Client','middleware'=>'lang'], function () {
     include_route_files(__DIR__ . '/client/');
 });
-Route::group(['namespace' => 'Admin', 'prefix' => 'manage', 'middleware' => ['auth','check.user']], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'manage', 'middleware' => ['auth','check.user','lang']], function () {
     include_route_files(__DIR__ . '/admin/');
 });
 
