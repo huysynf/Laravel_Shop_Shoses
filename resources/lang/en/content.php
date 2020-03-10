@@ -52,8 +52,18 @@ return[
     'category'=>'Category',
 
     //status
-    'success'=>'success'
+    'success'=>'success',
 
-
+    //admin
+    'lang'=>'Language',
+    'role'=>'Role',
+    'user'=>'User',
+    'brand'=>'Brand',
+    'manage'=>'Manage',
+    'setting'=>'Setting',
+   'add-new'=>'Add new ',
+//category
+    'parent-category'=>'Parent Category',
+    'action'=>'Action'
 
 ];

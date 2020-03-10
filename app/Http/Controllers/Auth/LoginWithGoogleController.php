@@ -14,13 +14,21 @@ class LoginWithGoogleController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-
     public function callback()
     {
         try {
             $googleUser = Socialite::driver('google')->user();
             $user = User::where('email',$googleUser->email)->first();
             if($user) {
+                $user->updated([
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'image' => 'default.jpg',
+                    'google_id' => $googleUser->id,
+                    'password' => '123456',
+                    'phone'=>'033xxxxxxxx',
+                    'gender'=>1
+                ]);
                 Auth::loginUsingId($user->id);
             }
             else {

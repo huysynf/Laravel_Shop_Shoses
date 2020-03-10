@@ -24,63 +24,63 @@
     <!-- Heading -->
     <div class="sidebar-heading">
         <i class="text-white fa fa-cogs"></i>
-        <span>Quản lí</span>
+        <span>@lang('content.manage')</span>
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     @can('view category')
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{route('categories.index')}}" title="Quản lí danh mục">
                 <i class="fas fa-fw fa-list text-danger"></i>
-                <span>Danh mục</span>
+                <span>@lang('content.category')</span>
             </a>
-        </li>
+
         </li>
     @endcan
     @can('view user')
         <li class="nav-item">
             <a class="nav-link " href="{{route('users.index')}}" title="Quản lí người dùng">
-                <i class="fas fa-fw fa-shopping-bag text-danger"></i>
-                <span>Người dùng</span>
+                <i class="fas fa-fw fa-users text-primary"></i>
+                <span>@lang('content.user')</span>
             </a>
         </li>
     @endcan
     @can('view role')
         <li class="nav-item">
             <a class="nav-link " href="{{route('roles.index')}}" title="Quản lí người dùng">
-                <i class="fas fa-fw fa-paperclip text-danger"></i>
-                <span>Quyền</span>
+                <i class="fas fa-fw fa-paperclip text-info"></i>
+                <span>@lang('content.role')</span>
             </a>
         </li>
     @endcan
     @can('view product')
         <li class="nav-item">
             <a class="nav-link " href="{{route('products.index')}}" title="Quản lí sản phẩm">
-                <i class="fas fa-fw fa-shopping-bag text-danger"></i>
-                <span>Sản phẩm</span>
+                <i class="fas fa-fw fa-shopping-bag text-white"></i>
+                <span>@lang('content.product')</span>
             </a>
         </li>
     @endcan
     @can('view brand')
         <li class="nav-item">
             <a class="nav-link " href="{{route('brands.index')}}" title="Quản lí thương hiệu">
-                <i class="fas fa-fw fa-trademark text-danger"></i>
-                <span>Thương hiệu</span>
+                <i class="fas fa-fw fa-trademark text-warning"></i>
+                <span>@lang('content.brand')</span>
             </a>
         </li>
     @endcan
     @can('view coupon')
         <li class="nav-item">
             <a class="nav-link " href="{{route('coupons.index')}}" title="Quản lí mã giảm giá">
-                <i class="fas fa-fw fa-sticky-note text-danger"></i>
-                <span>Mã giảm giá</span>
+                <i class="fas fa-fw fa-sticky-note text-role"></i>
+                <span>@lang('content.coupon')</span>
             </a>
         </li>
     @endcan
     @can('view order')
         <li class="nav-item">
             <a class="nav-link " href="{{route('admin.orders.index')}}" title="Quản lí đơn hàng">
-                <i class="fas fa-fw fa-shopping-bag text-danger"></i>
-                <span>Đơn hàng</span>
+                <i class="fas fa-fw fa-shopping-bag text-info"></i>
+                <span>@lang('content.order')</span>
             </a>
         </li>
 @endcan
@@ -90,7 +90,7 @@
     <!-- Heading -->
     <div class="sidebar-heading">
         <i class="text-danger fa fa-cog"></i>
-        <span>Cài đặt</span>
+        <span>@lang('content.setting')</span>
     </div>
 
     <li class="nav-item">

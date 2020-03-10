@@ -210,7 +210,6 @@
             @endauth
         </ul>
     </div>
-
     <!-- Modal Search -->
     <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
         <div class="container-search-header">
