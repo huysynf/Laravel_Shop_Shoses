@@ -1,0 +1,30 @@
+
+image: sanghvdeha/laravel-ci-php7-alpine
+
+variables:
+  MYSQL_DATABASE: laravel
+  MYSQL_ROOT_PASSWORD: root
+
+stages:
+  - test
+  - deploy
+
+testing:
+  stage: test
+  services:
+    - mysql:5.7
+  script:
+    - echo "testing"
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+    - cp .env.example .env
+    - php artisan migrate
+    - php artisan key:generate
+    - php artisan cache:clear
+    - php artisan config:clear
+    - ./vendor/phpunit/phpunit/phpunit
+    - phpcs --standard=PSR2 app/Models
+    - phpcs --standard=PSR2 tests
+    - phpcs --standard=PSR2 app/Traits
+    - phpcs --standard=PSR2 app/Models
+    - phpcs --standard=PSR2 app/Repositories
+    - phpcs --standard=PSR2 app/Http/Controllers
