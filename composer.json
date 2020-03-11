@@ -1,4 +1,4 @@
-{
+ {
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
@@ -16,11 +16,11 @@
         "laravel/framework": "^6.2",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
-        "spatie/laravel-permission": "^3.6"
+        "spatie/laravel-permission": "^3.6",
+        "fzaninotto/faker": "^1.4"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
-        "fzaninotto/faker": "^1.4",
         "laravel/ui": "^1.1",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",

@@ -5,10 +5,3 @@
 use App\Models\Brand;
 use Faker\Generator as Faker;
 
-$factory->define(Brand::class, function (Faker $faker) {
-    return [
-        'name'=>'ok',
-        'slug'=>'test-',
-        'image'=>'default.jpg',
-    ];
-});

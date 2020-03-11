@@ -5,10 +5,4 @@
 use App\Models\Category;
 
 
-$factory->define(Category::class, function () {
-    return [
-       'name'=>'hdasdsa',
-        'slug'=>'hnfghh',
-        'parent_id'=>null
-    ];
-});
+

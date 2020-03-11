@@ -22,7 +22,5 @@ class UserSeeder extends Seeder
             'gender'=>'1',
             'address'=>'Hà Nội',
         ]);
-        factory( User::class, 10)->create();
-
     }
 }
