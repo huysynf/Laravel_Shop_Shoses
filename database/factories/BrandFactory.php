@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Brand::class, function (Faker $faker) {
     return [
-        'name'=>'ok',
+        'name'=>'ok'.$faker->name,
         'slug'=>'test-',
         'image'=>'default.jpg',
     ];
