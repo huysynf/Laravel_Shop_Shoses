@@ -15,14 +15,12 @@ class UserSeeder extends Seeder
 
         User::create([
             'name'=>'Hạ Huy ',
-            'email'=>'admin@shop.com',
+            'email'=>'admin@admin.com',
             'password'=>'123456', // 123456,
             'image'=>'default.jpg',
             'phone'=>'0337172888',
             'gender'=>'1',
             'address'=>'Hà Nội',
         ]);
-        factory( User::class, 10)->create();
-
     }
 }

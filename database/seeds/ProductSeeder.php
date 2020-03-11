@@ -19,18 +19,9 @@ class ProductSeeder extends Seeder
         for($i=0;$i<1;$i++)
         {
 
-            $name='Giày nike '.$i;
-            $slug=\Illuminate\Support\Str::slug($name);
-         $product= Product::create([
-             'name'=>$name,
-             'sale'=>0,
-             'product_key'=>'MSPRO'.$i,
-             'image'=>'default.jpg',
-             'description'=>'san pham',
-             'status'=>1,
-             'slug'=>$slug,
-             'brand_id'=>1,
-            ]);
+
+         $product= Product::find($i);
+
             $product->categories()->attach([1,2]);
             $size=  ProductSize::create([
                 'product_id'=>$product->id,
