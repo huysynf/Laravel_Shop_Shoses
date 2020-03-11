@@ -2,7 +2,7 @@
 image: sanghvdeha/laravel-ci-php7-alpine
 
 variables:
-  MYSQL_DATABASE: laravel
+  MYSQL_DATABASE: shoes_shop
   MYSQL_ROOT_PASSWORD: root
 
 stages:
