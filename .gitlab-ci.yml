@@ -21,7 +21,6 @@ testing:
     - php artisan key:generate
     - php artisan cache:clear
     - php artisan config:clear
-    - ./vendor/phpunit/phpunit/phpunit
     - phpcs --standard=PSR2 app/Models
     - phpcs --standard=PSR2 app/Traits
     - phpcs --standard=PSR2 app/Models
