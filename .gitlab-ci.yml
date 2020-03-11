@@ -1,5 +1,5 @@
 
-image: sanghvdeha/laravel-ci-php7-alpine
+image: erickhuy/laravelfitci
 
 variables:
   MYSQL_DATABASE: shoes_shop
