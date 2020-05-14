@@ -10,6 +10,7 @@ Route::group(['prefix' => 'products'], function () {
         'ProductController@update')->name('products.update')->middleware('permission:update product');
     Route::delete('/{id}',
         'ProductController@destroy')->name('product.destroy')->middleware('permission:delete product');
+    Route::get('/export/', 'ProductController@exportExcel')->name('products.export');
 });
 
 //image

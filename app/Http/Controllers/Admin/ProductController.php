@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Excels\ProductExport;
 use App\Http\Requests\Products\CreateRequest;
 use App\Http\Requests\Products\UpdateRequest;
 use App\Repositories\admin\ProductRepository;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -76,5 +78,10 @@ class ProductController extends Controller
             'status'=>200,
             'message'=>$message
         ]);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ProductExport(), 'product.xlsx');
     }
 }

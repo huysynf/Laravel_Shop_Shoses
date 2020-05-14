@@ -56,8 +56,9 @@
             </form>
         </div>
 
-        <div class="text-dark">
+        <div class="text-dark d-flex">
             <p class="p-2">Tổng cộng:{{$products->total()}}</p>
+            <a href="{{route('products.export')}}" class="btn btn-primary " style="height: 40px"><i class="fa fa-file-excel"></i>Export</a>
         </div>
     </div>
     @if(session('message'))
