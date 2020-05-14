@@ -96,7 +96,7 @@
                                 <p>{{$category->name}}</p>
                             @endforeach
                         </td>
-                        <td>{{$product->brand->name}}</td>
+                        <td>{{$product->brand->name ?? 'NIKE'}}</td>
                         <td>{{$product->sale}}%</td>
                         <td>
                             @can('update product')
