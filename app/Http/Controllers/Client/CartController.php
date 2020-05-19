@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\carts\ApplyCodeRequest;
-use App\Http\Requests\carts\CartRequest ;
+use App\Http\Requests\carts\CartRequest;
+use App\Models\Cart;
+use App\Models\CartProduct;
 use App\Models\Coupon;
-use App\Models\Product;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Session;
@@ -14,83 +16,55 @@ use Session;
 class CartController extends Controller
 {
 
-
     public function index()
     {
-        $cartOrders = \Cart::getContent();
-        $cartTotal = \Cart::getTotal();
-        $totalPro = [];
-        $total = 0;
-        foreach ($cartOrders as $cart) {
-            $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
-        }
-
-        Session::put('totalCart', $total);
         return view('clients.carts.cart')->with([
-            'cartOrders' => $cartOrders,
-            'total' => $total,
+            'cartOrders' => '',
+            'total' => '',
         ]);
     }
 
     public function addcart(CartRequest $request)
     {
         $data = $request->all();
-        Session::forget('discount_amount_price');
-
-        Session::forget('coupon_code');
-
-        $session_id = Session::get('session_id');
-
-        if (empty($session_id)) {
-            $session_id = Str::random(40);
-            Session::put('session_id', $session_id);
+        $cart = Cart::where('user_id', Auth::id())->first();
+        if (!$cart) {
+            $cart = Cart::create(['user_id' => Auth::id(), 'sale_money' => 0, 'total' => 0]);
         }
-        $product = Product::findOrFail($data['id']);
-        $productSize = $product->sizes->first();
-        if ($request->size == null) {
+        $isProductInCart = $this->checkProducInCart($data, $cart);
 
-            $size = $productSize->size ?? 30;
-        } else {
-            $size = $request->size;
-        }
-
-        $qty = $request->qty ?? 1;
-
-        $color = $data['color'];
-        $price = ($product->sale > 0) ? (ceil($productSize->price - ($product->price * $product->sale) / 100)) : $productSize->price;
-        $id = $data['id'] . $size;
-        $cart = \Cart::get($id);
-        if ($cart == null) {
-            \Cart::add(array(
-                'id' => $id,
-                'name' => $product->name,
-                'quantity' => $qty,
-                'price' => $price,
-                'attributes' => [
-                    'size' => $size,
-                    'email' => 'haqhuy1999@gmail.com',
-                    'session_id' => $session_id,
-                    'sale' => $product->sale,
-                    'color' => $color,
-                    'product_id' => $data['id'],
-                    'image' => $product->image,
-                ],
-            ));
-        } else {
-            $quantity = $cart->quantity;
-            \Cart::update($id, [
-                'quantity' => [
-                    'relative' => false,
-                    'value' => $quantity + $qty,
-                ],
+        if (!$isProductInCart) {
+            CartProduct::create([
+                'cart_id' => $cart->id,
+                'product_id' => $data['id'],
+                'quantity' => 1,
+                'size' => $data['size'],
+                'color' => $data['color']
             ]);
-
+        } else {
+            $cartProduct = CartProduct::where('cart_id', $cart->id)
+                ->where('product_id', $data['id'])
+                ->where('color', $data['color'])
+                ->where('size', $data['size'])->first();
+            $quantity = $cartProduct->quantity +1;
+            $cartProduct->update(['quantity'=>$quantity]);
         }
+
         return redirect()->back()->with('message', 'Thêm vào giỏ hàng thành công');
     }
 
 
-    public function delete( $id)
+    public function checkProducInCart($data, $cart)
+    {
+        $cartProduct = CartProduct::where('cart_id', $cart->id)
+            ->where('product_id', $data['id'])
+            ->where('color', $data['color'])
+            ->where('size', $data['size'])->first();
+
+        return $cartProduct != null;
+    }
+
+    public function delete($id)
     {
         \Cart::remove($id);
         return response()->json([
@@ -136,22 +110,19 @@ class CartController extends Controller
         }
 
         $now = date('Y-m-d');
-        if($coupon->status ==0) {
+        if ($coupon->status == 0) {
             return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá không tồn tại !');
         }
 
-        if($coupon->quantity <= 0) {
+        if ($coupon->quantity <= 0) {
             return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá hết  !');
         }
-        if( $coupon->expiry_date < $now) {
+        if ($coupon->expiry_date < $now) {
             return redirect()->route('cart.checkout')->with('message', 'Mã giảm giá hết hạn !');
         }
-        if($coupon->type=='percent')
-        {
+        if ($coupon->type == 'percent') {
             $discount_amount_price = ($total_amount * ($coupon->value / 100));
-        }
-        else
-        {
+        } else {
             $discount_amount_price = $coupon->value;
         }
 

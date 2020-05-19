@@ -5,22 +5,27 @@ namespace App\Http\Composers\Admin;
 
 use App\Repositories\admin\CategoryRepository;
 use Illuminate\View\View;
-use Darryldecode\Cart\Cart;
 use App\Models\Order;
+use App\Models\Cart;
 use Auth;
 
 class CartComposer
 {
-        protected $order;
+    protected $order;
+    protected $cart;
 
-    public function __construct(Order $order)
+    public function __construct(Order $order,Cart $cart)
     {
         $this->order = $order;
+        $this->cart =$cart;
+    }
+    public function getCart()
+    {
+        return $this->cart->with(['products','products.sizes'])->where('user_id',auth()->user()->id)->first();
     }
 
-
     public function compose(View $view){
-        $view->with(['carts'=>\Cart::getContent(),'orderCountNew'=>$this->order->countNewOrderBy(Auth::guard()->id())]);
+        $view->with(['cart'=>$this->getCart(),'orderCountNew'=>$this->order->countNewOrderBy(Auth::guard()->id())]);
 
     }
 }

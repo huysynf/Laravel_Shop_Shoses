@@ -68,60 +68,63 @@
             </div>
         </div>
 
-        <div class="header-cart-content flex-w js-pscroll">
-            <ul class="header-cart-wrapitem w-full">
-                @foreach($carts as $cart)
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="{{asset('/images/products/'.($cart->attributes->image??'default.jpg'))}}" alt="IMG">
-                    </div>
+       @if($cart)
+            <div class="header-cart-content flex-w js-pscroll">
+                <ul class="header-cart-wrapitem w-full">
+                    @foreach($cart->products as $item)
+                        <li class="header-cart-item flex-w flex-t m-b-12">
+                            <div class="header-cart-item-img">
+                                <img src="{{asset('/images/products/'.($item->image??'default.jpg'))}}" alt="IMG">
+                            </div>
 
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                          {{$cart->name}}
-                        </a>
+                            <div class="header-cart-item-txt p-t-8">
+                                <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                                    {{$item->name}}
+                                </a>
 
-                        <span class="header-cart-item-info">
-                         {{  $cart->quantity }} X
-								  @if($cart->attributes->sale>0)
-                                <span style="text-decoration:line-through">{{$cart->price}}</span>
-
-                                {{number_format($cart->price-($cart->price*($cart->attributes->sale/100)))}}
-                                VND
-                            @else
-                                {{number_format($cart->price)}} VND
-                            @endif
+                                <span class="header-cart-item-info">
+                         {{  $item->pivot->quantity }} X
+								  @if($item->sale > 0)
+                                        <span style="text-decoration:line-through">{{$item->price}}</span>
+                                        {{number_format($item->sizes->first()->price -($item->sizes->first()->price*($item->sale/100)))}}
+                                        VND
+                                    @else
+                                        {{number_format($item->sizes->first()->price)}} VND
+                                    @endif
 							</span>
-                    </div>
-                </li>
+                            </div>
+                        </li>
                     @endforeach
 
-            </ul>
+                </ul>
 
-            <div class="w-full">
-                <div class="header-cart-total w-full p-tb-40">
-                    <?php
-                    $total=0;
-                    foreach ($carts as $cart) {
-                        $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
-                    }
+                <div class="w-full">
+                    <div class="header-cart-total w-full p-tb-40">
+                        <?php
+                        $total=0;
+                        foreach ($cart->products as $item) {
+                            $total += ($item->sizes->first()->price - ($item->sizes->first()->price * ($item->sale / 100))) * $item->pivot->quantity;
+                        }
 
-                    ?>
+                        ?>
                         @lang('content.total'): {{number_format($total)}}VND
-                </div>
+                    </div>
 
-                <div class="header-cart-buttons flex-w w-full">
-                    <a href="{{route('carts.index')}}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                        @lang('content.view')  @lang('content.cart')
-                    </a>
-                    @if($carts->count()>0)
+                    <div class="header-cart-buttons flex-w w-full">
+                        <a href="{{route('carts.index')}}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                            @lang('content.view')  @lang('content.cart')
+                        </a>
+                        @if($cart->products->count()>0)
                             <a href="{{route('cart.checkout')}}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
                                 @lang('content.checkout')
-                        </a>
-                    @endif
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
+           @else
+           Bạn phải đăng nhập hoặc bạn chưa có sản phẩm nào
+        @endif
     </div>
 </div>
 
