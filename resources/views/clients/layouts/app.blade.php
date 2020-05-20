@@ -78,8 +78,9 @@
                             </div>
 
                             <div class="header-cart-item-txt p-t-8">
-                                <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                    {{$item->name}}
+                                <a href="{{route('product.detail',$item->slug)}}" class="header-cart-item-name m-b-18 hov-cl1 trans-04" title="Xem thông tin sản phẩm">
+                                    {{$item->name}},
+                                    Size:{{$item->pivot->size}} ,Color:{{$item->pivot->color}}
                                 </a>
 
                                 <span class="header-cart-item-info">

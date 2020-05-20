@@ -23,7 +23,7 @@ class LoginController extends Controller
             'password' => $request->input('password'),
         ];
         if (Auth::attempt($data)) {
-            return redirect()->route('home')->with('message','Đăng nhập  thành công thành công');
+            return redirect()->intended();
         } else {
             return back()->with('message1','Đăng nhập không thành công thành công');
         }

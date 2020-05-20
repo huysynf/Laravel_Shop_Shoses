@@ -15,6 +15,15 @@ class Cart extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'cart_product')->withPivot(['quantity', 'size', 'color']);
+        return $this->belongsToMany(Product::class, 'cart_product')->withPivot(['quantity', 'size', 'color','id']);
+    }
+
+    public function getTotalAttribute()
+    {
+        $total = 0;
+        foreach ($this->products as $item) {
+            $total += ($item->sizes->first()->price - ($item->sizes->first()->price * ($item->sale / 100))) * $item->pivot->quantity;
+        }
+        return $total;
     }
 }

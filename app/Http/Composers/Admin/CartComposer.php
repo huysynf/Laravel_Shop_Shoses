@@ -21,7 +21,7 @@ class CartComposer
     }
     public function getCart()
     {
-        return $this->cart->with(['products','products.sizes'])->where('user_id',auth()->user()->id)->first();
+        return Auth::guard()->id() ? $this->cart->with(['products','products.sizes'])->where('user_id',auth()->user()->id)->first() : null;
     }
 
     public function compose(View $view){

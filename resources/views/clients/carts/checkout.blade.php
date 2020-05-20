@@ -41,57 +41,77 @@
                                     <th class="column-3">@lang('content.total')</th>
                                 </tr>
 
-                                @foreach($cartOrders as $item)
-                                    <tr class="table_row ">
-                                        <td class="column-1 position-relative">
-                                            @if($item->attributes->sale>0)
-                                                <div class="position-absolute" style="     width: 20px;
+                                @if($cartOrders->products->count() >0)
+                                    @foreach($cartOrders->products as $item)
+                                        <tr class="table_row ">
+                                            <td class="column-1 position-relative">
+                                                @if($item->sale>0)
+                                                    <div class="position-absolute" style="     width: 20px;
                                                                                 height: 20px;
                                                                                top:20%;
                                                                                right: 50%;
                                                                                 z-index: 5;
                                                                                 text-align: center;
                                                                                 padding: 3% 2%; color: red">
-                                                    -{{$item->attributes->sale}}%
-                                                </div>
-                                            @endif
-                                            <span class="position-absolute delete-cart-item"
-                                                  style="top: 30%;font-size: 20px; cursor: pointer;right: 65%"
-                                                  cart="{{$item->id}}" title="Xóa hàng này"> <i
-                                                    class="fa fa-times text-danger"></i></span>
-                                            <div class="how-itemcart1">
-                                                <img
-                                                    src="{{asset('/images/products/'.($item->attributes->image??'default.jpg'))}}"
-                                                    alt="IMG">
-                                            </div>
-                                        </td>
-                                        <td class="column-2">{{$item->name}}</td>
-                                        <td class="column-3">
-                                            @if($item->attributes->sale>0)
-                                                <span style="text-decoration:line-through">{{$item->price}}</span>
+                                                        -{{$item->sale}}%
+                                                    </div>
+                                                @endif
 
-                                                {{number_format($item->price-($item->price*($item->attributes->sale/100)))}}
-                                                VND
-                                            @else
-                                                {{number_format($item->price)}} VND
-                                            @endif
-                                        </td>
-                                        <td class="column-3">
-                                            {{$item->quantity}}
-                                        </td>
-                                        <td class="column-3">{{$item->attributes->size}}</td>
-                                        <td class="column-3">{{$item->attributes->color}}</td>
-                                        <td class="column-3">
-                                            @if($item->sale>0)
-                                                <span style="text-decoration:line-through">{{$item->price}}</span>
-                                                <span>{{number_format(($item->price*$item->attributes->sale)/100)}}</span>
-                                            @else
-                                                {{number_format(($item->price-($item->price*($item->attributes->sale/100)))*$item->quantity)}}
-                                                VND
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                                <span class="position-absolute delete-cart-item"
+                                                      style="top: 30%;font-size: 20px; cursor: pointer;right: 65%"
+                                                      cart="{{$item->pivot->id}}" title="Xóa hàng này"> <i
+                                                        class="fa fa-times text-danger"></i></span>
+                                                <div class="how-itemcart1">
+                                                    <img
+                                                        src="{{asset('/images/products/'.($item->image??'default.jpg'))}}"
+                                                        alt="IMG">
+                                                </div>
+                                            </td>
+                                            <td class="column-2">{{$item->name}}</td>
+                                            <td class="column-3">
+                                                @if($item->sale>0)
+                                                    <span style="text-decoration:line-through">{{$item->size->first()->price}}</span>
+
+                                                    {{number_format($item->sizes->first()->price -($$item->sizes->first()->price*($item->sale/100)))}}
+                                                    VND
+                                                @else
+                                                    {{number_format($item->sizes->first()->price)}} VND
+                                                @endif
+
+                                            </td>
+                                            <td class="column-3">
+                                                <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                                    <div
+                                                        class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m quantity-update"
+                                                        cart="{{$item->pivot->id}}">
+                                                        <i class="fs-16 zmdi zmdi-minus"></i>
+                                                    </div>
+                                                    <input class="mtext-104 cl3 txt-center num-product quantity-cart"
+                                                           type="number" name="num-product1" value="{{$item->pivot->quantity}}">
+
+                                                    <div
+                                                        class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m quantity-update"
+                                                        cart="{{$item->pivot->id}}">
+                                                        <i class="fs-16 zmdi zmdi-plus"></i>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="column-3">{{$item->pivot->size}}</td>
+                                            <td class="column-3">{{$item->pivot->color}}</td>
+                                            <td class="column-3">
+                                                @if($item->sale>0)
+                                                    <span style="text-decoration:line-through">{{$item->price}}</span>
+                                                    <span>{{number_format(($item->sizes->first()->price*$item->sale)/100)}}</span>
+                                                @else
+                                                    {{number_format(($item->sizes->first()->price-($item->sizes->first()->price*($item->sale/100)))*$item->pivot->quantity)}}
+                                                    VND
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <p>Không có sản phẩm trong giỏ hàng</p>
+                                @endif
                             </table>
                         </div>
 {{--                        {{var_dump(session('message'))}}--}}

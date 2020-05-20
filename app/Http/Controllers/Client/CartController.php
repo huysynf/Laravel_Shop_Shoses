@@ -8,6 +8,8 @@ use App\Http\Requests\carts\CartRequest;
 use App\Models\Cart;
 use App\Models\CartProduct;
 use App\Models\Coupon;
+use App\Models\Order;
+use App\Models\Product;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,20 +18,28 @@ use Session;
 class CartController extends Controller
 {
 
+    protected $cart;
+    public function __construct(Cart $cart)
+    {
+        $this->cart =$cart;
+    }
+
     public function index()
     {
+        $cartOrders = Auth::guard()->id() ? $this->cart->with(['products','products.sizes'])->where('user_id',auth()->user()->id)->first() : null;
+
         return view('clients.carts.cart')->with([
-            'cartOrders' => '',
-            'total' => '',
+            'cartOrders' => $cartOrders,
+            'total' => $cartOrders->total ?? 0,
         ]);
     }
 
     public function addcart(CartRequest $request)
     {
         $data = $request->all();
-        $cart = Cart::where('user_id', Auth::id())->first();
+        $cart = Cart::where('user_id', Auth::guard()->id())->first();
         if (!$cart) {
-            $cart = Cart::create(['user_id' => Auth::id(), 'sale_money' => 0, 'total' => 0]);
+            $cart = Cart::create(['user_id' => Auth::guard()->id(), 'sale_money' => 0, 'total' => 0]);
         }
         $isProductInCart = $this->checkProducInCart($data, $cart);
 
@@ -66,7 +76,8 @@ class CartController extends Controller
 
     public function delete($id)
     {
-        \Cart::remove($id);
+        CartProduct::destroy($id);
+
         return response()->json([
             'message' => 'Xóa thành công',
         ]);
@@ -75,15 +86,19 @@ class CartController extends Controller
 
     public function updateQuantity(Request $request, $id)
     {
-        \Cart::update($id, [
-            'quantity' => [
-                'relative' => false,
-                'value' => $request->qty,
-            ],
-        ]);
+
+        $cartProduct = CartProduct::findOrFail($id);
+        $quantity = $request->qty;
+        if ($quantity >0)
+        {
+            $cartProduct->update(['quantity'=>$quantity]);
+            return response()->json([
+                'status' => 200,
+            ]);
+        }
 
         return response()->json([
-            'status' => 200,
+            'status' => 401,
         ]);
     }
 

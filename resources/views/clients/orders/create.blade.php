@@ -32,14 +32,18 @@
                 <tr>
                     <td>STT</td>
                     <td>Tên Giày</td>
+                    <th>Màu</th>
+                    <th>Size</th>
                     <td>Số lượng</td>
                 </tr>
                 <tbody>
-                @foreach($cartOrders as $key=>$cart)
+                @foreach($cartOrders->products as $key=>$cart)
                     <tr>
                         <td><strong></strong></td>
                         <td>{{$cart->name}} </td>
-                        <td>{{$cart->quantity}}</td>
+                        <td>{{$cart->pivot->color}}</td>
+                        <td>{{$cart->pivot->size}}</td>
+                        <td>{{$cart->pivot->quantity}}</td>
                     </tr>
                 @endforeach
                 <tr>
@@ -72,17 +76,17 @@
                         </div>
                         <div class="col-6">
                             <label for="">Số điện thoại </label>
-                            <input type="text" name="user_phone" class="form-control" value="{{Auth::guard()->user()->phone}}">
+                            <input type="text" name="user_phone" class="form-control" required value="{{Auth::guard()->user()->phone}}">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-6">
                             <label for="">Email </label>
-                            <input type="text" name="user_email" class="form-control" value="{{Auth::guard()->user()->email}}">
+                            <input type="text" name="user_email" class="form-control" required value="{{Auth::guard()->user()->email}}">
                         </div>
                         <div class="col-6">
                             <label for="">Địa chỉ </label>
-                            <input type="text" name="user_address" class="form-control" value="{{Auth::guard()->user()->address}}">
+                            <input type="text" name="user_address" class="form-control" required value="{{Auth::guard()->user()->address}}">
                         </div>
                     </div>
 

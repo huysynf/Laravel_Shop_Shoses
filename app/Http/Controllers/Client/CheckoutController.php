@@ -3,27 +3,25 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use Illuminate\Http\Request;
-use Darryldecode\Cart\Cart;
 use Session;
+use Auth;
 class CheckoutController extends Controller
 {
-    public function index()
+    protected $cart;
+    public function __construct(Cart $cart)
     {
-        $cartOrders = \Cart::getContent();
-        $cartTotal = \Cart::getTotal();
-        $totalPro = [];
-        $total = 0;
-        foreach ($cartOrders as $cart) {
-            $total += ($cart->price - ($cart->price * ($cart->attributes->sale / 100))) * $cart->quantity;
-        }
-        Session::put('totalCart', count($totalPro));
-        return view('clients.carts.checkout')->with([
-            'cartOrders' => $cartOrders,
-            'total' => $total,
-        ]);
-
+        $this->cart =$cart;
     }
 
+    public function index()
+    {
+        $cartOrders = Auth::guard()->id() ? $this->cart->with(['products','products.sizes'])->where('user_id',auth()->user()->id)->first() : null;
 
+        return view('clients.carts.checkout')->with([
+            'cartOrders' => $cartOrders,
+            'total' => $cartOrders->total ?? 0,
+        ]);
+    }
 }
