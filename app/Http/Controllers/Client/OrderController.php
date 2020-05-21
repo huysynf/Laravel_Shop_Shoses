@@ -19,7 +19,6 @@ class OrderController extends Controller
     public function __construct(Order $order,Cart $cart)
     {
         $this->order = $order;
-        $this->cart =$cart;
     }
 
 

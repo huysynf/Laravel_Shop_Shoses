@@ -44,7 +44,7 @@ class LoginWithGoogleController extends Controller
                 $user->assignRole('CUSTOMER');
                 Auth::loginUsingId($user->id);
             }
-            return redirect()->intended();
+          return redirect()->route('home');
         }
         catch (Exception $e) {
             return abort(404);
